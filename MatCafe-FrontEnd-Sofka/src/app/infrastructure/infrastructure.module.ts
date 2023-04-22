@@ -4,20 +4,23 @@ import { courseUseCaseProviders } from './delegate/delegate-course/delegate-cour
 import { routeUseCaseProviders } from './delegate/delegate-route/delegate-route.infrastructure';
 import { CourseService } from '../domain/services/course.service.domain';
 import { RouteService } from '../domain/services/route.service.domain';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CourseImplementationService } from './services/service-course/course.service.infrastructure';
+import { RouteImplementationService } from './services/service-route/route.service.infrastructure';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule,
   ],
   providers: [
     ...Object.values(courseUseCaseProviders),
     ...Object.values(routeUseCaseProviders),
 
-    //{ provide: RouteService, useClass: MemberImplementationRepository },
-    //{ provide: CourseService, useClass: TeamImplementationRepository },
+    { provide: RouteService, useClass:  RouteImplementationService },
+    { provide: CourseService, useClass: CourseImplementationService },
 
   ],
 
