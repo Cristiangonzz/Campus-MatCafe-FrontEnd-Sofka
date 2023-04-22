@@ -8,7 +8,7 @@ import { CourseService } from "src/app/domain/services/course.service.domain";
     providedIn: 'root',
 })
 export class CourseImplementationService extends CourseService {
-    
+   
     URL = "https://gestion-de-project-backend-production.up.railway.app";
 
     constructor(private http: HttpClient) {
@@ -23,8 +23,8 @@ export class CourseImplementationService extends CourseService {
         })
     }
     create(Course: CourseEntity): Observable<CourseEntity> {
-       return this.http.post<CourseEntity>(`${this.URL}/Course`, Course, this.httpOptions);
-    }
+        return this.http.post<CourseEntity>(`${this.URL}/Course`, Course, this.httpOptions);
+     }
     update(id: string, Course: CourseEntity): Observable<CourseEntity> {
         return this.http.put<CourseEntity>(`${this.URL}/Course/${id}`, Course, this.httpOptions);
     }

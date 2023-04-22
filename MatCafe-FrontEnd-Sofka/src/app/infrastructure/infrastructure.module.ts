@@ -7,6 +7,9 @@ import { RouteService } from '../domain/services/route.service.domain';
 import { HttpClientModule } from '@angular/common/http';
 import { CourseImplementationService } from './services/service-course/course.service.infrastructure';
 import { RouteImplementationService } from './services/service-route/route.service.infrastructure';
+import { adminUseCaseProviders } from './delegate/delegate-admin/delegate-admin.infrastructure';
+import { AdminImplementationService } from './services/service-admin/admin.service.infrastructure';
+import { AdminService } from '../domain/services/admin.service.domain';
 
 
 @NgModule({
@@ -18,9 +21,11 @@ import { RouteImplementationService } from './services/service-route/route.servi
   providers: [
     ...Object.values(courseUseCaseProviders),
     ...Object.values(routeUseCaseProviders),
+    ...Object.values(adminUseCaseProviders),
 
     { provide: RouteService, useClass:  RouteImplementationService },
     { provide: CourseService, useClass: CourseImplementationService },
+    { provide: AdminService, useClass: AdminImplementationService },
 
   ],
 
