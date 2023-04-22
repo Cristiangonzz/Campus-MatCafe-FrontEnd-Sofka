@@ -24,19 +24,19 @@ export class RouteImplementationService extends RouteService {
     }
 
     create(data: RouteEntity): Observable<RouteEntity> {
-        return this.http.post<RouteEntity>(`${this.URL}/courses/create`, data, this.httpOptions);
+        return this.http.post<RouteEntity>(`${this.URL}/Route`, data, this.httpOptions);
     }
     update(id: string, data: RouteEntity): Observable<RouteEntity> {
-        return this.http.put<RouteEntity>(`${this.URL}/courses/update/${id}`, data, this.httpOptions);
+        return this.http.put<RouteEntity>(`${this.URL}/Route/${id}`, data, this.httpOptions);
     }
     delete(id: string): Observable<boolean> {
-        return this.http.delete<boolean>(`${this.URL}/courses/delete/${id}`, this.httpOptions);
+        return this.http.delete<boolean>(`${this.URL}/Route/${id}`, this.httpOptions);
     }
     get(id: string): Observable<RouteEntity> {
-        return this.http.get<RouteEntity>(`${this.URL}/courses/get/${id}`, this.httpOptions);
+        return this.http.get<RouteEntity>(`${this.URL}/Route/${id}`, this.httpOptions);
     }
     getAll(): Observable<RouteEntity[]> {
-        return this.http.get<RouteEntity[]>(`${this.URL}/courses/getAll`, this.httpOptions);
+        return this.http.get<RouteEntity[]>(`${this.URL}/Route`, this.httpOptions);
     }
 }
     

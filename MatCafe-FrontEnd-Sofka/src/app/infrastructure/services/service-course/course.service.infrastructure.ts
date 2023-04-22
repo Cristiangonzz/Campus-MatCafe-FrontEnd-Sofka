@@ -23,19 +23,19 @@ export class CourseImplementationService extends CourseService {
         })
     }
     create(Course: CourseEntity): Observable<CourseEntity> {
-       return this.http.post<CourseEntity>(`${this.URL}/courses/create`, Course, this.httpOptions);
+       return this.http.post<CourseEntity>(`${this.URL}/Course`, Course, this.httpOptions);
     }
     update(id: string, Course: CourseEntity): Observable<CourseEntity> {
-        return this.http.put<CourseEntity>(`${this.URL}/courses/update/${id}`, Course, this.httpOptions);
+        return this.http.put<CourseEntity>(`${this.URL}/Course/${id}`, Course, this.httpOptions);
     }
     delete(CourseId: string): Observable<boolean> {
-        return this.http.delete<boolean>(`${this.URL}/courses/delete/${CourseId}`, this.httpOptions);
+        return this.http.delete<boolean>(`${this.URL}/Course/${CourseId}`, this.httpOptions);
     }
     get(CourseId: string): Observable<CourseEntity> {
-        return this.http.get<CourseEntity>(`${this.URL}/courses/get/${CourseId}`, this.httpOptions);
+        return this.http.get<CourseEntity>(`${this.URL}/Course/${CourseId}`, this.httpOptions);
     }
     getAll(): Observable<CourseEntity[]> {
-        return this.http.get<CourseEntity[]>(`${this.URL}/courses/getAll`, this.httpOptions);
+        return this.http.get<CourseEntity[]>(`${this.URL}/Course`, this.httpOptions);
     }
 }
    
