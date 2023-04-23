@@ -17,17 +17,17 @@ export class CreateAdminComponent {
   FormRegister = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    rol: new FormControl<boolean>(false,[]),
+    rol: new FormControl<boolean>(false, []),
   });
 
   admin: AdminEntity = {} as AdminEntity;
   activo = true;
   constructor(private adminService: AdminService, private router: Router) {}
-  
+
   updateRol(event: Event) {
     const checkbox = event.target as HTMLInputElement;
     this.FormRegister.patchValue({
-      rol: checkbox.checked
+      rol: checkbox.checked,
     });
   }
   send() {
@@ -35,8 +35,19 @@ export class CreateAdminComponent {
     this.admin.email = this.FormRegister.get('email')?.value as string;
     this.admin.rol = this.FormRegister.get('rol')?.value as boolean;
     console.log(this.admin);
-    // this.delegeteAdmin.createAdminUseCaseProvaider
-    //   .useFactory(this.adminService)
-    //   .execute(this.admin);
+    this.delegeteAdmin.createAdminUseCaseProvaider
+      .useFactory(this.adminService)
+      .execute(this.admin)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
   }
 }

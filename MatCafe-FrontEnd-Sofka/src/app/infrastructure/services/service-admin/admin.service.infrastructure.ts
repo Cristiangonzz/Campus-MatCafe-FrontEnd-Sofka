@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
   providedIn: 'root',
 })
 export class AdminImplementationService extends AdminService {
-  URL = 'https://gestion-de-project-backend-production.up.railway.app';
+  URL = 'https://stable-use-production.up.railway.app';
 
   constructor(private http: HttpClient) {
     super();
