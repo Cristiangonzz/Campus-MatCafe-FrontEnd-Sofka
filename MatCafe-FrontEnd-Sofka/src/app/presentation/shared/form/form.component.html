@@ -1,0 +1,19 @@
+<div class="formGroup">
+    <label class="form-label">{{label}}</label>
+    <input 
+    class="form-control"
+    [class.invalid] = "control.touched && control.invalid && control.dirty"
+    [formControl]="control" 
+    type={{type}} 
+    [id]="inputId"
+    placeholder="{{placeHolder}}">
+  
+    <ng-container *ngIf= "control.touched && control.invalid && control.dirty"> 
+      <div *ngFor="let err of control.errors | keyvalue" class="alert alert-danger">
+       {{ errorMessages[err.key] }}
+  
+      </div>
+    </ng-container>
+    
+  </div>
+    
