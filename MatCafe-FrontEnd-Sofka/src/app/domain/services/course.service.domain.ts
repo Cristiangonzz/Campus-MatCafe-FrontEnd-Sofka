@@ -1,8 +1,8 @@
-import { Observable } from "rxjs";
-import { CourseEntity } from "../entities/course.entity.domain";
-import { BaseService } from "./base.service.domain";
+import { CourseEntity } from '../entities/course.entity.domain';
+import { BaseService } from './base.service.domain';
+import { Injectable } from '@angular/core';
 
-
-export abstract class CourseService extends BaseService<CourseEntity>{
-}
-
+@Injectable({
+  providedIn: 'root',
+})
+export abstract class CourseService extends BaseService<CourseEntity> {}

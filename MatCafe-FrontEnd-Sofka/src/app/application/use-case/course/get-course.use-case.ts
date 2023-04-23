@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreateCourseUseCase {
+export class GetCourseUseCase {
   constructor(private courseService: CourseService) {}
 
-  execute(param: CourseEntity): Observable<CourseEntity> {
-    return this.courseService.create(param);
+  execute(data: string): Observable<CourseEntity> {
+    return this.courseService.get(data);
   }
 }

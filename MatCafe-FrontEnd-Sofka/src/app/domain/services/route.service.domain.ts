@@ -1,6 +1,8 @@
-import { RouteEntity } from "../entities/route.entity.domain";
-import { BaseService } from "./base.service.domain";
+import { RouteEntity } from '../entities/route.entity.domain';
+import { BaseService } from './base.service.domain';
+import { Injectable } from '@angular/core';
 
-
-export abstract class RouteService extends BaseService<RouteEntity> {
-}
+@Injectable({
+  providedIn: 'root',
+})
+export abstract class RouteService extends BaseService<RouteEntity> {}
