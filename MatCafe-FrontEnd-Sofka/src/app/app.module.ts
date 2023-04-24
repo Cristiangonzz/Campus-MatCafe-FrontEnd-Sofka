@@ -7,10 +7,12 @@ import { AdminModule } from './presentation/admin/admin.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { CourseComponent } from './presentation/course/course/course.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
