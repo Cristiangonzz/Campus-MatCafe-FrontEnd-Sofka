@@ -1,0 +1,29 @@
+<div style="margin-left: 30%;">
+    <form (ngSubmit)="send()" [formGroup]="FormRegister" class="align-items-center"> 
+      <section>
+        <h1 style="margin: 15px;color:rgb(8, 82, 141);"> Register Admin</h1>
+      </section>
+   
+      <div class="col-md-6">
+        <app-form [control]="FormRegister.controls.name" type="text" label="Name" placeHolder=""></app-form>
+      </div>
+      
+      <div class="col-md-6">
+        <app-form [control]="FormRegister.controls.email" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
+      </div>
+
+      <div class="col-md-6">
+        <label>Es Admin </label>
+        <input formControlName="rol" type="checkbox" label="Rol Admin " >
+    </div>
+  
+  
+     
+      <div class="col-12">
+        <button [disabled]="FormRegister.invalid"  class="btn btn-primary">Confirmar</button>
+        <button style="margin: 20px;" class="btn btn-dark" routerLink="">Cancelar</button>
+      </div>
+  
+   
+    </form>
+  </div>

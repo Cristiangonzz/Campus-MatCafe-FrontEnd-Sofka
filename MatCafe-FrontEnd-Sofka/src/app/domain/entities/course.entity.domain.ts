@@ -14,7 +14,7 @@ export class CourseEntity implements ICourse {
     duration: string,
     requirements: string,
     content: string[],
-    adminId: string,
+    adminId: string
   ) {
     this.title = title;
     this.description = description;
@@ -23,5 +23,4 @@ export class CourseEntity implements ICourse {
     this.content = content;
     this.adminId = adminId;
   }
-  
 }
