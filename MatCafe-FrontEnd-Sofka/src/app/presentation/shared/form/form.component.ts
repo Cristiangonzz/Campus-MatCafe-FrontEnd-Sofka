@@ -27,5 +27,6 @@ export class FormComponent {
     required: 'this field is required',
     email: 'this email is invalid',
     minlength: 'this field must have at least 8 characters',
+    maxlength: 'this field must have at most 20 characters',
   };
 }

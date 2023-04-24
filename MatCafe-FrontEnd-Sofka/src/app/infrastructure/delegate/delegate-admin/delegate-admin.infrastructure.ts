@@ -5,13 +5,7 @@ import { GetLearnerByEmailUseCase } from "src/app/application/use-case/admin/get
 import { GraderStudentUseCase } from "src/app/application/use-case/admin/grader-student.use-case.application";
 import { UpdateAdminUseCase } from "src/app/application/use-case/admin/update-admin.use-case.application";
 import { UpdateLearnerUseCase } from "src/app/application/use-case/admin/update-learner.use-case.application";
-import { CreateCourseUseCase } from "src/app/application/use-case/course/create-course.use-case";
-import { DeleteCourseUseCase } from "src/app/application/use-case/course/delete-course.use-case";
-import { GetAllCourseUseCase } from "src/app/application/use-case/course/find-all-course.use-case";
-import { GetCourseUseCase } from "src/app/application/use-case/course/get-course.use-case";
-import { UpdateCourseUseCase } from "src/app/application/use-case/course/update-course.use-case";
 import { AdminService } from "src/app/domain/services/admin.service.domain";
-import { CourseService } from "src/app/domain/services/course.service.domain";
 
 
 
@@ -29,6 +23,7 @@ const CreateAdminUseCaseFactory =
   
     return factory;
 })();
+
 const CreateLearnerUseCaseFactory = 
 (() => {
     let instance: CreateLearnerUseCase;
@@ -43,6 +38,7 @@ const CreateLearnerUseCaseFactory =
   
     return factory;
 })();
+
 const UpdateAdminUseCaseFactory = 
 (() => {
     let instance: UpdateAdminUseCase;

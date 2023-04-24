@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
-import { IAdmin } from '../../../domain/interfaces/admin.interface';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { Router } from '@angular/router';
+import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
 
 @Component({
-  selector: 'app-create-admin',
-  templateUrl: './create-admin.component.html',
-  styleUrls: ['./create-admin.component.css'],
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css'],
 })
-export class CreateAdminComponent {
-  delegeteAdmin = adminUseCaseProviders;
+export class CreateUserComponent {
+  delegeteUser = adminUseCaseProviders;
 
   FormRegister = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -21,21 +21,37 @@ export class CreateAdminComponent {
   });
 
   admin: AdminEntity = {} as AdminEntity;
-  activo = true;
+  user: LearnerEntity = {} as LearnerEntity;
+
   constructor(private adminService: AdminService, private router: Router) {}
 
-  updateRol(event: Event) {
-    const checkbox = event.target as HTMLInputElement;
-    this.FormRegister.patchValue({
-      rol: checkbox.checked,
-    });
-  }
   send() {
     this.admin.name = this.FormRegister.get('name')?.value as string;
     this.admin.email = this.FormRegister.get('email')?.value as string;
     this.admin.rol = this.FormRegister.get('rol')?.value as boolean;
     console.log(this.admin);
-    this.delegeteAdmin.createAdminUseCaseProvaider
+
+    if (!this.admin.rol) {
+      this.user.email = this.admin.email;
+      this.user.name = this.admin.name;
+      this.user.rol = this.admin.rol;
+
+      this.delegeteUser.createLearnerUseCaseProvaider
+        .useFactory(this.adminService)
+        .execute(this.user).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => {
+            console.log('complete');
+          },
+        });
+        return;
+    }
+    this.delegeteUser.createAdminUseCaseProvaider
       .useFactory(this.adminService)
       .execute(this.admin)
       .subscribe({
