@@ -3,13 +3,13 @@ import { AdminEntity } from '../entities/admin.entity.domain';
 import { LearnerEntity } from '../entities/learner.entity.domain';
 import { Observable } from 'rxjs';
 import { CalificationEntity } from '../entities/calification.entity.domain';
+import { IUser } from '../interfaces/user.interface.domain';
 
 @Injectable({
   providedIn: 'root',
 })
 export abstract class AdminService {
-  abstract createAdmin(data: AdminEntity): Observable<AdminEntity>;
-  abstract createLearner(data: LearnerEntity): Observable<LearnerEntity>;
+  abstract createUser(data: IUser): Observable<AdminEntity | LearnerEntity>;
   abstract updateAdmin(
     email: string,
     data: AdminEntity
