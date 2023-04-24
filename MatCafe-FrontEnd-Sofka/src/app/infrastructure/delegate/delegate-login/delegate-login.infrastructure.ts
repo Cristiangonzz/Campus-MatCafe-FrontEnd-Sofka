@@ -34,6 +34,7 @@ const HasUserLocalStrotageUseCaseFactory =
   
     return factory;
 })();
+
 const SetUserLocalStrotageUseCaseFactory = 
 (() => {
     let instance: SetUserLocalStorageUseCase;
