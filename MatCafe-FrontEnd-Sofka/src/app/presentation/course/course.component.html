@@ -1,0 +1,60 @@
+<div class="container">
+  <h1 class="my-4">Create Course</h1>
+  <form (ngSubmit)="send()" [formGroup]="FormRegister">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" formControlName="title" id="title" placeholder="Enter title">
+      <div *ngIf="FormRegister.controls.title.invalid && FormRegister.controls.title.touched" class="invalid-feedback">
+        Title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter description">
+      <div *ngIf="FormRegister.controls.description.invalid && FormRegister.controls.description.touched" class="invalid-feedback">
+        Description is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="duration">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" id="duration" placeholder="Enter duration">
+      <div *ngIf="FormRegister.controls.duration.invalid && FormRegister.controls.duration.touched" class="invalid-feedback">
+        Duration is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="requirements">Requirements</label>
+      <textarea class="form-control" formControlName="requirements" id="requirements" placeholder="Enter requirements"></textarea>
+      <div *ngIf="FormRegister.controls.requirements.invalid && FormRegister.controls.requirements.touched" class="invalid-feedback">
+        Requirements is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="form-control" formControlName="content" id="content" placeholder="Enter content"></textarea>
+      <div *ngIf="FormRegister.controls.content.invalid && FormRegister.controls.content.touched" class="invalid-feedback">
+        Content is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="adminId">Admin ID</label>
+      <input type="text" class="form-control" formControlName="adminId" id="adminId" placeholder="Enter admin ID">
+      <div *ngIf="FormRegister.controls.adminId.invalid && FormRegister.controls.adminId.touched" class="invalid-feedback">
+        Admin ID is required
+      </div>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" formControlName="rol" id="rol">
+      <label class="form-check-label" for="rol">Is Admin</label>
+    </div>
+
+    <button type="submit" [disabled]="FormRegister.invalid" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" routerLink="/">Cancel</button>
+  </form>
+</div>
