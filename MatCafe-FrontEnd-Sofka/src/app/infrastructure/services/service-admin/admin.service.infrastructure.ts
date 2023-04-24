@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 import { CalificationEntity } from 'src/app/domain/entities/calification.entity.domain';
 import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
+import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 
 @Injectable({
@@ -23,16 +24,10 @@ export class AdminImplementationService extends AdminService {
       'Access-Control-Allow-Origin': '*',
     }),
   };
-  createAdmin(data: AdminEntity): Observable<AdminEntity> {
-    return this.http.post<AdminEntity>(
-      `${this.URL}/createAdmin`,
-      data,
-      this.httpOptions
-    );
-  }
-  createLearner(data: LearnerEntity): Observable<LearnerEntity> {
-    return this.http.post<LearnerEntity>(
-      `${this.URL}/createLearner`,
+  
+  createUser(data: IUser): Observable<LearnerEntity | AdminEntity> {
+    return this.http.post<LearnerEntity | AdminEntity>(
+      `${this.URL}/createUser`,
       data,
       this.httpOptions
     );

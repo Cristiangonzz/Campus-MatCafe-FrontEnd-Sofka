@@ -1,5 +1,4 @@
-import { CreateAdminUseCase } from "src/app/application/use-case/admin/create-admin.use-case.application";
-import { CreateLearnerUseCase } from "src/app/application/use-case/admin/create-learner.use-case.application";
+import {  CreateUserUseCase } from "src/app/application/use-case/admin/create-user.use-case.application";
 import { GetAdminByEmailUseCase } from "src/app/application/use-case/admin/get-admin-by-email.use-case.application";
 import { GetLearnerByEmailUseCase } from "src/app/application/use-case/admin/get-learner-by-email.use-case.application";
 import { GraderStudentUseCase } from "src/app/application/use-case/admin/grader-student.use-case.application";
@@ -9,13 +8,13 @@ import { AdminService } from "src/app/domain/services/admin.service.domain";
 
 
 
-const CreateAdminUseCaseFactory = 
+const CreateUserUseCaseFactory = 
 (() => {
-    let instance: CreateAdminUseCase;
+    let instance: CreateUserUseCase;
   
-    const factory = (service: AdminService): CreateAdminUseCase => {
+    const factory = (service: AdminService): CreateUserUseCase => {
       if (!instance) {
-        instance = new CreateAdminUseCase(service);
+        instance = new CreateUserUseCase(service);
       }
   
       return instance;
@@ -24,20 +23,7 @@ const CreateAdminUseCaseFactory =
     return factory;
 })();
 
-const CreateLearnerUseCaseFactory = 
-(() => {
-    let instance: CreateLearnerUseCase;
-  
-    const factory = (service: AdminService): CreateLearnerUseCase => {
-      if (!instance) {
-        instance = new CreateLearnerUseCase(service);
-      }
-  
-      return instance;
-    };
-  
-    return factory;
-})();
+
 
 const UpdateAdminUseCaseFactory = 
 (() => {
@@ -116,17 +102,10 @@ const GraderStudentUseCaseFactory =
 
 export const adminUseCaseProviders = {
 
-    createAdminUseCaseProvaider : 
+    createUserUseCaseProvaider : 
     {
-        provide: CreateAdminUseCase,
-        useFactory: CreateAdminUseCaseFactory,
-        deps: [AdminService],
-    },
-
-    createLearnerUseCaseProvaider : 
-    {
-        provide: CreateLearnerUseCase,
-        useFactory: CreateLearnerUseCaseFactory,
+        provide: CreateUserUseCase,
+        useFactory: CreateUserUseCaseFactory,
         deps: [AdminService],
     },
 

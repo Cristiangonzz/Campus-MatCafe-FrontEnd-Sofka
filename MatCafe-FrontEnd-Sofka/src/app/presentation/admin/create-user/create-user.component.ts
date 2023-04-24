@@ -35,23 +35,24 @@ export class CreateUserComponent {
       this.user.email = this.admin.email;
       this.user.name = this.admin.name;
       this.user.rol = this.admin.rol;
-
-      this.delegeteUser.createLearnerUseCaseProvaider
-        .useFactory(this.adminService)
-        .execute(this.user).subscribe({
-          next: (data) => {
-            console.log(data);
-          },
-          error: (error) => {
-            console.log(error);
-          },
-          complete: () => {
-            console.log('complete');
-          },
-        });
-        return;
+      if (!this.getEmail()){}
+        this.delegeteUser.createUserUseCaseProvaider
+          .useFactory(this.adminService)
+          .execute(this.user)
+          .subscribe({
+            next: (data) => {
+              console.log(data);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+            complete: () => {
+              console.log('complete');
+            },
+          });
+      return;
     }
-    this.delegeteUser.createAdminUseCaseProvaider
+    this.delegeteUser.createUserUseCaseProvaider
       .useFactory(this.adminService)
       .execute(this.admin)
       .subscribe({
@@ -65,5 +66,48 @@ export class CreateUserComponent {
           console.log('complete');
         },
       });
+  }
+
+  getEmail():boolean{
+    let varaible = false;
+
+    this.delegeteUser.getAdminByEmailUseCaseProvaider
+      .useFactory(this.adminService)
+        .execute(this.user.email)
+          .subscribe({
+            next: (data) => {
+              console.log(data);
+              varaible = true;
+            },
+            error: (error) => {
+              console.log(error);
+              varaible = false;
+            },
+            complete: () => {
+              console.log('complete');
+            },
+          });
+
+
+
+    this.delegeteUser.getLearnerByEmailUseCaseProvaider
+      .useFactory(this.adminService)
+        .execute(this.user.email)
+          .subscribe({
+            next: (data) => {
+              console.log(data);
+              varaible = true;
+            },
+            error: (error) => {
+              console.log(error);
+              varaible = false;
+            },
+            complete: () => {
+              console.log('complete');
+            },
+          });
+
+    return varaible;
+
   }
 }
