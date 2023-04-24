@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 import { CalificationEntity } from 'src/app/domain/entities/calification.entity.domain';
 import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
+import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
 import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 
@@ -25,7 +26,7 @@ export class AdminImplementationService extends AdminService {
     }),
   };
   
-  createUser(data: IUser): Observable<LearnerEntity | AdminEntity> {
+  createUser(data: ICreateUser): Observable<LearnerEntity | AdminEntity> {
     return this.http.post<LearnerEntity | AdminEntity>(
       `${this.URL}/createUser`,
       data,
