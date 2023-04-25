@@ -6,7 +6,7 @@
       <section>
         <h1 > Registrar Usuario</h1>
       </section>
-   
+
       <div >
         <app-form [control]="FormRegister.controls.name" type="text" label="Name" placeHolder="Capitan America"></app-form>
       </div>
@@ -16,11 +16,14 @@
       </div>
 
       <div>
-        <label>Rol: </label>
-        <input formControlName="rol" type="checkbox" label="Rol Admin" class="mi-clase-css">
-        <span style="color: red;">{{ FormRegister.controls.rol.value ? 'Admin' : 'Aprendiz' }}</span>
+        <label class="switchBtn" >Rol: 
+        <input formControlName="rol" type="checkbox" label="Rol Admin" class="toggle-button">
+
+        <div class="slide round">  <span>{{ FormRegister.controls.rol.value ? 'Admin' : 'Aprendiz' }}</span></div>
+
+        <span>{{ FormRegister.controls.rol.value ? 'Admin' : 'Aprendiz' }}</span>
+      </label>
       </div>
-  
   
      
       <div >
