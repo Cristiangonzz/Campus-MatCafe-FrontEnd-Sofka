@@ -1,0 +1,26 @@
+.card-deck .card {
+    margin-bottom: 1rem;
+  }
+  .card:nth-child(odd) {
+    background-color: rebeccapurple; /* Color de fondo para tarjetas impares */
+  }
+  
+  .card:nth-child(even) {
+    background-color: rebeccapurple; /* Color de fondo para tarjetas pares */
+  }
+  
+  @media (min-width: 992px) {
+    .card-deck {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+    .card-deck .card {
+      flex: 1 0 0%;
+      margin-right: 15px;
+      margin-bottom: 0;
+      margin-left: 15px;
+    }
+  }
+  

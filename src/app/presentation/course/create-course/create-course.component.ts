@@ -18,6 +18,8 @@ export class CreateCourseComponent {
   delegateCourse = courseUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   sweet = new SweetAlert();
+
+  
   FormRegister = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
     description: new FormControl('', [

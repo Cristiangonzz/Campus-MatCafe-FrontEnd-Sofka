@@ -1,5 +1,4 @@
-export interface ICourse {
-  _id?:string
+export interface ICreateCourse {
   title?: string;
   description?: string;
   duration?: string;
