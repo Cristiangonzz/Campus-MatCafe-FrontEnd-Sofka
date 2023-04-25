@@ -1,7 +1,7 @@
 <div class="container">
 
   <div >
-      <form (ngSubmit)="send()" [formGroup]="FormRegister" > 
+      <form  [formGroup]="FormRegister" > 
         <section>
           <h1 > Registrar Ruta</h1>
         </section>
@@ -18,12 +18,30 @@
           <app-form [control]="FormRegister.controls.duration" type="text" label="duration" placeHolder=""></app-form>
         </div>
   
-        <div >
-          <app-form [control]="FormRegister.controls.courses" type="text" label="courses" placeHolder=""></app-form>
+        <div class="form-group">
+          <div formArrayName="courses">
+            <div
+              *ngFor="let courses of coursesForms.controls; let i = index"
+              class="form-group"
+            >
+              <input
+                type="text"
+                [formControlName]="i"
+                placeholder="courses {{ i + 1 }}"
+                class="form-input w-75"
+              />
+              <button type="button" (click)="removeCourses(i)" class="form-button w-25">
+                Remove
+              </button>
+            </div>
+            <button type="button" (click)="addCourses()" class="form-button">
+              Add
+            </button>
+          </div>
         </div>
         <div >
-          <button [disabled]="FormRegister.invalid"  class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
-          <button  class="custom-btn btn-12" routerLink=""><span>Regresar!</span><span>Cancelar</span></button>
+          <button [disabled]="FormRegister.invalid" (click)="send()" class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
+          <button  class="custom-btn btn-12" (click)="cancelar()"><span>Regresar!</span><span>Cancelar</span></button>
         </div>
       
      

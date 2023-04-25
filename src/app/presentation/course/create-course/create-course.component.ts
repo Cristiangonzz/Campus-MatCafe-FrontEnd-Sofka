@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
+import { ICreateCourse } from 'src/app/domain/interfaces/create-course.interface.domain';
 
 @Component({
   selector: 'app-create-course',
@@ -55,7 +56,7 @@ export class CreateCourseComponent {
   constructor(private courseService: CourseService, private router: Router) {}
   send() {
     this.course = this.FormRegister.getRawValue() as CourseEntity;
-
+    console.log(this.course);
     this.delegateCourse.createCourseUseCaseProvaider
       .useFactory(this.courseService)
       .execute(this.course)
@@ -70,5 +71,8 @@ export class CreateCourseComponent {
           console.log('complete');
         },
       });
+  }
+  cancelar(){
+    this.router.navigate(['/course/get-all']);
   }
 }
