@@ -11,6 +11,7 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { GetAdminAndLearnerByEmailUseCase } from 'src/app/application/use-case/admin/get-admin-and-learner-by-email.use-case.application';
 import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
 import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
   user: IUser = {} as IUser;
   constructor(
     private auth: Auth,
-    private readonly adminService: AdminService
+    private readonly adminService: AdminService,
+    private readonly router : Router,
   ) {}
 
   google() {
@@ -42,7 +44,7 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvaider
               .useFactory()
               .execute(this.user);
-            console.log(data);
+            this.router.navigate(['/admin']);
           });
       })
       .catch((error) => {

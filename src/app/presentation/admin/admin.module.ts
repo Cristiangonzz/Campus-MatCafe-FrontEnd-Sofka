@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { RoutingAdminModule } from './routing-admin.module';
 
 
 
@@ -23,6 +24,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RoutingAdminModule,
 
     InfrastructureModule,
     SharedModule, 
