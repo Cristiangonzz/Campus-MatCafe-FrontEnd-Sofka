@@ -4,23 +4,19 @@ export class SweetAlert {
 
   constructor() {}
 
-  succes(title: string) {
+  toFire(
+    title: string,
+    message: string,
+    type: 'success' | 'error' | 'warning' | 'info' | 'question'
+  ) {
     Swal.fire({
+      title,
+      text: message,
+      icon: type,
       position: 'top-end',
-      icon:'success',
-      title: title,
+      timer: 1500,
+      color: '#96C0B7',
       showConfirmButton: false,
-      timer: 2000,
-    });
-  }
-
-  error(title: string) {
-    Swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: title,
-      showConfirmButton: false,
-      timer: 2000,
     });
   }
 }
