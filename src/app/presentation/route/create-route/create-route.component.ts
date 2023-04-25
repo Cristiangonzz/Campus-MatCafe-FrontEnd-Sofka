@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
 import { RouteEntity } from 'src/app/domain/entities/route.entity.domain';
-import { CourseService } from 'src/app/domain/services/course.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
-import { courseUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { ICourse } from 'src/app/domain/interfaces/course.interface.domain';
@@ -53,22 +50,24 @@ export class CreateRouteComponent {
     .useFactory(this.adminService)
     .execute(localStorage.getItem('email') as string).subscribe({
       next: (data) => {
-        // this.route.adminId =
+        this.route.adminId = data._id as string;
+        console.log(this.route)
+
         this.delegeteRoute.createRouteUseCaseProvaider
         .useFactory(this.routeService)
         .execute(this.route)
         .subscribe({
           next: () => {
-            this.sweet.toFire("Creacion",'Ruta creada', 'success');
+            this.sweet.toFire("Ruta",'Ruta creada', 'success');
             this.router.navigate(['/route']);
           },
           error: () => {
-          this.sweet.toFire("Creacion",'No se pudo crear Ruta', 'error');
+          this.sweet.toFire("Ruta",'No se pudo crear Ruta', 'error');
           },
         });
       },
       error: () => {
-        this.sweet.toFire("Creacion",'No se pudo crear Ruta', 'error');
+        this.sweet.toFire("Ruta",'No se pudo crear Ruta', 'error');
       },
     });
 
