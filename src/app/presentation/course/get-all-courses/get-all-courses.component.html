@@ -1,0 +1,25 @@
+
+<h1>Courses</h1>
+
+  <table class="listado">
+    <thead>
+      <tr>
+        <th scope="col">title </th>
+        <th scope="col">description </th>
+        <th scope="col">duration</th>
+        <th scope="col">requirements</th>
+        <th scope="col">content</th>
+        <th scope="col">adminId</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{course.title}}</td>
+        <td>{{course.description}}</td>
+        <td>{{course.duration}}</td>
+        <td>{{course.requirements}}</td>
+        <td>{{course.content}}</td>	
+        <td>{{course.adminId}}</td>	
+      </tr>
+    </tbody>
+  </table>

@@ -10,6 +10,7 @@ import { RouteImplementationService } from './services/service-route/route.servi
 import { adminUseCaseProviders } from './delegate/delegate-admin/delegate-admin.infrastructure';
 import { AdminImplementationService } from './services/service-admin/admin.service.infrastructure';
 import { AdminService } from '../domain/services/admin.service.domain';
+import { loginUseCaseProviders } from './delegate/delegete-login/delegate-login.infrastructure';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AdminService } from '../domain/services/admin.service.domain';
     ...Object.values(courseUseCaseProviders),
     ...Object.values(routeUseCaseProviders),
     ...Object.values(adminUseCaseProviders),
+    ...Object.values(loginUseCaseProviders),
 
     { provide: RouteService, useClass:  RouteImplementationService },
     { provide: CourseService, useClass: CourseImplementationService },

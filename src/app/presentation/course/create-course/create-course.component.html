@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="my-4">Create Course</h1>
+  <form (ngSubmit)="send()" [formGroup]="FormRegister">
+    <div class="form-group">
+      <app-form [control]="FormRegister.controls.title" type="text" label="Title" placeHolder=""></app-form>
+    </div>
+    <div class="form-group">
+      <app-form [control]="FormRegister.controls.description" type="text" label="Description" placeHolder=""></app-form>
+    </div>
+
+    <div class="form-group">
+      <app-form [control]="FormRegister.controls.duration" type="text" label="Duration" placeHolder=""></app-form>
+    </div>
+
+    <div class="form-group">
+      <app-form [control]="FormRegister.controls.requirements" type="text" label="Requirements" placeHolder=""></app-form>
+    </div>
+
+    <div class="form-group">
+     <app-form [control]="FormRegister.controls.content" type="text" label="Content" placeHolder=""></app-form>
+    </div>
+
+    <div class="form-group">
+      <app-form [control]="FormRegister.controls.adminId" type="text" label="Admin ID" placeHolder=""></app-form>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" formControlName="rol" id="rol">
+      <label class="form-check-label" for="rol">Is Admin</label>
+    </div>
+
+    <button type="submit" [disabled]="FormRegister.invalid" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" routerLink="/">Cancel</button>
+  </form>
+</div>
