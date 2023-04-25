@@ -19,7 +19,6 @@ import { CreateUserComponent } from './create-user/create-user.component';
   ],
   imports: [
     CommonModule,
-    CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
