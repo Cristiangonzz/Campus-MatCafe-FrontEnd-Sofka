@@ -7,7 +7,6 @@ export class CourseEntity implements ICourse {
   requirements: string;
   content: string[];
   adminId: string;
-  id?: string
 
   constructor(
     title: string,

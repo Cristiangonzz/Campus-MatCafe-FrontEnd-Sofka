@@ -5,6 +5,5 @@ export interface ICourse {
   requirements: string;
   content: string[];
   adminId: string;
-  id?: string
-
+  
 }
