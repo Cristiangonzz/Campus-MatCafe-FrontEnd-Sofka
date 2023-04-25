@@ -1,4 +1,5 @@
 import {  CreateUserUseCase } from "src/app/application/use-case/admin/create-user.use-case.application";
+import { GetAdminAndLearnerByEmailUseCase } from "src/app/application/use-case/admin/get-admin-and-learner-by-email.use-case.application";
 import { GetAdminByEmailUseCase } from "src/app/application/use-case/admin/get-admin-by-email.use-case.application";
 import { GetLearnerByEmailUseCase } from "src/app/application/use-case/admin/get-learner-by-email.use-case.application";
 import { GraderStudentUseCase } from "src/app/application/use-case/admin/grader-student.use-case.application";
@@ -85,6 +86,21 @@ const GetLearnerByEmailUseCaseFactory =
   
     return factory;
 })();
+
+const GetAdminAndLearnerByEmailUseCaseFactory = 
+(() => {
+    let instance: GetAdminAndLearnerByEmailUseCase;
+  
+    const factory = (service: AdminService): GetAdminAndLearnerByEmailUseCase => {
+      if (!instance) {
+        instance = new GetAdminAndLearnerByEmailUseCase(service);
+      }
+  
+      return instance;
+    };
+  
+    return factory;
+})();
 const GraderStudentUseCaseFactory = 
 (() => {
     let instance: GraderStudentUseCase;
@@ -137,6 +153,12 @@ export const adminUseCaseProviders = {
         deps: [AdminService],
     },
 
+    getAdminAndLearnerByEmailUseCaseProvaider : 
+    {
+        provide: GetAdminAndLearnerByEmailUseCase,
+        useFactory: GetAdminAndLearnerByEmailUseCaseFactory,
+        deps: [AdminService],
+    },
     graderStudentUseCaseFactoryProvaider : 
     {
         provide: GraderStudentUseCase,

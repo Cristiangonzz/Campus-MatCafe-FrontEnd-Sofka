@@ -59,6 +59,12 @@ export class AdminImplementationService extends AdminService {
       this.httpOptions
     );
   }
+  getAdminAndLearnerByEmail(email: string): Observable<AdminEntity | LearnerEntity> {
+    return this.http.get<LearnerEntity>(
+      `${this.URL}/adminAndLearnerByEmail/${email}`,
+      this.httpOptions
+    );
+  }
   graderStudent(data: CalificationEntity): Observable<string> {
     return this.http.post<string>(
       `${this.URL}/graderStudent`,

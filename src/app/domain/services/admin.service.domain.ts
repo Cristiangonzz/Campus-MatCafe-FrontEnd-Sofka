@@ -21,5 +21,6 @@ export abstract class AdminService {
   ): Observable<LearnerEntity>;
   abstract getAdminByEmail(email: string): Observable<AdminEntity>;
   abstract getLearnerByEmail(email: string): Observable<LearnerEntity>;
+  abstract getAdminAndLearnerByEmail(email:string): Observable<AdminEntity | LearnerEntity>;
   abstract graderStudent(data: CalificationEntity): Observable<string>;
 }
