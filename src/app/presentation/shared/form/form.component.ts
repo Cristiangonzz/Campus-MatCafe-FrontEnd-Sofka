@@ -24,8 +24,8 @@ export class FormComponent {
  
 
   errorMessages: Record<string, string> = {
-    required: 'this field is required',
-    email: 'this email is invalid',
-    minlength: 'this field must have at least 5 characters',
+    required: 'este campo es requerido',
+    email: 'el email es invalido',
+    minlength: 'minimo 5 caracteres',
   };
 }
