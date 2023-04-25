@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
@@ -14,13 +14,42 @@ export class CreateCourseComponent {
   delegateCourse = courseUseCaseProviders;
 
   FormRegister = new FormGroup({
-    title: new FormControl('', [Validators.required,Validators.minLength(5)]),
-    description: new FormControl('', [Validators.required,Validators.minLength(5)]),
-    duration: new FormControl('', [Validators.required,Validators.minLength(5)]),
-    requirements: new FormControl('', [Validators.required,Validators.minLength(5)]),
-    content: new FormControl([''], [Validators.required,Validators.minLength(5)]),
-    adminId: new FormControl('', [Validators.required,Validators.minLength(5)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    duration: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    requirements: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    content: new FormArray([], [Validators.required]),
+    adminId: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
   });
+
+  addContent() {
+    const content = new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]);
+    this.contentForms.push(content);
+  }
+
+  removeContent(i: number) {
+    this.contentForms.removeAt(i);
+  }
+
+  get contentForms() {
+    return this.FormRegister.get('content') as FormArray;
+  }
+
   course: CourseEntity = {} as CourseEntity;
 
   constructor(private courseService: CourseService, private router: Router) {}
