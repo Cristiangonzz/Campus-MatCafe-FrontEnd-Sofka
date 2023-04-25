@@ -1,4 +1,4 @@
-import { BehaviorSubject, asyncScheduler } from 'rxjs';
+import { BehaviorSubject, Observable, asyncScheduler } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
@@ -32,3 +32,8 @@ export class GetAllCourseUseCase {
     }
   };
 }
+
+// execute():Observable<CourseEntity[]>{
+//   return this.courseservice.getAll();
+
+// }

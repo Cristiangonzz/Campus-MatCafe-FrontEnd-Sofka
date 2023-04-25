@@ -9,8 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './get-all-courses.component.html',
   styleUrls: ['./get-all-courses.component.css'],
 })
-export class GetAllCoursesComponent implements OnInit , OnDestroy {
-  
+export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
@@ -25,16 +24,18 @@ export class GetAllCoursesComponent implements OnInit , OnDestroy {
       .useFactory(this.courseService)
       .statusEmmit.pipe(takeUntil(this.onDestroy$))
       .subscribe({
-          next: (value: CourseEntity[]) => { this.courses = value; },
-          complete: () => { 
-            console.log('complete');
-            console.log(this.courses);
-          }
+        next: (value: CourseEntity[]) => {
+          this.courses = value;
+        },
+        complete: () => {
+          console.log('complete');
+          console.log(this.courses);
+        },
       });
   }
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
-}
+  }
 }

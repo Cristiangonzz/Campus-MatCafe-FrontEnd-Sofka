@@ -9,18 +9,18 @@ export class CourseEntity implements ICourse {
   adminId: string;
 
   constructor(
-    title: string,
-    description: string,
-    duration: string,
-    requirements: string,
-    content: string[],
-    adminId: string
+    title?: string,
+    description?: string,
+    duration?: string,
+    requirements?: string,
+    content?: string[],
+    adminId?: string
   ) {
-    this.title = title;
-    this.description = description;
-    this.duration = duration;
-    this.requirements = requirements;
-    this.content = content;
-    this.adminId = adminId;
+    this.title = title as string;
+    this.description = description as string;
+    this.duration = duration as string;
+    this.requirements = requirements as string;
+    this.content = content as string[];
+    this.adminId = adminId as string;
   }
 }

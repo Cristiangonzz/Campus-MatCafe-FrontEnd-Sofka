@@ -10,14 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { GetAllCoursesComponent } from './get-all-courses/get-all-courses.component';
+import { RoutingCourseModule } from './routing-admin.module';
 
 @NgModule({
   declarations: [
     CreateCourseComponent,
-    CreateCourseComponent,
     DeleteCourseComponent,
     UpdateCourseComponent,
     GetCourseComponent,
+    GetAllCoursesComponent,
   ],
   imports: [
     CommonModule,
@@ -25,10 +26,11 @@ import { GetAllCoursesComponent } from './get-all-courses/get-all-courses.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RoutingCourseModule,
 
     InfrastructureModule,
     SharedModule,
   ],
-  exports: [CreateCourseComponent],
+  exports: [],
 })
 export class CourseModule {}
