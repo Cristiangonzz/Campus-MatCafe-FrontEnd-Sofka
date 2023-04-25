@@ -34,7 +34,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         complete: () => {
           console.log('complete');
         },
-
       });
   }
 
