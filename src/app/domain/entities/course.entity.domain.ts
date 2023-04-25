@@ -7,6 +7,7 @@ export class CourseEntity implements ICourse {
   requirements: string;
   content: string[];
   adminId: string;
+  id?: string
 
   constructor(
     title: string,
@@ -14,7 +15,8 @@ export class CourseEntity implements ICourse {
     duration: string,
     requirements: string,
     content: string[],
-    adminId: string
+    adminId: string,
+    id?: string
   ) {
     this.title = title;
     this.description = description;

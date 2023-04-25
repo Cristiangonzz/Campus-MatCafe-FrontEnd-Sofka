@@ -12,6 +12,8 @@ export class AdminEntity implements IAdmin {
   name: string;
   photoUrl?: string;
   rol: boolean;
+  id?: string
+
 
   constructor(
     name: string,
