@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { courseUseCaseProviders } from '../../../../src/app/infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CourseEntity } from '../../../../src/app/domain/entities/course.entity.domain';
-import { CourseService } from '../../../../src/app/domain/services/course.service.domain';
 import { Router } from '@angular/router';
+import { CourseEntity } from '../../../domain/entities/course.entity.domain';
+import { CourseService } from '../../../domain/services/course.service.domain';
+import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css'],
+  selector: 'app-create-course',
+  templateUrl: './create-course.component.html',
+  styleUrls: ['./create-course.component.css'],
 })
-export class CourseComponent {
+export class CreateCourseComponent {
   delegateCourse = courseUseCaseProviders;
 
   FormRegister = new FormGroup({
@@ -25,14 +25,7 @@ export class CourseComponent {
 
   constructor(private courseService: CourseService, private router: Router) {}
   send() {
-    this.course.title = this.FormRegister.get('title')?.value as string;
-    this.course.description = this.FormRegister.get('description')
-      ?.value as string;
-    this.course.duration = this.FormRegister.get('duration')?.value as string;
-    this.course.requirements = this.FormRegister.get('requirements')
-      ?.value as string;
-    this.course.content = this.FormRegister.get('content')?.value as string[];
-    this.course.adminId = this.FormRegister.get('adminId')?.value as string;
+    this.course = this.FormRegister.getRawValue() as CourseEntity;
 
     this.delegateCourse.createCourseUseCaseProvaider
       .useFactory(this.courseService)

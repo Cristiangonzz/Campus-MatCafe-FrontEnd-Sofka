@@ -1,0 +1,22 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let course of courses">
+        <div class="card">
+          <div class="media media-2x1 gd-primary">
+            <a class="media-content"  data-abc="true">
+              <strong class="text-fade">{{ course.title }}</strong>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <p class="card-text">{{ course.description }}</p>
+          </div>
+          <div class="card-body">
+            <a href="#" class="card-link" data-abc="true">Contact us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
