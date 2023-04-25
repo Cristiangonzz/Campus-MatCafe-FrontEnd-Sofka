@@ -6,4 +6,5 @@ export interface IRoute {
   duration?: string;
   courses?: ICourse[];
   adminId?: string;
+
 }
