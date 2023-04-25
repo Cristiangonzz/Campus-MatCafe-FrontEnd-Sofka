@@ -23,7 +23,6 @@ export class GetAllRouteUseCase {
         },
         complete: () => {
           this.statusEmmit.next(this.status);
-          console.log('complete');
           asyncScheduler.schedule(this.execute, 2000);
         },
       });

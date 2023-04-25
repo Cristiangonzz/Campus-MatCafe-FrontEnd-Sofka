@@ -12,7 +12,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./presentation/login/login.module').then((m) => m.LoginModule),
   },
-
   {
     path: 'admin',
     loadChildren: () =>
@@ -23,7 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./presentation/course/course.module').then((m) => m.CourseModule),
   },
-
+  {
+    path: 'route',
+    loadChildren: () =>
+      import('./presentation/route/route.module').then((m) => m.RouteModule),
+  },
   {
     path: '**',
     redirectTo: 'login',
