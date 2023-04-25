@@ -1,1 +1,20 @@
-<p>get-all-route works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-7">
+        <div class="card-deck">
+          <div class="card mb-4" *ngFor="let route of routes">
+            <div class="card-body">
+              <h5 class="card-title">{{ route.title }}</h5>
+              <p class="card-text">{{ route.description }}</p>
+              <p class="card-text"><small class="text-muted">{{ route.duration }}</small></p>
+              <p class="card-text"><small class="text-muted">{{ route.courses }}</small></p>
+              <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-5">
+      </div>
+    </div>
+  </div>
+  

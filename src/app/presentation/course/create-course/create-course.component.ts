@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
+import { ICreateCourse } from 'src/app/domain/interfaces/create-course.interface.domain';
+import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-create-course',
@@ -12,7 +16,8 @@ import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegat
 })
 export class CreateCourseComponent {
   delegateCourse = courseUseCaseProviders;
-
+  delegateAdmin = adminUseCaseProviders;
+  sweet = new SweetAlert();
   FormRegister = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
     description: new FormControl('', [
@@ -28,10 +33,6 @@ export class CreateCourseComponent {
       Validators.minLength(5),
     ]),
     content: new FormArray([], [Validators.required]),
-    adminId: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-    ]),
   });
 
   addContent() {
@@ -52,23 +53,43 @@ export class CreateCourseComponent {
 
   course: CourseEntity = {} as CourseEntity;
 
-  constructor(private courseService: CourseService, private router: Router) {}
+  constructor(private courseService: CourseService, private router: Router, private readonly adminService : AdminService) {}
   send() {
-    this.course = this.FormRegister.getRawValue() as CourseEntity;
+    this.course.content = this.FormRegister.get("content")?.value as never[];
+    this.course.description = this.FormRegister.get("description")?.value as string;
+    this.course.duration = this.FormRegister.get("duration")?.value as string;
+    this.course.requirements = this.FormRegister.get("requirements")?.value as string;
+    this.course.title= this.FormRegister.get("title")?.value as string;
 
-    this.delegateCourse.createCourseUseCaseProvaider
-      .useFactory(this.courseService)
-      .execute(this.course)
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-        complete: () => {
-          console.log('complete');
-        },
-      });
+    console.log(this.course);
+    this
+      .delegateAdmin
+        .getAdminByEmailUseCaseProvaider
+          .useFactory(this.adminService)
+            .execute(localStorage.getItem("email") as string).subscribe(
+              {
+                next: (data) => {
+                  this.course.adminId = data._id as string;
+                  this.delegateCourse.createCourseUseCaseProvaider
+                  .useFactory(this.courseService)
+                  .execute(this.course)
+                  .subscribe({
+                    next: () => {
+                      this.sweet.toFire("Completo","Curso Creado","success")
+                    },
+                    error: () => {
+                      this.sweet.toFire("Error","Error al Crear Curso","error")
+                    }
+                  });
+                },
+                error: () =>{
+                  this.sweet.toFire("Error","Error al Crear Curso","error")
+                }
+              }
+            )
+   
+  }
+  cancelar(){
+    this.router.navigate(['/course/get-all']);
   }
 }

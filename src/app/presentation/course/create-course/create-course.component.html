@@ -1,6 +1,6 @@
 <div class="container">
-  <h1 class="my-4">Create Course</h1>
-  <form (ngSubmit)="send()" [formGroup]="FormRegister">
+  <h1 class="my-4">Create Ruta</h1>
+  <form  [formGroup]="FormRegister">
     <div class="form-group">
       <app-form [control]="FormRegister.controls.title" type="text" label="Title" placeHolder=""></app-form>
     </div>
@@ -37,12 +37,7 @@
         </button>
       </div>
     </div>
-
-    <div class="form-group">
-      <app-form [control]="FormRegister.controls.adminId" type="text" label="Admin ID" placeHolder=""></app-form>
-    </div>
-
-    <button type="submit" [disabled]="FormRegister.invalid" class="btn btn-primary">Submit</button>
-    <button type="button" class="btn btn-secondary" routerLink="/">Cancel</button>
+    <button type="submit" [disabled]="FormRegister.invalid" (click)="send()" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" routerLink="/course/get-all">Cancel</button>
   </form>
 </div>
