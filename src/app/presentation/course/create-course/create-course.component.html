@@ -37,11 +37,6 @@
         </button>
       </div>
     </div>
-
-    <div class="form-group">
-      <app-form [control]="FormRegister.controls.adminId" type="text" label="Admin ID" placeHolder=""></app-form>
-    </div>
-
     <button type="submit" [disabled]="FormRegister.invalid" (click)="send()" class="btn btn-primary">Submit</button>
     <button type="button" class="btn btn-secondary" routerLink="/course/get-all">Cancel</button>
   </form>
