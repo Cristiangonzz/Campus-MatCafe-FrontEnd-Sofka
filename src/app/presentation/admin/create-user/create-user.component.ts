@@ -15,7 +15,7 @@ export class CreateUserComponent {
   delegeteUser = adminUseCaseProviders;
 
   FormRegister = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required , Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     rol: new FormControl<boolean>(false, []),
   });

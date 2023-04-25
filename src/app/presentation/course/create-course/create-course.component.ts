@@ -14,12 +14,12 @@ export class CreateCourseComponent {
   delegateCourse = courseUseCaseProviders;
 
   FormRegister = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    duration: new FormControl('', [Validators.required]),
-    requirements: new FormControl('', [Validators.required]),
-    content: new FormControl([''], [Validators.required]),
-    adminId: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required,Validators.minLength(5)]),
+    description: new FormControl('', [Validators.required,Validators.minLength(5)]),
+    duration: new FormControl('', [Validators.required,Validators.minLength(5)]),
+    requirements: new FormControl('', [Validators.required,Validators.minLength(5)]),
+    content: new FormControl([''], [Validators.required,Validators.minLength(5)]),
+    adminId: new FormControl('', [Validators.required,Validators.minLength(5)]),
   });
   course: CourseEntity = {} as CourseEntity;
 

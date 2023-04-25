@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CourseModule } from './presentation/course/course.module';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./presentation/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'course',
+    loadChildren: () =>
+      import('./presentation/course/course.module').then((m) => m.CourseModule),
   },
 
   {
