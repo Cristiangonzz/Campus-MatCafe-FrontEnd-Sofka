@@ -12,24 +12,18 @@ import { AdminImplementationService } from './services/service-admin/admin.servi
 import { AdminService } from '../domain/services/admin.service.domain';
 import { loginUseCaseProviders } from './delegate/delegete-login/delegate-login.infrastructure';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-  ],
+  imports: [CommonModule, HttpClientModule],
   providers: [
     ...Object.values(courseUseCaseProviders),
     ...Object.values(routeUseCaseProviders),
     ...Object.values(adminUseCaseProviders),
     ...Object.values(loginUseCaseProviders),
 
-    { provide: RouteService, useClass:  RouteImplementationService },
+    { provide: RouteService, useClass: RouteImplementationService },
     { provide: CourseService, useClass: CourseImplementationService },
     { provide: AdminService, useClass: AdminImplementationService },
-
   ],
-
 })
-export class InfrastructureModule { }
+export class InfrastructureModule {}

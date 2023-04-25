@@ -4,6 +4,7 @@ import { IRoute } from '../interfaces/route.interface.domain';
 import { NotificationEntity } from './notification.entity.domain';
 
 export class AdminEntity implements IAdmin {
+  _id?:string;
   course?: ICourse[];
   route?: IRoute[];
   notifications?: NotificationEntity[];
@@ -15,12 +16,15 @@ export class AdminEntity implements IAdmin {
   
 
   constructor(
+    _id:string,
     name: string,
     email: string,
     rol: boolean,
     firebaseId?: string,
     photoUrl?: string
   ) {
+    
+    this._id = _id;
     this.name = name;
     this.email = email;
     this.firebaseId = firebaseId;

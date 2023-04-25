@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
+import { ICreateCourse } from 'src/app/domain/interfaces/create-course.interface.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
 
 @Injectable({
