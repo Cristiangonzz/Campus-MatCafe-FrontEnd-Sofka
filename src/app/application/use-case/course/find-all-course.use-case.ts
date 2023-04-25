@@ -33,7 +33,3 @@ export class GetAllCourseUseCase {
   };
 }
 
-// execute():Observable<CourseEntity[]>{
-//   return this.courseservice.getAll();
-
-// }

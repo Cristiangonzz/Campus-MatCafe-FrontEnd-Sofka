@@ -20,6 +20,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
     this.delegateCourse.getAllCourseUseCaseProvaider
       .useFactory(this.courseService)
       .execute();
+
     this.delegateCourse.getAllCourseUseCaseProvaider
       .useFactory(this.courseService)
       .statusEmmit.pipe(takeUntil(this.onDestroy$))
@@ -27,10 +28,13 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         next: (value: CourseEntity[]) => {
           this.courses = value;
         },
+        error: (error) => {
+          console.log(error);
+        },
         complete: () => {
           console.log('complete');
-          console.log(this.courses);
         },
+
       });
   }
 
