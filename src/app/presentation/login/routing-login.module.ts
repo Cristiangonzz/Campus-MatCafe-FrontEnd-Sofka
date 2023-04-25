@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   {
     path:'',
     children: [
-      // {path:`create`,component: },
-      // {path:`**`,redirectTo:'create'},
+       {path:`sign-in`,component: LoginComponent },
+       {path:`**`,redirectTo:'sign-in'},
        ]
   }
 ]

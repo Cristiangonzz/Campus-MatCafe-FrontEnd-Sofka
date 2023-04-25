@@ -29,7 +29,6 @@ import { CreateUserComponent } from './create-user/create-user.component';
   
   ],
   exports: [
-    CreateUserComponent
   ],
 })
 export class AdminModule { }
