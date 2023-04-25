@@ -7,14 +7,12 @@
         <h1 > Registrar Usuario</h1>
       </section>
    
-      <div>
-        <label for="name">Name:</label>
-        <app-form [control]="FormRegister.controls.name" type="text" id="name" placeHolder="Capitan America"></app-form>
+      <div >
+        <app-form [control]="FormRegister.controls.name" type="text" label="Name" placeHolder="Capitan America"></app-form>
       </div>
       
-      <div>
-        <label for="email">Email:</label>
-        <app-form [control]="FormRegister.controls.email" type="text" id="email" placeHolder="ejemplo@gmail.com"></app-form>
+      <div >
+        <app-form [control]="FormRegister.controls.email" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
       </div>
 
       <div>
