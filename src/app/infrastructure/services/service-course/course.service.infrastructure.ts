@@ -8,7 +8,7 @@ import { CourseService } from 'src/app/domain/services/course.service.domain';
   providedIn: 'root',
 })
 export class CourseImplementationService extends CourseService {
-  URL = 'https://gestion-de-project-backend-production.up.railway.app';
+  URL = 'https://stable-use-production.up.railway.app';
 
   constructor(private http: HttpClient) {
     super();
