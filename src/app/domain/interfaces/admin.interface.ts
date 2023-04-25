@@ -7,4 +7,5 @@ export interface IAdmin extends IUser {
   course?: ICourse[];
   route?: IRoute[];
   notifications?: INotification[];
+  
 }

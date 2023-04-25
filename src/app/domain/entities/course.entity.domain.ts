@@ -9,6 +9,7 @@ export class CourseEntity implements ICourse {
   adminId: string;
 
   constructor(
+
     title?: string,
     description?: string,
     duration?: string,
