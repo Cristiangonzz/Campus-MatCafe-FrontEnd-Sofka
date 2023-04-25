@@ -8,7 +8,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
 
 const routes: Routes = [
   {
-    path: 'course',
+    path: '',
     children: [
       {
         path: 'create',
@@ -30,6 +30,7 @@ const routes: Routes = [
         path: 'get-all',
         component: GetAllCoursesComponent,
       },
+      {path:`**`,redirectTo:'get-all'},
     ],
   },
 ];
