@@ -1,38 +1,32 @@
-<div style="margin-left: 30%;">
-    <form (ngSubmit)="send()" [formGroup]="FormRegister" class="align-items-center"> 
-      <section>
-        <h1 style="margin: 15px;color:rgb(8, 82, 141);"> Registrar Usuario</h1>
-      </section>
-   
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.title" type="text" label="Name" placeHolder="Capitan America"></app-form>
-      </div>
-      
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.description" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
-      </div>
+<div class="container">
 
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.duration" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
-      </div>
-
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.requirements" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
-      </div>
-
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.content" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
-      </div>
-
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.adminId" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
-      </div>  
+  <div >
+      <form (ngSubmit)="send()" [formGroup]="FormRegister" > 
+        <section>
+          <h1 > Registrar Ruta</h1>
+        </section>
      
-      <div class="col-12">
-        <button [disabled]="FormRegister.invalid"  class="btn btn-primary">Confirmar</button>
-        <button style="margin: 20px;" class="btn btn-dark" routerLink="">Cancelar</button>
-      </div>
+        <div >
+          <app-form [control]="FormRegister.controls.title" type="text" label="title" placeHolder=""></app-form>
+        </div>
+        
+        <div >
+          <app-form [control]="FormRegister.controls.description" type="text" label="description" placeHolder=""></app-form>
+        </div>
   
-   
-    </form>
-  </div>
+        <div >
+          <app-form [control]="FormRegister.controls.duration" type="text" label="duration" placeHolder=""></app-form>
+        </div>
+  
+        <div >
+          <app-form [control]="FormRegister.controls.courses" type="text" label="content" placeHolder=""></app-form>
+        </div>
+        <div >
+          <button [disabled]="FormRegister.invalid"  class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
+          <button  class="custom-btn btn-12" routerLink=""><span>Regresar!</span><span>Cancelar</span></button>
+        </div>
+      
+     
+      </form>
+    </div>
+    </div>
