@@ -1,29 +1,36 @@
-<div style="margin-left: 30%;">
-    <form (ngSubmit)="send()" [formGroup]="FormRegister" class="align-items-center"> 
+
+<div class="container">
+
+<div >
+    <form (ngSubmit)="send()" [formGroup]="FormRegister" > 
       <section>
-        <h1 style="margin: 15px;color:rgb(8, 82, 141);"> Registrar Usuario</h1>
+        <h1 > Registrar Usuario</h1>
       </section>
    
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.name" type="text" label="Name" placeHolder="Capitan America"></app-form>
+      <div>
+        <label for="name">Name:</label>
+        <app-form [control]="FormRegister.controls.name" type="text" id="name" placeHolder="Capitan America"></app-form>
       </div>
       
-      <div class="col-md-6">
-        <app-form [control]="FormRegister.controls.email" type="text" label="Email" placeHolder="ejemplo@gmail.com"></app-form>
+      <div>
+        <label for="email">Email:</label>
+        <app-form [control]="FormRegister.controls.email" type="text" id="email" placeHolder="ejemplo@gmail.com"></app-form>
       </div>
 
-      <div class="col-md-6">
-        <label>Es Admin </label>
-        <input formControlName="rol" type="checkbox" label="Rol Admin " >
-    </div>
+      <div>
+        <label>Rol: </label>
+        <input formControlName="rol" type="checkbox" label="Rol Admin" class="mi-clase-css">
+        <span style="color: red;">{{ FormRegister.controls.rol.value ? 'Admin' : 'Aprendiz' }}</span>
+      </div>
   
   
      
-      <div class="col-12">
-        <button [disabled]="FormRegister.invalid"  class="btn btn-primary">Confirmar</button>
-        <button style="margin: 20px;" class="btn btn-dark" routerLink="">Cancelar</button>
+      <div >
+        <button [disabled]="FormRegister.invalid"  class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
+        <button  class="custom-btn btn-12" routerLink=""><span>Regresar!</span><span>Cancelar</span></button>
       </div>
-  
+    
    
     </form>
+  </div>
   </div>
