@@ -33,7 +33,10 @@ export class CreateRouteComponent {
     courses: new FormArray([], [Validators.required, Validators.minLength(5)]),
   });
 
-  addCourses() {
+  get coursesForms() {
+    return this.FormRegister.get('courses') as FormArray;
+  }
+  addCourse() {
     const courses = new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -41,12 +44,8 @@ export class CreateRouteComponent {
     this.coursesForms.push(courses);
   }
 
-  removeCourses(i: number) {
+  removeCourse(i: number) {
     this.coursesForms.removeAt(i);
-  }
-
-  get coursesForms() {
-    return this.FormRegister.get('courses') as FormArray;
   }
 
   route: RouteEntity = {} as RouteEntity;
@@ -56,13 +55,13 @@ export class CreateRouteComponent {
     private router: Router,
     private readonly adminService: AdminService
   ) {}
+
   send() {
     this.route.courses = this.FormRegister.get('courses')?.value as ICourse[];
-    this.route.description = this.FormRegister.get('description')
-      ?.value as string;
+    this.route.description = this.FormRegister.get('description')?.value as string;
     this.route.title = this.FormRegister.get('title')?.value as string;
     this.route.duration = this.FormRegister.get('duration')?.value as string;
-
+    console.log(this.route);
     this.delegeteAdmin.getAdminByEmailUseCaseProvaider
       .useFactory(this.adminService)
       .execute(localStorage.getItem('email') as string)
