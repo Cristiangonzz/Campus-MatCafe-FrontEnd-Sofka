@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="my-4">Create Course</h1>
+  <h1 class="my-4">Create Ruta</h1>
   <form (ngSubmit)="send()" [formGroup]="FormRegister">
     <div class="form-group">
       <app-form [control]="FormRegister.controls.title" type="text" label="Title" placeHolder=""></app-form>
@@ -17,19 +17,28 @@
     </div>
 
     <div class="form-group">
-     <app-form [control]="FormRegister.controls.content" type="text" label="Content" placeHolder=""></app-form>
-    </div>
-
-    <div class="form-group">
-      <app-form [control]="FormRegister.controls.adminId" type="text" label="Admin ID" placeHolder=""></app-form>
-    </div>
-
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" formControlName="rol" id="rol">
-      <label class="form-check-label" for="rol">Is Admin</label>
+      <div formArrayName="content">
+        <div
+          *ngFor="let content of contentForms.controls; let i = index"
+          class="form-group"
+        >
+          <input
+            type="text"
+            [formControlName]="i"
+            placeholder="content {{ i + 1 }}"
+            class="form-input w-75"
+          />
+          <button type="button" (click)="removeContent(i)" class="form-button w-25">
+            Remove
+          </button>
+        </div>
+        <button type="button" (click)="addContent()" class="form-button">
+          Add
+        </button>
+      </div>
     </div>
 
     <button type="submit" [disabled]="FormRegister.invalid" class="btn btn-primary">Submit</button>
-    <button type="button" class="btn btn-secondary" routerLink="/">Cancel</button>
+    <button type="button" class="btn btn-secondary" routerLink="/course/get-all">Cancel</button>
   </form>
 </div>

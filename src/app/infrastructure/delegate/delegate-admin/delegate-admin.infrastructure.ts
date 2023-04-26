@@ -24,8 +24,6 @@ const CreateUserUseCaseFactory =
     return factory;
 })();
 
-
-
 const UpdateAdminUseCaseFactory = 
 (() => {
     let instance: UpdateAdminUseCase;
@@ -101,6 +99,7 @@ const GetAdminAndLearnerByEmailUseCaseFactory =
   
     return factory;
 })();
+
 const GraderStudentUseCaseFactory = 
 (() => {
     let instance: GraderStudentUseCase;

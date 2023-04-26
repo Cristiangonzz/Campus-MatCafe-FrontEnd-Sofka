@@ -1,25 +1,21 @@
-
-<h1>Courses</h1>
-
-  <table class="listado">
-    <thead>
-      <tr>
-        <th scope="col">title </th>
-        <th scope="col">description </th>
-        <th scope="col">duration</th>
-        <th scope="col">requirements</th>
-        <th scope="col">content</th>
-        <th scope="col">adminId</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let course of courses">
-        <td>{{course.title}}</td>
-        <td>{{course.description}}</td>
-        <td>{{course.duration}}</td>
-        <td>{{course.requirements}}</td>
-        <td>{{course.content}}</td>	
-        <td>{{course.adminId}}</td>	
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-7">
+      <div class="card-deck">
+        <div class="card mb-4" *ngFor="let course of courses">
+          <div class="card-body">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <p class="card-text">{{ course.description }}</p>
+            <p class="card-text"><small class="text-muted">{{ course.duration }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ course.requirements }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ course.content }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ course.adminId }}</small></p>
+            <a href="#" class="btn btn-primary">Ver más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+    </div>
+  </div>
+</div>
