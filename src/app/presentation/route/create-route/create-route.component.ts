@@ -8,6 +8,7 @@ import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { ICourse } from 'src/app/domain/interfaces/course.interface.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 
 @Component({
   selector: 'app-create-route',
@@ -56,7 +57,7 @@ export class CreateRouteComponent {
     private readonly adminService: AdminService
   ) {}
 
-  send() {
+  enviar() {
     this.route.courses = this.FormRegister.get('courses')?.value as ICourse[];
     this.route.description = this.FormRegister.get('description')?.value as string;
     this.route.title = this.FormRegister.get('title')?.value as string;
@@ -66,7 +67,7 @@ export class CreateRouteComponent {
       .useFactory(this.adminService)
       .execute(localStorage.getItem('email') as string)
       .subscribe({
-        next: (data) => {
+        next: (data : AdminEntity) => {
           this.route.adminId = data._id as string;
           console.log(this.route);
 
@@ -78,12 +79,13 @@ export class CreateRouteComponent {
                 this.sweet.toFire('Ruta', 'Ruta creada', 'success');
                 this.router.navigate(['/route']);
               },
-              error: () => {
+              error: (error : Error) => {
                 this.sweet.toFire('Ruta', 'No se pudo crear Ruta', 'error');
               },
             });
         },
-        error: () => {
+        error: (error : Error) => {
+          console.log(error)
           this.sweet.toFire('Ruta', 'No se pudo crear Ruta', 'error');
         },
       });
