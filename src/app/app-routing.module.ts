@@ -28,6 +28,11 @@ const routes: Routes = [
       import('./presentation/route/route.module').then((m) => m.RouteModule),
   },
   {
+    path: 'home',
+    loadChildren: () =>
+      import('./presentation/home/home.module').then((m) => m.HomeModule),
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full',
