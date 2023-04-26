@@ -11,6 +11,9 @@ import { adminUseCaseProviders } from './delegate/delegate-admin/delegate-admin.
 import { AdminImplementationService } from './services/service-admin/admin.service.infrastructure';
 import { AdminService } from '../domain/services/admin.service.domain';
 import { loginUseCaseProviders } from './delegate/delegete-login/delegate-login.infrastructure';
+import { learnerUseCaseProviders } from './delegate/delegate-learner/delegate-learner.infrastructure';
+import { LearnerService } from '../domain/services/learner.service.domain';
+import { LearnerImplementationService } from './services/service-learner/learner.service.infrastructure';
 
 @NgModule({
   declarations: [],
@@ -20,10 +23,12 @@ import { loginUseCaseProviders } from './delegate/delegete-login/delegate-login.
     ...Object.values(routeUseCaseProviders),
     ...Object.values(adminUseCaseProviders),
     ...Object.values(loginUseCaseProviders),
+    ...Object.values(learnerUseCaseProviders),
 
     { provide: RouteService, useClass: RouteImplementationService },
     { provide: CourseService, useClass: CourseImplementationService },
     { provide: AdminService, useClass: AdminImplementationService },
+    { provide: LearnerService, useClass: LearnerImplementationService },
   ],
 })
 export class InfrastructureModule {}

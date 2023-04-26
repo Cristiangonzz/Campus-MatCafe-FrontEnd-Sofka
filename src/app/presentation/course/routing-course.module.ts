@@ -6,6 +6,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
 import { DeleteCourseComponent } from './delete-course/delete-course.component';
 import { GetCourseComponent } from './get-course/get-course.component';
 import { GetAllCoursesComponent } from './get-all-courses/get-all-courses.component';
+import { PermissionGuard } from '../shared/guards/permission.guard';
 
 const routes: Routes = [
   {
@@ -13,23 +14,23 @@ const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreateCourseComponent,
+        component: CreateCourseComponent,canActivate: [ PermissionGuard ],
       },
       {
         path: 'update',
-        component: UpdateCourseComponent,
+        component: UpdateCourseComponent,canActivate: [ PermissionGuard ],
       },
       {
         path: 'delete',
-        component: DeleteCourseComponent,
+        component: DeleteCourseComponent,canActivate: [ PermissionGuard ],
       },
       {
         path: 'get',
-        component: GetCourseComponent,
+        component: GetCourseComponent,canActivate: [ PermissionGuard ],
       },
       {
         path: 'get-all',
-        component: GetAllCoursesComponent,
+        component: GetAllCoursesComponent,canActivate: [ PermissionGuard ],
       },
       {path:`**`,redirectTo:'get-all'},
     ],

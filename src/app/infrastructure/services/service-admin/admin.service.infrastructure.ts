@@ -5,6 +5,7 @@ import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 import { CalificationEntity } from 'src/app/domain/entities/calification.entity.domain';
 import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
 import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
+import { IUpDateUser } from 'src/app/domain/interfaces/update-user.interface.domain';
 import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 
@@ -33,14 +34,14 @@ export class AdminImplementationService extends AdminService {
       this.httpOptions
     );
   }
-  updateAdmin(email: string, data: AdminEntity): Observable<AdminEntity> {
+  updateAdmin(email: string, data: IUpDateUser): Observable<AdminEntity> {
     return this.http.put<AdminEntity>(
       `${this.URL}/updateAdmin/${email}`,
       data,
       this.httpOptions
     );
   }
-  updateLearner(email: string, data: LearnerEntity): Observable<LearnerEntity> {
+  updateLearner(email: string, data: IUpDateUser): Observable<LearnerEntity> {
     return this.http.put<LearnerEntity>(
       `${this.URL}/updateLearner/${email}`,
       data,
