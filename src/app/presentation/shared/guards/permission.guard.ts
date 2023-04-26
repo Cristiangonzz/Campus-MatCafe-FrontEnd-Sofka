@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
-import { Observable, map, of, switchMap, tap } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
+import { Observable, map} from 'rxjs';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 
 @Injectable({

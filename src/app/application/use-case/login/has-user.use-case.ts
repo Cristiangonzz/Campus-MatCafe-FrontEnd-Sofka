@@ -11,7 +11,7 @@ export class HasUserUseCase {
   );
 
   execute(): Observable<boolean> {
-    if (typeof localStorage.getItem('token') === 'string') {
+    if (typeof localStorage.getItem('email') === 'string') {
       this.status = true;
       this.statusEmmit.next(this.status);
       return of(true);
