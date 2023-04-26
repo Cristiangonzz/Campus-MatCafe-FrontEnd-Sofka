@@ -16,19 +16,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
 
-  selected!: CourseEntity;
-
-  showModal = false;
-
-  openModal(i: number) {
-    this.selected = this.courses[i];
-    this.showModal = true;
-  }
-
-  closeModal() {
-    console.log('close modal');
-    this.showModal = false;
-  }
 
   constructor(
     private courseService: CourseService,
@@ -57,6 +44,20 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         },
       });
   }
+  
+  selected!: CourseEntity;
+
+  showModal = false;
+
+  openModal(i: number) {
+    this.selected = this.courses[i];
+    this.showModal = true;
+  }
+
+  closeModal() {
+    console.log('close modal');
+    this.showModal = false;
+  }
 
   deleteCourse(_id: string) {
     console.log(_id);
@@ -72,9 +73,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         console.log('complete');
       },
     });
-  }
-  updateCourse(_id: string) {
-    console.log(_id);
   }
 
   ngOnDestroy(): void {

@@ -50,7 +50,6 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.routes[i];
-    console.log(this.selected);
     this.showModal = true;
   }
 
@@ -76,9 +75,7 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
         },
       });
   }
-  updateRoute(_id: string) {
-    this.router.navigate([`route/update/${_id}`]);
-  }
+
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
