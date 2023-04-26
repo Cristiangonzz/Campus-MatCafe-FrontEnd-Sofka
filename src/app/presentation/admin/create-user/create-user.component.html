@@ -17,7 +17,7 @@
 
       <div>
         <label class="switchBtn" >Rol: 
-        <input formControlName="rol" type="checkbox" label="Rol Admin" class="toggle-button">
+        <input formControlName="rol" type="checkbox" label="Rol Admin" class="toggle-button input-green">
 
         <div class="slide round">  <span>{{ FormRegister.controls.rol.value ? 'Admin' : 'Aprendiz' }}</span></div>
 
@@ -26,12 +26,10 @@
       </div>
   
      
-      <div >
-        <button [disabled]="FormRegister.invalid"  class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
-        <button  class="custom-btn btn-12" routerLink=""><span>Regresar!</span><span>Cancelar</span></button>
-      </div>
-    
-   
+      <div style="display: flex; justify-content: space-between;">
+        <button [disabled]="FormRegister.invalid" class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
+        <button class="custom-btn btn-13" routerLink=""><span>Regresar!</span><span>Cancelar</span></button>
+    </div>
     </form>
   </div>
   </div>
