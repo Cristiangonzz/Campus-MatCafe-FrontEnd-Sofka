@@ -13,6 +13,8 @@ import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegat
 })
 export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
+  selectedCourseId?: string;
+  isModalOpen = false;
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
 
@@ -75,8 +77,9 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
       },
     });
   }
-  updateCourse(_id: string) {
-    console.log(_id);
+  updateCourse(id: string) {
+    this.selectedCourseId = id;
+    this.isModalOpen = true;
   }
 
   ngOnDestroy(): void {
