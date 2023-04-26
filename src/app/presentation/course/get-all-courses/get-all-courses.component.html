@@ -1,22 +1,23 @@
 <div class="container">
   <div class="row">
-      <div class="card-deck">
-        <div class="cardd mb-4" *ngFor="let course of courses">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ course.title }}</h5>
-            <p class="card-text">{{ course.description }}</p>
-            <p class="card-text"><small class="text-muted">{{ course.duration }}</small></p>
-            <p class="card-text"><small class="text-muted">{{ course.requirements }}</small></p>
-            <p class="card-text"><small class="text-muted">{{ course.content }}</small></p>
-            <p class="card-text"><small class="text-muted">{{ course.adminId }}</small></p>
-            <div>
-              <button (click)="deleteCourse(course.id)">Eliminar curso</button>
-              <button (click)="updateCourse(course.id)">Actualizar curso</button>
-            </div>
-            <a href="#" class="btn btn-primary">Ver más</a>
+    <div class="card-deck">
+      <div class="cardd mb-4" *ngFor="let course of courses">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ course.title }}</h5>
+          <p class="card-text">{{ course.description }}</p>
+          <p class="card-text"><strong>Requerimientos: {{ course.requirements }}</strong></p>
+          <div class="card-text" *ngFor="let item of course.content">
+            <p>* {{ item }}</p>
           </div>
-
+          <p class="card-text"><strong>{{ course.id }}</strong></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="custom-btn btn-14 w-25" (click)="updateCourse(course.id)"><span>Click!</span><span>Actualizar Curso</span></button>
+          </div>
+          <div class="d-flex  mt-auto">
+            <button class="custom-btn btn-13 w-25" (click)="deleteCourse(course.id)"><span class="spanclick2">Click!</span><span class="spanclick2" >Eliminar Curso</span></button>
+          </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
+</div>
