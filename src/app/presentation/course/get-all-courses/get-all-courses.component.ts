@@ -3,6 +3,8 @@ import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { Subject, takeUntil } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 
 @Component({
   selector: 'app-get-all-courses',
@@ -14,7 +16,12 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private deleteCourseUseCase: DeleteCourseUseCase,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.delegateCourse.getAllCourseUseCaseProvaider
@@ -34,8 +41,27 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         complete: () => {
           console.log('complete');
         },
-
       });
+  }
+
+  deleteCourse(_id: string) {
+    console.log(_id);
+    this.deleteCourseUseCase.execute(_id).subscribe({
+      next: (data) => {
+        console.log(data);
+        // redirigir a la lista de cursos
+        this.router.navigate(['/courses']);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
+  }
+  updateCourse(_id: string) {
+    console.log(_id);
   }
 
   ngOnDestroy(): void {
