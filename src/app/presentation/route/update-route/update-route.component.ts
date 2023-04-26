@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RouteEntity } from 'src/app/domain/entities/route.entity.domain';
@@ -6,17 +6,18 @@ import { IUpdateRoute } from 'src/app/domain/interfaces/update-route.interface.d
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-update-route',
   templateUrl: './update-route.component.html',
   styleUrls: ['./update-route.component.css'],
 })
-export class UpdateRouteComponent implements OnInit {
+export class UpdateRouteComponent implements OnChanges {
   delegateRoute = routeUseCaseProviders;
   @Input() routeInput!: RouteEntity;
-  @Input() close!: boolean;
-  newRoute: IUpdateRoute = {} as IUpdateRoute;
+  sweet = new SweetAlert();
+  
 
   FormUpdate = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -47,52 +48,50 @@ export class UpdateRouteComponent implements OnInit {
   }
 
   route: RouteEntity = {} as RouteEntity;
-  update: IUpdateRoute = {} as IUpdateRoute;
   constructor(
     private readonly routeActivated: ActivatedRoute,
     private routeService: RouteService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.paramsRouteId();
-    this.ngOnChanges();
+  ngOnChanges(): void {
+    this.FormUpdate.get('title')?.setValue(this.routeInput.title);
+    this.FormUpdate.get('description')?.setValue(this.routeInput.description);
+    this.FormUpdate.get('duration')?.setValue(this.routeInput.duration);
+
+    this.coursesForms.clear();
+
+    this.routeInput.courses.forEach((element) => {
+      const course = new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]);
+      course.setValue(element);
+      this.coursesForms.push(course);
+    });
   }
 
-  paramsRouteId(): void {
-    this.routeActivated.params.subscribe((params: Params) => {
-      this.route._id = params['id'];
-    });
-    this.delegateRoute.getRouteUseCaseProvaider
+  send() {
+    this.routeInput.courses = this.FormUpdate.get('courses')?.value as never[];
+    this.routeInput.description = this.FormUpdate.get('description')
+      ?.value as string;
+    this.routeInput.duration = this.FormUpdate.get('duration')?.value as string;
+    this.routeInput.title = this.FormUpdate.get('title')?.value as string;
+
+    this.delegateRoute.updateRouteUseCaseProvaider
       .useFactory(this.routeService)
-      .execute(this.route._id as string)
+      .execute(this.route.id, this.route)
       .subscribe({
-        next: (route) => {
-          this.newRoute.courses = route.courses as string[];
-          this.newRoute.description = route.description as string;
-          this.newRoute.duration = route.duration as string;
-          this.newRoute.title = route.title as string;
+        next: () => {
+          this.sweet.toFire('Completo', 'Curso Creado', 'success');
         },
-        error: (error) => {
-          console.log(error);
+        error: () => {
+          this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
         },
       });
   }
 
-  ngOnChanges(): void {
-    this.FormUpdate.get('title')?.setValue(this.newRoute.title);
-    this.FormUpdate.get('description')?.setValue(this.newRoute.description);
-    this.FormUpdate.get('duration')?.setValue(this.newRoute.duration);
-
-    this.coursesForms.clear();
-
-    this.newRoute.courses.forEach((element) => {
-      const content = new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-      ]);
-      content.setValue(element);
-      this.coursesForms.push(content);
-    });
+  cancelar() {
+    this.router.navigate(['/route/get-all']);
   }
 }

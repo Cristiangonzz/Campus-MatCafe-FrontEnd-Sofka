@@ -5,6 +5,9 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { Router } from '@angular/router';
 import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
 import { Observable, of } from 'rxjs';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
+import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
+import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 
 @Component({
   selector: 'app-create-user',
@@ -13,9 +16,10 @@ import { Observable, of } from 'rxjs';
 })
 export class CreateUserComponent {
   delegeteUser = adminUseCaseProviders;
+  sweet = new SweetAlert();
 
   FormRegister = new FormGroup({
-    name: new FormControl('', [Validators.required , Validators.minLength(5)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     rol: new FormControl<boolean>(false, []),
   });
@@ -27,37 +31,15 @@ export class CreateUserComponent {
   send() {
     this.user = this.FormRegister.getRawValue() as ICreateUser;
 
-    this.delegeteUser.getAdminByEmailUseCaseProvaider
+    this.delegeteUser.createUserUseCaseProvaider
       .useFactory(this.adminService)
-      .execute(this.user.email)
+      .execute(this.user)
       .subscribe({
-        next: (data) => {
-          if (data == null) {
-            this.delegeteUser.getLearnerByEmailUseCaseProvaider
-              .useFactory(this.adminService)
-              .execute(this.user.email)
-              .subscribe({
-                next: (data) => {
-                  if (data == null) {
-                    this.delegeteUser.createUserUseCaseProvaider
-                      .useFactory(this.adminService)
-                      .execute(this.user)
-                      .subscribe({
-                        next: (data) => {
-                          console.log("Usario Creado correctamente",data);
-                        },
-                        error: (error) => {
-                          throw new error('Error al crear el usuario');
-                        }
-                      });
-                  }else{
-                    alert('El usuario ya existe');
-                  }
-                },
-              });
-          }else{
-            alert('El usuario ya existe');
-          }
+        next: () => {
+          this.sweet.toFire('Completo', `Usurio Creado`, 'success');
+        },
+        error: (error) => {
+          this.sweet.toFire('Incompleto', `Usuario Incorrecto ${JSON.stringify(error)}`, 'error');
         },
       });
   }
