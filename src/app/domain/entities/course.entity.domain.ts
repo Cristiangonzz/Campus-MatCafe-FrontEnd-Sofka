@@ -1,7 +1,8 @@
 import { ICourse } from '../interfaces/course.interface.domain';
 
 export class CourseEntity implements ICourse {
-  id?:string
+  id: string;
+
   title: string;
   description: string;
   duration: string;
@@ -10,7 +11,8 @@ export class CourseEntity implements ICourse {
   adminId: string;
 
   constructor(
-    id?:string,
+    id?: string,
+
     title?: string,
     description?: string,
     duration?: string,
