@@ -1,13 +1,16 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SendWorkShopComponent } from './send-work-shop/send-work-shop.component';
+import { SuscribeRouteComponent } from './suscribe-route/suscribe-route.component';
 
 const routes: Routes = [
   {
     path:'',
     children: [
-      // {path:`create`,component: },
-      // {path:`**`,redirectTo:'create'},
+      {path:`send-work-shop`,component: SendWorkShopComponent },
+      {path:`suscribe-route`,component: SuscribeRouteComponent },
+      {path:`**`,redirectTo:'send-work-shop'},
        ]
   }
 ]
