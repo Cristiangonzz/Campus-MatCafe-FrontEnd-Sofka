@@ -45,8 +45,6 @@ export class SendWorkShopComponent {
       .pipe(map((course) => ({ courseId: course._id })));
 
     forkJoin([learnerId$, courseId$]).subscribe(([learner, course]) => {
-      console.log(course.courseId);
-      console.log(learner.learnerId);
 
       const sendWork: ISendWorkshop = {
         learnedId: learner.learnerId ?? '',
@@ -54,7 +52,6 @@ export class SendWorkShopComponent {
         courseid: course.courseId ?? '',
         coment: coment,
       };
-      console.log(sendWork);
       this.delegateLearner.sendWorkshopUseCaseProvaider
         .useFactory(this.learnerService)
         .execute(sendWork).subscribe();

@@ -59,4 +59,6 @@ export class RouteImplementationService extends RouteService {
   getAll(): Observable<RouteEntity[]> {
     return this.http.get<RouteEntity[]>(`${this.URL}/Route`, this.httpOptions);
   }
+
+  
 }
