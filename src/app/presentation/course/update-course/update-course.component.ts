@@ -2,11 +2,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
-import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
+
 
 @Component({
   selector: 'app-update-course',
@@ -15,7 +14,6 @@ import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 })
 export class UpdateCourseComponent implements OnChanges {
   delegateCourse = courseUseCaseProviders;
-  delegateAdmin = adminUseCaseProviders;
   sweet = new SweetAlert();
 
   @Input() courseInput!: CourseEntity;
@@ -78,8 +76,8 @@ export class UpdateCourseComponent implements OnChanges {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private readonly adminService: AdminService
   ) {}
+
   send() {
     this.course.content = this.FormRegister.get('content')?.value as never[];
     this.course.description = this.FormRegister.get('description')
@@ -90,33 +88,19 @@ export class UpdateCourseComponent implements OnChanges {
     this.course.title = this.FormRegister.get('title')?.value as string;
 
     console.log(this.course);
-    this.delegateAdmin.getAdminByEmailUseCaseProvaider
-      .useFactory(this.adminService)
-      .execute(localStorage.getItem('email') as string)
+    this.delegateCourse.updateCourseUseCaseProvaider
+      .useFactory(this.courseService)
+      .execute(this.course.id,this.course)
       .subscribe({
-        next: (data) => {
-          this.course.adminId = data._id as string;
-          this.delegateCourse.createCourseUseCaseProvaider
-            .useFactory(this.courseService)
-            .execute(this.course)
-            .subscribe({
-              next: () => {
-                this.sweet.toFire('Completo', 'Curso Creado', 'success');
-              },
-              error: () => {
-                this.sweet.toFire(
-                  'Error',
-                  'Error al Actualizar Curso',
-                  'error'
-                );
-              },
-            });
+        next: () => {
+           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
         },
         error: () => {
-          this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+           this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
         },
       });
   }
+
   cancelar() {
     this.router.navigate(['/course/get-all']);
   }

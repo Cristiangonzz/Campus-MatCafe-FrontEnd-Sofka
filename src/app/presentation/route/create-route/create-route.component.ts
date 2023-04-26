@@ -58,7 +58,7 @@ export class CreateRouteComponent {
   ) {}
 
   enviar() {
-    this.route.courses = this.FormRegister.get('courses')?.value as ICourse[];
+    this.route.courses = this.FormRegister.get('courses')?.value as string[];
     this.route.description = this.FormRegister.get('description')?.value as string;
     this.route.title = this.FormRegister.get('title')?.value as string;
     this.route.duration = this.FormRegister.get('duration')?.value as string;

@@ -2,7 +2,6 @@ import { ICourse } from '../interfaces/course.interface.domain';
 
 export class CourseEntity implements ICourse {
   id: string;
-
   title: string;
   description: string;
   duration: string;

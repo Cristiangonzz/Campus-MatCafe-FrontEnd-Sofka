@@ -1,4 +1,3 @@
-import { Inject } from '@angular/core';
 import Swal from 'sweetalert2';
 
 export class SweetAlert {
