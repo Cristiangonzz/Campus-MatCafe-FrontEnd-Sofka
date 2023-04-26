@@ -12,9 +12,9 @@ const routes: Routes = [
     path:'',
     children: [
        {path:`create`,component: CreateRouteComponent,canActivate: [ PermissionGuard ], },
-       {path:`get/:id`,component: GetRouteComponent ,canActivate: [ PermissionGuard ],},
+       {path:`get`,component: GetRouteComponent ,canActivate: [ PermissionGuard ],},
        {path:`get-all`,component: GetAllRouteComponent ,canActivate: [ PermissionGuard ],},
-       {path:`update/:id`,component: UpdateRouteComponent,canActivate: [ PermissionGuard ], },
+       {path:`update`,component: UpdateRouteComponent,canActivate: [ PermissionGuard ], },
        {path:`**`,redirectTo:'get-all'},
        ]
   }

@@ -46,7 +46,7 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.routes[i];
-    console.log(this.selected, 'selected');
+    console.log(this.selected)
     this.showModal = true;
   }
 

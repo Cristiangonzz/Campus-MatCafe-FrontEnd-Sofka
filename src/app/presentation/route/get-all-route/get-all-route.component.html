@@ -13,12 +13,8 @@
             <p class="card-text">
               <small class="text-muted">{{ route.courses }}</small>
             </p>
-            <p class="card-text">
-              <small class="text-muted">{{ route._id }}</small>
-            </p>
             <div>
               <button (click)="deleteRoute(route._id)">Eliminar curso</button>
-              <button (click)="updateRoute(route._id)"></button>
               <button class="btn" (click)="openModal(i)">
                 Mostrar formulario
               </button>

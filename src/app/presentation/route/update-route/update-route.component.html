@@ -1,1 +1,72 @@
-<p>update-route works!</p>
+<div class="container">
+    <h1 class="my-4">Update Course</h1>
+    <form (ngSubmit)="send()" [formGroup]="FormUpdate">
+      <div class="form-group">
+        <app-form
+          [control]="FormUpdate.controls.title"
+          type="text"
+          label="Title"
+          placeHolder=""
+        ></app-form>
+      </div>
+      <div class="form-group">
+        <app-form
+          [control]="FormUpdate.controls.description"
+          type="text"
+          label="Description"
+          placeHolder=""
+        ></app-form>
+      </div>
+  
+      <div class="form-group">
+        <app-form
+          [control]="FormUpdate.controls.duration"
+          type="text"
+          label="Duration"
+          placeHolder=""
+        ></app-form>
+      </div>
+  
+      <div class="form-group">
+        <div formArrayName="courses">
+          <div
+            *ngFor="let course of coursesForms.controls; let i = index"
+            class="form-group"
+          >
+            <input
+              type="text"
+              [formControlName]="i"
+              placeholder="course {{ i + 1 }}"
+              class="form-input w-75"
+            />
+            <button
+              type="button"
+              (click)="removeCourse(i)"
+              class="form-button w-25"
+            >
+              Remove
+            </button>
+          </div>
+          <button type="button" (click)="addCourse()" class="form-button">
+            Add
+          </button>
+        </div>
+      </div>
+  
+      <button
+        type="submit"
+        [disabled]="FormUpdate.invalid"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancelar()"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+  
