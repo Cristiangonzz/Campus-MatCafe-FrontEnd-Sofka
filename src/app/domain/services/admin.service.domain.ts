@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CalificationEntity } from '../entities/calification.entity.domain';
 import { IUser } from '../interfaces/user.interface.domain';
 import { ICreateUser } from '../interfaces/create-user.interface';
+import { IUpDateUser } from '../interfaces/update-user.interface.domain';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,11 @@ export abstract class AdminService {
   abstract createUser(data: ICreateUser): Observable<AdminEntity | LearnerEntity>;
   abstract updateAdmin(
     email: string,
-    data: AdminEntity
+    data: IUpDateUser
   ): Observable<AdminEntity>;
   abstract updateLearner(
     email: string,
-    data: LearnerEntity
+    data: IUpDateUser
   ): Observable<LearnerEntity>;
   abstract getAdminByEmail(email: string): Observable<AdminEntity>;
   abstract getLearnerByEmail(email: string): Observable<LearnerEntity>;
