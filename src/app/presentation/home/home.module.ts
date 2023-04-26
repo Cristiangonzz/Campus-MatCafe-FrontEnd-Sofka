@@ -6,9 +6,12 @@ import { RouterModule } from '@angular/router';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { SharedModule } from '../shared/shared.module';
 import { RoutingHomeModule } from './routing-home.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HomeComponent,
+  ],
   imports: [
     CommonModule,
     CommonModule,

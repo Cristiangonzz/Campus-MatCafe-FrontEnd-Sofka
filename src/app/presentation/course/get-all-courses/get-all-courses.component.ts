@@ -24,7 +24,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.courses[i];
-    console.log(this.selected, 'selected');
     this.showModal = true;
   }
 
@@ -63,7 +62,8 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   deleteCourse(_id: string) {
     console.log(_id);
-    this.deleteCourseUseCase.execute(_id).subscribe({
+    this.deleteCourseUseCase.
+    execute(_id).subscribe({
       next: (data) => {
         console.log(data);
         // redirigir a la lista de cursos

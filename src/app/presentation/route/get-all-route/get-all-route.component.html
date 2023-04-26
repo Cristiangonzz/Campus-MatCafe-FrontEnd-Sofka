@@ -1,23 +1,41 @@
+
 <div class="container">
   <div class="row">
-    <div class="card-deck">
-          <div class="cardd mb-4" *ngFor="let route of routes">
-            <div class="card-body">
-              <h5 class="card-title text-center">{{ route.title }}</h5>
-              <p class="card-text">{{ route.description }}</p>
-              <p class="card-text"><small class="text-muted">{{ route.duration }}</small></p>
-              <p class="card-text"><small class="text-muted">{{ route.courses }}</small></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="custom-btn btn-14 w-25" ><span>Click!</span><span>Actualizar Ruta</span></button>
-              </div>
-              <div class="d-flex  mt-auto">
-                <button class="custom-btn btn-13 w-25" ><span class="spanclick2">Click!</span><span class="spanclick2" >Eliminar Ruta</span></button>
-              </div>            
+    <div class="col-lg-8 col-md-7">
+      <div class="card-deck">
+        <div class="card mb-4" *ngFor="let route of routes; let i = index">
+          <div class="card-body">
+            <h5 class="card-title">{{ route.title }}</h5>
+            <p class="card-text">{{ route.description }}</p>
+            <p class="card-text">
+              <small class="text-muted">{{ route.duration }}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted">{{ route.courses }}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted">{{ route._id }}</small>
+            </p>
+            <div>
+              <button (click)="deleteRoute(route._id)">Eliminar curso</button>
+              <button (click)="updateRoute(route._id)"></button>
+              <button class="btn" (click)="openModal(i)">
+                Mostrar formulario
+              </button>
             </div>
+            <a href="#" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-5">
-      </div>
     </div>
-  
+    <div class="col-lg-4 col-md-5"></div>
+  </div>
+</div>
+
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Formulario</h2>
+    <app-update-route [routeInput]="selected"></app-update-route>
+  </div>
+</div>

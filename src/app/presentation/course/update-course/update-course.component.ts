@@ -17,8 +17,8 @@ export class UpdateCourseComponent implements OnChanges {
   delegateCourse = courseUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   sweet = new SweetAlert();
+
   @Input() courseInput!: CourseEntity;
-  @Input() close!: boolean;
 
   FormRegister = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
