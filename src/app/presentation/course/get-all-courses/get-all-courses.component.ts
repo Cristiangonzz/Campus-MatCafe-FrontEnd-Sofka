@@ -59,6 +59,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   }
 
   deleteCourse(_id: string) {
+
     this.deleteCourseUseCase.
     execute(_id).subscribe({
       next: () => {

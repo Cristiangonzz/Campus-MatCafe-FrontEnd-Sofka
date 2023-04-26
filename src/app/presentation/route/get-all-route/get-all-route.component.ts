@@ -1,25 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { RouteEntity } from 'src/app/domain/entities/route.entity.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-all-route',
   templateUrl: './get-all-route.component.html',
-  styleUrls: ['./get-all-route.component.css']
+  styleUrls: ['./get-all-route.component.css'],
 })
 export class GetAllRouteComponent implements OnInit, OnDestroy {
-
   sweet = new SweetAlert();
   routes!: RouteEntity[];
   delegateRoute = routeUseCaseProviders;
-  
+
+  selected!: RouteEntity;
+
+  showModal = false;
   private onDestroy$: Subject<void> = new Subject<void>();
 
-  constructor(private routeService: RouteService, private readonly router: Router) {}
+  constructor(
+    private routeService: RouteService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.delegateRoute.getAllRouteUseCaseProvaider
@@ -34,15 +39,14 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
           this.routes = value;
         },
         error: () => {
-          this.sweet.toFire("Obtener Rutas","No se pudo obtener Rutas","error");
-        }
+          this.sweet.toFire(
+            'Obtener Rutas',
+            'No se pudo obtener Rutas',
+            'error'
+          );
+        },
       });
   }
-
-
-  selected!: RouteEntity;
-
-  showModal = false;
 
   openModal(i: number) {
     this.selected = this.routes[i];
@@ -55,6 +59,7 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   }
 
   deleteRoute(_id: string) {
+
     this.delegateRoute.deleteRouteUseCaseProvaider.useFactory(this.routeService).
     execute(_id).subscribe({
       next: () => {
