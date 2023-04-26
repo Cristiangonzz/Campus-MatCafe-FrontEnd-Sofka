@@ -53,8 +53,8 @@ export class CreateRouteComponent {
 
   constructor(
     private routeService: RouteService,
+    private readonly adminService: AdminService,
     private router: Router,
-    private readonly adminService: AdminService
   ) {}
 
   enviar() {
@@ -79,7 +79,7 @@ export class CreateRouteComponent {
                 this.sweet.toFire('Ruta', 'Ruta creada', 'success');
                 this.router.navigate(['/route']);
               },
-              error: (error : Error) => {
+              error: () => {
                 this.sweet.toFire('Ruta', 'No se pudo crear Ruta', 'error');
               },
             });

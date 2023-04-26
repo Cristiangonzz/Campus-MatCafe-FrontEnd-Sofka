@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
-import { Subject, takeUntil } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 
 @Component({
   selector: 'app-get-all-courses',
@@ -15,6 +15,20 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
+
+  selected!: CourseEntity;
+
+  showModal = false;
+
+  openModal(i: number) {
+    this.selected = this.courses[i];
+    this.showModal = true;
+  }
+
+  closeModal() {
+    console.log('close modal');
+    this.showModal = false;
+  }
 
   constructor(
     private courseService: CourseService,
@@ -46,7 +60,8 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   deleteCourse(_id: string) {
     console.log(_id);
-    this.deleteCourseUseCase.execute(_id).subscribe({
+    this.deleteCourseUseCase.
+    execute(_id).subscribe({
       next: (data) => {
         console.log(data);
         // redirigir a la lista de cursos

@@ -2,16 +2,15 @@ import { ICourse } from '../interfaces/course.interface.domain';
 import { IRoute } from '../interfaces/route.interface.domain';
 
 export class RouteEntity implements IRoute {
-  _id?:string;
+  _id: string;
   title: string;
   description: string;
   duration: string;
   courses: ICourse[];
   adminId: string;
-  
 
   constructor(
-    _id?:string,
+    _id?: string,
     title?: string,
     description?: string,
     duration?: string,
