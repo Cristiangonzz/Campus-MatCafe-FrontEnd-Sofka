@@ -80,7 +80,7 @@ export class UpdateRouteComponent implements OnChanges {
 
     this.delegateRoute.updateRouteUseCaseProvaider
       .useFactory(this.routeService)
-      .execute(this.route._id, this.route)
+      .execute(this.route.id, this.route)
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', 'Curso Creado', 'success');

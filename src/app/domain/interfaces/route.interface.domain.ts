@@ -1,7 +1,7 @@
 import { ICourse } from './course.interface.domain';
 
 export interface IRoute {
-  _id?: string;
+  id?: string;
   title?: string;
   description?: string;
   duration?: string;
