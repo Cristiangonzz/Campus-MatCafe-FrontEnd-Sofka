@@ -55,7 +55,6 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   }
 
   deleteRoute(_id: string) {
-    console.log("id para eliminar route",_id);
     this.delegateRoute.deleteRouteUseCaseProvaider.useFactory(this.routeService).
     execute(_id).subscribe({
       next: () => {
@@ -63,9 +62,6 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
       },
       error: () => {
         this.sweet.toFire("Incompleto","No se pudo eliminar Ruta","error");
-      },
-      complete: () => {
-        console.log('complete');
       },
     });
   }
