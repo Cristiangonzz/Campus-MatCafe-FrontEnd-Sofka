@@ -5,7 +5,6 @@ import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegat
 import { Subject, takeUntil } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
-
 @Component({
   selector: 'app-get-all-courses',
   templateUrl: './get-all-courses.component.html',
@@ -13,6 +12,8 @@ import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-
 })
 export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
+  selectedCourseId?: string;
+  isModalOpen = false;
   delegateCourse = courseUseCaseProviders;
   private onDestroy$: Subject<void> = new Subject<void>();
 
@@ -60,8 +61,12 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
       },
     });
   }
-  updateCourse(_id: string) {
-    console.log(_id);
+  updateCourse(id: string) {
+    this.selectedCourseId = id;
+    this.isModalOpen = true;
+  }
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   ngOnDestroy(): void {
