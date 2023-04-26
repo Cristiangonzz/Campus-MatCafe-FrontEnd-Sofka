@@ -24,8 +24,7 @@ export class LearnerImplementationService extends LearnerService {
   };
 
   sendWorkshop(data: ISendWorkshop): Observable<string> {
-    console.log(data)
-    return this.http.post<string>(`http://localhost:3000/learner/sendWorkshop`, data, this.httpOptions);
+    return this.http.post<string>(`${this.URL}/learner/sendWorkshop`, data, this.httpOptions);
   }
 
   subscribeRoute(data: ISuscribeRoute): Observable<string> {
