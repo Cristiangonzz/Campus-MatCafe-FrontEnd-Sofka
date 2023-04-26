@@ -11,4 +11,6 @@ export abstract class BaseService<T> {
   abstract delete(id: string): Observable<boolean>;
   abstract get(id: string): Observable<T>;
   abstract getAll(): Observable<T[]>;
+  abstract getByName(id: string): Observable<T>;
+
 }
