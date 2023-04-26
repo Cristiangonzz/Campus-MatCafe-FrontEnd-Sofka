@@ -1,4 +1,3 @@
-import { ICourse } from '../interfaces/course.interface.domain';
 import { IRoute } from '../interfaces/route.interface.domain';
 
 export class RouteEntity implements IRoute {
@@ -6,7 +5,7 @@ export class RouteEntity implements IRoute {
   title: string;
   description: string;
   duration: string;
-  courses: ICourse[];
+  courses: string[];
   adminId: string;
 
   constructor(
@@ -14,14 +13,14 @@ export class RouteEntity implements IRoute {
     title?: string,
     description?: string,
     duration?: string,
-    courses?: ICourse[],
+    courses?: string[],
     adminId?: string
   ) {
     this._id = _id as string;
     this.title = title as string;
     this.description = description as string;
     this.duration = duration as string;
-    this.courses = courses as ICourse[];
+    this.courses = courses as string[];
     this.adminId = adminId as string;
   }
 }
