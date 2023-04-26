@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { SharedModule } from '../shared/shared.module';
 import { RoutingHomeModule } from './routing-home.module';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [],
