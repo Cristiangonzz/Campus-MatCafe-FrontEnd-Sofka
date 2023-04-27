@@ -11,6 +11,7 @@ import { DeleteCourseComponent } from './delete-course/delete-course.component';
 import { GetAllCoursesComponent } from './get-all-courses/get-all-courses.component';
 import { GetCourseComponent } from './get-course/get-course.component';
 import { SafePipe } from './pipe/safe.pipe';
+import { TitlePipe } from './pipe/title.pipe';
 import { RoutingCourseModule } from './routing-course.module';
 import { UpdateCourseComponent } from './update-course/update-course.component';
 
@@ -22,6 +23,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
     GetCourseComponent,
     GetAllCoursesComponent,
     SafePipe,
+    TitlePipe,
   ],
   imports: [
     CommonModule,
