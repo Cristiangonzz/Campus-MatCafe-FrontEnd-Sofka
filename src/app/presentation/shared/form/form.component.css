@@ -1,32 +1,29 @@
 input[type="text"] {
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin: 5px 0;
-    box-shadow: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px 0;
+  box-shadow: #f5f5f5;
+}
 
-  }
+.alert-gray {
+  background: linear-gradient(45deg, #545353, #363635, #0f9d58);
+  color: #f5f5f5;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-  .alert-gray {
-    background: linear-gradient(45deg, #545353, #363635, #0F9D58);
-    color: #f5f5f5;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  .form-control {
-    width: 100%;
-    box-sizing: border-box;
-    
-  }
-  form {
-    
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .form-label {
-    color: #999; /* Cambiar a cualquier tono de gris */
-  }
+.form-label {
+  color: #999; /* Cambiar a cualquier tono de gris */
+}

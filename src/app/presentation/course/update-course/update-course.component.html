@@ -1,62 +1,68 @@
 <div class="container">
-  <h1 class="my-4">Update Course</h1>
   <form (ngSubmit)="send()" [formGroup]="FormRegister">
-    <div class="form-group">
+    <div class="w-100">
       <app-form
         [control]="FormRegister.controls.title"
         type="text"
-        label="Title"
+        label="Titulo"
         placeHolder=""
       ></app-form>
     </div>
-    <div class="form-group">
+    <div class="w-100">
       <app-form
         [control]="FormRegister.controls.description"
         type="text"
-        label="Description"
+        label="Descripción"
         placeHolder=""
       ></app-form>
     </div>
 
-    <div class="form-group">
+    <div class="w-100">
       <app-form
         [control]="FormRegister.controls.duration"
         type="text"
-        label="Duration"
+        label="Duración"
         placeHolder=""
       ></app-form>
     </div>
 
-    <div class="form-group">
+    <div class="w-100">
       <app-form
         [control]="FormRegister.controls.requirements"
         type="text"
-        label="Requirements"
+        label="Requisitos"
         placeHolder=""
       ></app-form>
     </div>
 
-    <div class="form-group">
+    <div class="w-100">
+      <label class="form-label">Contenido</label>
       <div formArrayName="content">
         <div
           *ngFor="let content of contentForms.controls; let i = index"
-          class="form-group"
+          class="w-100"
         >
-          <input
-            type="text"
-            [formControlName]="i"
-            placeholder="content {{ i + 1 }}"
-            class="form-input w-75"
-          />
-          <button
-            type="button"
-            (click)="removeContent(i)"
-            class="form-button w-25"
-          >
-            Remove
-          </button>
+          <div class="input-group">
+            <input
+              type="text"
+              [formControlName]="i"
+              placeholder="Contenido {{ i + 1 }}"
+              class="form-control"
+            />
+            <button
+              type="button"
+              (click)="removeContent(i)"
+              class="btn btn-outline-danger"
+            >
+              Remove
+            </button>
+          </div>
         </div>
-        <button type="button" (click)="addContent()" class="form-button">
+        <button
+          type="button"
+          (click)="addContent()"
+          class="btn btn-outline-primary w-100"
+        >
           Add
         </button>
       </div>
@@ -69,11 +75,7 @@
     >
       Submit
     </button>
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="cancelar()"
-    >
+    <button type="button" class="btn btn-danger" (click)="cancelar()">
       Cancel
     </button>
   </form>
