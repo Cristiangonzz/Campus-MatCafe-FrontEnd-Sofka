@@ -1,23 +1,44 @@
-<div class="container">
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col">
+      <img
+        src="https://ouch-cdn2.icons8.com/YyMktzyC5wNiAYB65qg6-bxvM5W4V107T1PAGIy2Ngw/rs:fit:256:154/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzk3/Lzk0MWJjNjI2LWZk/Y2YtNGM4ZC04NDFj/LTUyMmQwOWFlYjg1/Ni5wbmc.png"
+        alt="IMG"
+        width="100%"
+        height="100%"
+      />
+    </div>
+    <div class="col">
+      <h2 class="form-title">Registrar Ruta</h2>
 
-  <div >
-      <form  [formGroup]="FormRegister" > 
-        <section>
-          <h1 > Registrar Ruta</h1>
-        </section>
-     
-        <div >
-          <app-form [control]="FormRegister.controls.title" type="text" label="title" placeHolder=""></app-form>
+      <form (ngSubmit)="enviar()" [formGroup]="FormRegister">
+        <div>
+          <app-form
+            [control]="FormRegister.controls.title"
+            type="text"
+            label="Título"
+            placeHolder=""
+          ></app-form>
         </div>
-        
-        <div >
-          <app-form [control]="FormRegister.controls.description" type="text" label="description" placeHolder=""></app-form>
+
+        <div>
+          <app-form
+            [control]="FormRegister.controls.description"
+            type="text"
+            label="Descripción"
+            placeHolder=""
+          ></app-form>
         </div>
-  
-        <div >
-          <app-form [control]="FormRegister.controls.duration" type="text" label="duration" placeHolder=""></app-form>
+
+        <div>
+          <app-form
+            [control]="FormRegister.controls.duration"
+            type="text"
+            label="Duración"
+            placeHolder=""
+          ></app-form>
         </div>
-  
+
         <div class="form-group">
           <div formArrayName="courses">
             <div
@@ -39,12 +60,11 @@
             </button>
           </div>
         </div>
-        <div >
-          <button  (click)="enviar()" class="custom-btn btn-12"><span>Confirmar!</span><span>Registrar</span></button>
-          <button  class="custom-btn btn-12" (click)="cancelar()"><span>Regresar!</span><span>Cancelar</span></button>
+        <div class="row m-2">
+          <button type="submit" class="btn btn-success">Registrar</button>
+          <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
         </div>
-      
-     
       </form>
     </div>
-    </div>
+  </div>
+</div>
