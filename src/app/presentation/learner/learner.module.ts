@@ -1,21 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
-import { SuscribeRouteComponent } from './suscribe-route/suscribe-route.component';
-import { SendWorkShopComponent } from './send-work-shop/send-work-shop.component';
+import { SharedModule } from '../shared/shared.module';
 import { RoutingLearnerModule } from './routing-route.module';
-
-
+import { SuscribeRouteComponent } from './suscribe-route/suscribe-route.component';
 
 @NgModule({
-  declarations: [
-    SuscribeRouteComponent,
-    SendWorkShopComponent,
-  ],
+  declarations: [SuscribeRouteComponent],
   imports: [
     CommonModule,
     CommonModule,
@@ -26,11 +20,8 @@ import { RoutingLearnerModule } from './routing-route.module';
 
     InfrastructureModule,
     RoutingLearnerModule,
-    SharedModule, 
-  
+    SharedModule,
   ],
-  exports: [
-
-  ],
+  exports: [],
 })
-export class LearnerModule { }
+export class LearnerModule {}
