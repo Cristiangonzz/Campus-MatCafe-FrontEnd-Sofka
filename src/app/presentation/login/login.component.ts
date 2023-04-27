@@ -92,12 +92,12 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
-               this.router.navigate(['/admin']);
+            this.router.navigate(['/admin']);
           });
       })
       .catch(() => {
         this.sweet.toFire('User', `Error al Iniciar sesion `, 'error');
       });
-      this.router.navigate(['home']);
+    this.router.navigate(['home']);
   }
 }
