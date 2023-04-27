@@ -1,12 +1,11 @@
 import Swal from 'sweetalert2';
 
 export class SweetAlert {
-  constructor() {}
-
   toFire(
     title: string,
     message: string,
-    type: 'success' | 'error' | 'warning' | 'info' | 'question'
+    type: 'success' | 'error' | 'warning' | 'info' | 'question',
+    showConfirmButton?: boolean
   ) {
     Swal.fire({
       title,
@@ -15,7 +14,7 @@ export class SweetAlert {
       position: 'top-end',
       timer: 3000,
       color: '#96C0B7',
-      showConfirmButton: false,
+      showConfirmButton: showConfirmButton ? showConfirmButton : false,
     });
   }
 }
