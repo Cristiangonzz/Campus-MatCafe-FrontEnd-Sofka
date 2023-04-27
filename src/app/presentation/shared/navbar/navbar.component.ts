@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 
 @Component({
   selector: 'app-navbar',
@@ -6,23 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  delegateLogin = loginUseCaseProviders;
+  isAdmin?: boolean ;
   photo!: string;
   name!: string;
-  rol!: string;
 
   ngOnInit(): void {
-    const photoStorage = localStorage.getItem('photoUrl');
-    const nameStorage = localStorage.getItem('name');
-    const rolStorage = localStorage.getItem('rol');
-    this.rol = rolStorage === 'true' ? 'Admin' : 'Aprendiz';
-
-    if (photoStorage) {
-      this.photo = photoStorage;
-    }
-    if (nameStorage) {
-      this.name = nameStorage;
-    }
-  
+    this
+    .delegateLogin
+      .hasUserUseCaseProvider
+        .useFactory()
+          .statusEmmit
+            .subscribe((status: boolean) => {
+              this.isAdmin = status;
+              this.photo = localStorage.getItem('photoUrl') || '';
+              this.name = localStorage.getItem('name') || '';
+          }
+  );
   }
 
   out(){

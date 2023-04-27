@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
+    <ng-container *ngIf="!isAdmin,else viewAdmin">
+    <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
+  </ng-container>
+  <ng-template #viewAdmin>
     <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
     <button
       class="navbar-toggler"
@@ -36,7 +40,10 @@
           />
           <span>{{ name }}</span>
         </span>
-        <span *ngIf="rol" class="mx-2">Rol: {{ rol }}</span>
         <button (click)="out()" >Salir</button>
- 
-   
+      </form>
+    </div>
+  </ng-template>
+  </div>
+</nav>
+    

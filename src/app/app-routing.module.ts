@@ -43,6 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [PermissionGuard],
     loadChildren: () =>
       import('./presentation/home/home.module').then((m) => m.HomeModule),
   },
