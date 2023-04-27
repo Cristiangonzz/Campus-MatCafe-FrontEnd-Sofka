@@ -33,7 +33,7 @@ export class CreateUserComponent {
       .execute(this.user)
       .subscribe({
         next: () => {
-          this.sweet.toFire('Completo', `Usurio Creado`, 'success');
+          this.sweet.toFire('Completo', `Usuario Creado`, 'success');
         },
         error: (error) => {
           this.sweet.toFire(
