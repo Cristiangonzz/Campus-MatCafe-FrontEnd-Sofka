@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
-import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
@@ -68,13 +68,13 @@ export class CreateCourseComponent {
     this.course.title = this.FormRegister.get('title')?.value as string;
 
     console.log(this.course);
-    this.delegateAdmin.getAdminByEmailUseCaseProvaider
+    this.delegateAdmin.getAdminByEmailUseCaseProvider
       .useFactory(this.adminService)
       .execute(localStorage.getItem('email') as string)
       .subscribe({
         next: (data) => {
           this.course.adminId = data._id as string;
-          this.delegateCourse.createCourseUseCaseProvaider
+          this.delegateCourse.createCourseUseCaseProvider
             .useFactory(this.courseService)
             .execute(this.course)
             .subscribe({

@@ -2,6 +2,7 @@ import { IRoute } from '../interfaces/route.interface.domain';
 
 export class RouteEntity implements IRoute {
   id: string;
+  _id?: string;
   title: string;
   description: string;
   duration: string;

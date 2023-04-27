@@ -1,5 +1,5 @@
 
 export interface ISuscribeRoute {
-    learnerId: string,
-    idRoute: string
+  learnedId: string,
+    routeid: string
   }

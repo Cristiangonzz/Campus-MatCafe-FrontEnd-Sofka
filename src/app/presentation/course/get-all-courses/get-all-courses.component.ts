@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
+import Swal from 'sweetalert2';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
@@ -15,9 +16,23 @@ import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
   delegateCourse = courseUseCaseProviders;
-  sweet = new SweetAlert()
+  sweet = new SweetAlert();
   private onDestroy$: Subject<void> = new Subject<void>();
 
+  selected!: CourseEntity;
+
+  showModal = false;
+
+  ArrayShowContent: boolean[] = [];
+
+  openModal(i: number) {
+    this.selected = this.courses[i];
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 
   constructor(
     private courseService: CourseService,
@@ -27,52 +42,60 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .execute();
 
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .statusEmmit.pipe(takeUntil(this.onDestroy$))
       .subscribe({
         next: (value: CourseEntity[]) => {
           this.courses = value;
+          if (this.ArrayShowContent.length == 0) {
+            this.ArrayShowContent = new Array(this.courses.length).fill(false);
+          }
         },
         error: () => {
-          this.sweet.toFire("Curso","Error al Obtener Curso","error")
+          this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
         },
       });
   }
-  
-  selected!: CourseEntity;
-
-  showModal = false;
-
-  openModal(i: number) {
-    this.selected = this.courses[i];
-    this.showModal = true;
-  }
-
-  closeModal() {
-    console.log('close modal');
-    this.showModal = false;
-  }
 
   deleteCourse(_id: string) {
-
-    this.deleteCourseUseCase.
-    execute(_id).subscribe({
-      next: () => {
-        this.sweet.toFire("Curso","Curso Eliminado","success")
-      },
-      error: (error) => {
-        this.sweet.toFire("Curso","Curso Eliminado","success")
-      },
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'No podras revertir esta acción',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#e64141',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteCourseUseCase.execute(_id).subscribe({
+          next: () => {
+            this.sweet.toFire(
+              'Curso',
+              'Curso Eliminado Correctamente',
+              'success'
+            );
+          },
+          error: (error) => {
+            this.sweet.toFire('Curso', error.message, 'error');
+          },
+        });
+      }
     });
   }
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  showContent(i: number): boolean {
+    this.ArrayShowContent[i] = !this.ArrayShowContent[i];
+    return this.ArrayShowContent[i];
   }
 }

@@ -1,45 +1,268 @@
-<section class="hero">
-  <h1>Bienvenido al Campus MatCafe</h1>
-  <p>Los mejores cursos</p>
-  <button class="btn">Ver más</button>
-</section>
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
 
-<section class="services">
-  <h2>Nuestros servicios</h2>
-  <ul>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.111.3">
+    <title>Carousel Template · Bootstrap v5.3</title>
 
-    <li id="servicio-1">
-      <a href="course/get-all">
-        <img src="https://cdn-icons-png.flaticon.com/512/2000/2000887.png" alt="imagen de servicios" />
-        <i class="fas fa-book"></i>
-        <h3>Cursos</h3>
-        <p>Aqui podras encontrar todos os cursos que ofrece nuestra plataforma</p>
-      </a>
-    </li>
-    <li id="servicio-2">
-      <a href="/servicio-2">
-        <img src="https://cdn.goconqr.com/uploads/media/image/32138217/desktop_a9afa1de-1da4-4b77-b45e-954adcd93616.jpg" alt="imagen de servicios" />
-        <h3>Rutas</h3>
-        <p>DAqui podras ver las diferentes rutas de aprendizaje </p>
-      </a>
-    </li>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 
-    <li id="servicio-3">
-      <a href="/servicio-3">
-        <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png" alt="imagen de servicios" />
-        <h3>Datos del usuario</h3>
-        <p>aui podras ver tus datos personales y los cursos a los cuales estas inscrito</p>
-      </a>
-    </li>
-  </ul>
-</section>
 
-<section class="about">
-  <h2>Conoce nuestro catalogo contactando al area comercial</h2>
-  <p>
-    Para tener mas informacion acerca de nuestros cursos y rutas de aprendizaje
-    puedes llamar a los siguientes numeros telefonicos o escribirnos a nuestro
-    correo electronico
-  </p>
-  <button class="btn btn-warning">Contactanos</button>
-</section>
+
+
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+
+  </head>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://sutilweb.com/wp-content/uploads/2021/08/Lenguajes-de-programacion.jpg" alt="imagen de servicios" />
+        <div class="container">
+          <div class="carousel-caption text-start">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://miro.medium.com/v2/resize:fit:783/1*lqMtWmTLHxT_6SN4Kjvaog.png" alt="imagen de servicios" />
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.muycomputerpro.com/wp-content/uploads/2015/11/logo-docker.jpg" alt="imagen de servicios" />
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>One more for good measure.</h1>
+            <p>Some representative placeholder content for the third slide of this carousel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="https://ouch-cdn2.icons8.com/W_-2GVQvPdi_hEADF3Ta-TwVPwk82L0BzLBAh47fIMM/rs:fit:256:210/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMjE2/LzFjY2I0NTA5LTIx/ZjMtNDRmNS1iZTM1/LTY5ZGU1YmZjMDAw/MS5wbmc.png" alt="imagen de servicios" />
+        <h2 class="fw-normal">Cursos</h2>
+        <p>Aqui encontrarar todos los cursos que oferecemos en nuestra plataforma virtual MatCafe</p>
+        <p><a class="btn btn-secondary" href="/course/get-all">Ver mas &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://ouch-cdn2.icons8.com/pR5ILlZ4R3cZooL5kSJlPtMjrrb1sYf8BMMdTGH6BW0/rs:fit:256:217/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjM0/L2M5MjdjNTJmLTJj/YjYtNGVjYi05YjVk/LTQzYTE3Y2YyMDg3/Yy5wbmc.png" alt="imagen de servicios" />
+        <h2 class="fw-normal">Rutas de aprendizaje</h2>
+        <p>Aqui vas a encontrar todas las rutas de aprendizaje de acuerdo a lo que quieras aprender, contamos con rutas para que te puedas formar como front, back Devop , ingeniero de datos y mucho mas</p>
+        <p><a class="btn btn-secondary" href="/route/get-all">Ver mas &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://ouch-cdn2.icons8.com/9QeurzkTkFix1xAvmdJmYkRf0-gsH9VY3t9QnSCwKrI/rs:fit:256:171/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzA2/LzU3NTc2MWVhLWI4/MDUtNGIyZi04MTJj/LWM2YWVmMzg4YjM2/Ni5wbmc.png" alt="imagen de servicios" />
+        <h2 class="fw-normal">Datos personales</h2>
+        <p>Aqui encontraras todos tus datos personales incluyendo tus cursos y el progreso que llevas en cada uno de ellos</p>
+        <p><a class="btn btn-secondary" href="#">Ver mas &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Que es programacion? <span class="text-body-secondary"></span></h2>
+        <p class="lead">Programar es el proceso de crear un conjunto de instrucciones para decirle a una computadora cómo realizar una tarea. Se puede programar utilizando una variedad de lenguajes de programación de computadora, como JavaScript, Python y C++</p>
+      </div>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://ouch-cdn2.icons8.com/nDM0-LVSiT0eytjNwnY1337ubIAk2UnCho9Wdd1bySk/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNDIx/LzJlNjQzNzNiLTEz/ZjgtNGNlZi1hMGM3/LWIxNzgyMDhkNmRj/OS5wbmc.png"/>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">Cualquier persona puede programar? <span class="text-body-secondary"></span></h2>
+        <p class="lead">En teoría, cualquier persona puede aprender a programar. Sin embargo, como cualquier habilidad, algunas personas pueden tener más facilidad para aprender y practicar la programación que otras. Además, la programación requiere habilidades y conocimientos específicos, como matemáticas, lógica y resolución de problemas, que pueden ser más fáciles para algunas personas que para otras.</p>
+        <p class="lead">Dicho esto, aqui encontraras muchos recursos y herramientas disponibles para aprender a programar, desde cursos en línea y tutoriales hasta libros y comunidades de programación. Si estás interesado en aprender a programar, lo más importante es dedicar tiempo y esfuerzo a practicar y seguir aprendiendo.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img  width="500"  src="https://ouch-cdn2.icons8.com/ksrMREdD0FKcX6FhoIhIDQQ3xziwiehnzqEwZ85ROOo/rs:fit:256:178/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTk4/LzFjMTQzYjJjLTFl/MzEtNDFhZS1hNzU4/LTA5MmEzOTdhYmNj/Mi5wbmc.png"/>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Eb cuanto tiempo podre aprender a programar? <span class="text-body-secondary"></span></h2>
+        <p class="lead"> Esta es una pregunta muy común, pero difícil de responder con precisión, ya que depende de muchos factores, como la cantidad de tiempo que dediques, tu nivel de motivación y la complejidad del lenguaje de programación que quieras aprender.</p>
+        <p class="lead">Dicho esto, muchos expertos sugieren que se necesitan al menos unas 200 horas para aprender los conceptos básicos de la programación. Esto puede variar dependiendo del lenguaje de programación que estés estudiando, ya que algunos son más complejos que otros.</p>
+        <p class="lead">Por supuesto, aprender los fundamentos de la programación es solo el comienzo. Si quieres convertirte en un programador experto, necesitarás seguir aprendiendo y practicando durante muchos años. Pero si estás dispuesto a dedicar tiempo y esfuerzo, ¡puedes convertirte en un gran programador en poco tiempo!</p>
+      </div>
+      <div class="col-md-5">
+        <img  width="500"  src="https://ouch-cdn2.icons8.com/I-8_Lhza2mrpwmgRfJUvHhBKtl_2FdZViKjPcLzx__0/rs:fit:256:508/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMTg5/L2Q2YjM3YzdmLTE4/MmYtNGY5Zi04OWNl/LTRmNDAxZGYwYWRm/My5wbmc.png"/>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+
+</main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</html>

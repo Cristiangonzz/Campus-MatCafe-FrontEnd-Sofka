@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateCourseComponent } from './create-course/create-course.component';
@@ -14,31 +13,36 @@ const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreateCourseComponent,canActivate: [ PermissionGuard ],
+        component: CreateCourseComponent,
+        canActivate: [PermissionGuard],
       },
       {
         path: 'update',
-        component: UpdateCourseComponent,canActivate: [ PermissionGuard ],
+        component: UpdateCourseComponent,
+        canActivate: [PermissionGuard],
       },
       {
         path: 'delete',
-        component: DeleteCourseComponent,canActivate: [ PermissionGuard ],
+        component: DeleteCourseComponent,
+        canActivate: [PermissionGuard],
       },
       {
-        path: 'get',
-        component: GetCourseComponent,canActivate: [ PermissionGuard ],
+        path: 'get/:id',
+        component: GetCourseComponent,
+        canActivate: [PermissionGuard],
       },
       {
         path: 'get-all',
-        component: GetAllCoursesComponent,canActivate: [ PermissionGuard ],
+        component: GetAllCoursesComponent,
+        canActivate: [PermissionGuard],
       },
-      {path:`**`,redirectTo:'get-all'},
+      { path: `**`, redirectTo: 'get-all' },
     ],
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RoutingCourseModule { }
+export class RoutingCourseModule {}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable, map} from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 
 @Injectable({
@@ -8,11 +8,9 @@ import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-
 })
 export class PermissionGuard implements CanActivate {
   provider = loginUseCaseProviders;
-  constructor(
-    private readonly router: Router,
-  ) {}
+  constructor(private readonly router: Router) {}
   canActivate(): Observable<boolean> {
-    return this.provider.hasUserUseCaseProvaider
+    return this.provider.hasUserUseCaseProvider
       .useFactory()
       .execute()
       .pipe(

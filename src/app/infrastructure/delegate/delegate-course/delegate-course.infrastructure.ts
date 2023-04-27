@@ -1,10 +1,10 @@
 import { CreateCourseUseCase } from 'src/app/application/use-case/course/create-course.use-case';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 import { GetAllCourseUseCase } from 'src/app/application/use-case/course/find-all-course.use-case';
-import { GetCourseByNameUseCase } from 'src/app/application/use-case/course/get-Course-ByName.use-case';
 import { GetCourseUseCase } from 'src/app/application/use-case/course/get-course.use-case';
 import { UpdateCourseUseCase } from 'src/app/application/use-case/course/update-course.use-case';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
+import { GetCourseByNameUseCase } from '../../../application/use-case/course/get-Course-ByName.use-case';
 
 const CreateCourseUseCaseFactory = (() => {
   let instance: CreateCourseUseCase;
@@ -91,34 +91,34 @@ const GetAllCourseUseCaseFactory = (() => {
 })();
 
 export const courseUseCaseProviders = {
-  createCourseUseCaseProvaider: {
+  createCourseUseCaseProvider: {
     provide: CreateCourseUseCase,
     useFactory: CreateCourseUseCaseFactory,
     deps: [CourseService],
   },
-  updateCourseUseCaseProvaider: {
+  updateCourseUseCaseProvider: {
     provide: UpdateCourseUseCase,
     useFactory: UpdateCourseUseCaseFactory,
     deps: [CourseService],
   },
-  deleteCourseUseCaseProvaider: {
+  deleteCourseUseCaseProvider: {
     provide: DeleteCourseUseCase,
     useFactory: DeleteCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getCourseUseCaseProvaider: {
+  getCourseUseCaseProvider: {
     provide: GetCourseUseCase,
     useFactory: GetCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getAllCourseUseCaseProvaider: {
+  getAllCourseUseCaseProvider: {
     provide: GetAllCourseUseCase,
     useFactory: GetAllCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getCourseByNameUseCaseProvaider: {
+  getCourseByNameUseCaseProvider: {
     provide: GetCourseByNameUseCase,
     useFactory: GetCourseByNameUseCaseFactory,
     deps: [CourseService],
-  }
+  },
 };

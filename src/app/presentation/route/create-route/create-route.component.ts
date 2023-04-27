@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 import { RouteEntity } from 'src/app/domain/entities/route.entity.domain';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
+import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
-import { ICourse } from 'src/app/domain/interfaces/course.interface.domain';
-import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
-import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 
 @Component({
   selector: 'app-create-route',
@@ -54,24 +53,25 @@ export class CreateRouteComponent {
   constructor(
     private routeService: RouteService,
     private readonly adminService: AdminService,
-    private router: Router,
+    private router: Router
   ) {}
 
   enviar() {
     this.route.courses = this.FormRegister.get('courses')?.value as string[];
-    this.route.description = this.FormRegister.get('description')?.value as string;
+    this.route.description = this.FormRegister.get('description')
+      ?.value as string;
     this.route.title = this.FormRegister.get('title')?.value as string;
     this.route.duration = this.FormRegister.get('duration')?.value as string;
     console.log(this.route);
-    this.delegeteAdmin.getAdminByEmailUseCaseProvaider
+    this.delegeteAdmin.getAdminByEmailUseCaseProvider
       .useFactory(this.adminService)
       .execute(localStorage.getItem('email') as string)
       .subscribe({
-        next: (data : AdminEntity) => {
+        next: (data: AdminEntity) => {
           this.route.adminId = data._id as string;
           console.log(this.route);
 
-          this.delegeteRoute.createRouteUseCaseProvaider
+          this.delegeteRoute.createRouteUseCaseProvider
             .useFactory(this.routeService)
             .execute(this.route)
             .subscribe({
@@ -84,8 +84,8 @@ export class CreateRouteComponent {
               },
             });
         },
-        error: (error : Error) => {
-          console.log(error)
+        error: (error: Error) => {
+          console.log(error);
           this.sweet.toFire('Ruta', 'No se pudo crear Ruta', 'error');
         },
       });

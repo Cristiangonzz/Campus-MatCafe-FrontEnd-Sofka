@@ -1,1 +1,11 @@
-<p>suscribe-route works!</p>
+<form (ngSubmit)="subscribeRoute(learnerEmail.value, RouteName.value)">
+    <label for="learnerEmail">Email Aprendiz:</label>
+    <input type="text" name="learnerEmail" id="learnerEmail" #learnerEmail required>
+  
+    <label for="RouteName">Route Name:</label>
+    <input type="text" name="RouteName" id="RouteName" #RouteName required>
+  
+  
+  
+    <button type="submit">Submit</button>
+  </form>

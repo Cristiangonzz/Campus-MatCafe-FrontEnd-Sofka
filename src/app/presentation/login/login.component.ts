@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
+import { Component } from '@angular/core';
 import {
   Auth,
   GoogleAuthProvider,
-  signInWithPopup,
   UserCredential,
+  signInWithPopup,
 } from '@angular/fire/auth';
-import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
-import { GetAdminAndLearnerByEmailUseCase } from 'src/app/application/use-case/admin/get-admin-and-learner-by-email.use-case.application';
-import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
-import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
 import { Router } from '@angular/router';
 import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
-import { SweetAlert } from '../shared/sweetAlert/sweet-alert.presentation';
 import { IUpDateUser } from 'src/app/domain/interfaces/update-user.interface.domain';
+import { IUser } from 'src/app/domain/interfaces/user.interface.domain';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
+import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
+import { SweetAlert } from '../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +37,7 @@ export class LoginComponent {
     signInWithPopup(this.auth, new GoogleAuthProvider())
       .then((result: UserCredential) => {
         console.log(result);
-        this.delegateAdmin.getAdminAndLearnerByEmailUseCaseProvaider
+        this.delegateAdmin.getAdminAndLearnerByEmailUseCaseProvider
           .useFactory(this.adminService)
           .execute(result.user.email as string)
           .subscribe((data: AdminEntity) => {
@@ -54,7 +52,7 @@ export class LoginComponent {
             console.log(this.updateUser);
             if (data.rol === true) {
               console.log('es admin');
-              this.delegateAdmin.updateAdminUseCaseProvaider
+              this.delegateAdmin.updateAdminUseCaseProvider
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
                 .subscribe({
@@ -75,8 +73,8 @@ export class LoginComponent {
                   },
                 });
             } else {
-              console.log("es aprendiz")
-              this.delegateAdmin.updateLearnerUseCaseProvaider
+              console.log('es aprendiz');
+              this.delegateAdmin.updateLearnerUseCaseProvider
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
                 .subscribe({
@@ -96,7 +94,7 @@ export class LoginComponent {
                   },
                 });
             }
-            this.delegateLogin.setUserLocalStrotageUseCaseProvaider
+            this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
             this.router.navigate(['/admin']);
