@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
+import Swal from 'sweetalert2';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
@@ -63,13 +64,29 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   }
 
   deleteCourse(_id: string) {
-    this.deleteCourseUseCase.execute(_id).subscribe({
-      next: () => {
-        this.sweet.toFire('Curso', 'Curso Eliminado', 'success');
-      },
-      error: (error) => {
-        this.sweet.toFire('Curso', 'Curso Eliminado', 'success');
-      },
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'No podras revertir esta acción',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#bb2d3b',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteCourseUseCase.execute(_id).subscribe({
+          next: () => {
+            this.sweet.toFire(
+              'Curso',
+              'Curso Eliminado Correctamente',
+              'success'
+            );
+          },
+          error: (error) => {
+            this.sweet.toFire('Curso', error.message, 'error');
+          },
+        });
+      }
     });
   }
 

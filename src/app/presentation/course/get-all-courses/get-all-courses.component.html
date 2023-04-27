@@ -24,9 +24,8 @@
               <small class="text-muted">{{ course.requirements }}</small>
             </p>
             <h5 id="mouse" (click)="showContent(i)">
-              Contenido
               <span [class.show]="ArrayShowContent[i]">
-                :
+                Mostrar contenido:
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
@@ -43,7 +42,7 @@
               </span>
 
               <span [class.show]="!ArrayShowContent[i]">
-                :
+                Ocultar contenido:
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
@@ -73,7 +72,7 @@
               Actualizar Curso
             </button>
             <button
-              class="btn btn-danger m-4"
+              class="btn btn-danger ms-5"
               (click)="deleteCourse(course.id)"
             >
               Eliminar curso

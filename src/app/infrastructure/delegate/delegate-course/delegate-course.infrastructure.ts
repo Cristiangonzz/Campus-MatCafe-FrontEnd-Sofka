@@ -1,10 +1,10 @@
 import { CreateCourseUseCase } from 'src/app/application/use-case/course/create-course.use-case';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 import { GetAllCourseUseCase } from 'src/app/application/use-case/course/find-all-course.use-case';
-import { GetCourseByNameUseCase } from 'src/app/application/use-case/course/get-Course-ByName.use-case';
 import { GetCourseUseCase } from 'src/app/application/use-case/course/get-course.use-case';
 import { UpdateCourseUseCase } from 'src/app/application/use-case/course/update-course.use-case';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
+import { GetCourseByNameUseCase } from '../../../application/use-case/course/get-Course-ByName.use-case';
 
 const CreateCourseUseCaseFactory = (() => {
   let instance: CreateCourseUseCase;
@@ -120,5 +120,5 @@ export const courseUseCaseProviders = {
     provide: GetCourseByNameUseCase,
     useFactory: GetCourseByNameUseCaseFactory,
     deps: [CourseService],
-  }
+  },
 };
