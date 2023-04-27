@@ -6,6 +6,7 @@ import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import Swal from 'sweetalert2';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
+import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 
 @Component({
   selector: 'app-get-all-route',
@@ -16,7 +17,8 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   sweet = new SweetAlert();
   routes!: RouteEntity[];
   delegateRoute = routeUseCaseProviders;
-
+  delegateLogin = loginUseCaseProviders;
+  rol: boolean = false;
   selected!: RouteEntity;
 
   ArrayShowContent: boolean[] = [];
@@ -52,6 +54,18 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
           );
         },
       });
+      this.delegateLogin.hasRolUseCaseProvider.useFactory().execute();
+      this.delegateLogin.hasRolUseCaseProvider
+        .useFactory()
+        .statusRolEmmit.subscribe({
+          next: (value: boolean) => {
+            if (value == true) {
+              this.rol = true;
+            } else {
+              this.rol = false;
+            }
+          },
+        });
   }
 
   openModal(i: number) {
@@ -102,5 +116,8 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   showContent(i: number): boolean {
     this.ArrayShowContent[i] = !this.ArrayShowContent[i];
     return this.ArrayShowContent[i];
+  }
+  crearRuta(){
+    this.router.navigate(['route/create'])
   }
 }
