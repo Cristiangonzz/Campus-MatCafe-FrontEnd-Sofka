@@ -29,7 +29,7 @@ export class GetCourseComponent {
     this.courseId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
     console.log(this.courseId);
     if (this.courseId) {
-      const courseUseCase = this.delegateCourse.getCourseUseCaseProvaider
+      const courseUseCase = this.delegateCourse.getCourseUseCaseProvider
         .useFactory(this.courseService)
         .execute(this.courseId);
       courseUseCase.subscribe((course) => {
