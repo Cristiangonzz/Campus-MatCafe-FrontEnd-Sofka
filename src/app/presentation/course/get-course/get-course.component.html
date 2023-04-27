@@ -1,12 +1,23 @@
-<div
-  *ngFor="
-    let url of course.content | paginate : { itemsPerPage: 1, currentPage: p };
-    let i = index
-  "
->
-  {{ url }}
-  <div>
-    <iframe [src]="url | safe"></iframe>
+<div class="container">
+  <div
+    *ngFor="
+      let url of course.content
+        | paginate : { itemsPerPage: 1, currentPage: p };
+      let i = index
+    "
+    class="mb-4"
+  >
+    <div
+      class="embed-responsive embed-responsive-16by9 shadow center d-flex justify-content-center"
+    >
+      <iframe
+        class="embed-responsive-item"
+        width="660"
+        height="415"
+        allowfullscreen
+        [src]="url | safe"
+      ></iframe>
+    </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
