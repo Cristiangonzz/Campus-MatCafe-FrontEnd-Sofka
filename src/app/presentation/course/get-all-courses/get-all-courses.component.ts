@@ -95,6 +95,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
               'Curso Eliminado Correctamente',
               'success'
             );
+            this.router.navigate(['/course/get-all']);
           },
           error: (error) => {
             this.sweet.toFire('Curso', error.message, 'error');

@@ -34,9 +34,7 @@ const component = [
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatDividerModule,
+   
     
   ],
   exports: [
