@@ -301,3 +301,8 @@ span.show {
 #mouse {
   cursor: pointer;
 }
+
+#link-course {
+  color: #fff;
+  text-decoration: none;
+}
