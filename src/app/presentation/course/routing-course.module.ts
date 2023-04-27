@@ -27,7 +27,7 @@ const routes: Routes = [
         canActivate: [PermissionGuard],
       },
       {
-        path: ':id',
+        path: 'get/:id',
         component: GetCourseComponent,
         canActivate: [PermissionGuard],
       },
