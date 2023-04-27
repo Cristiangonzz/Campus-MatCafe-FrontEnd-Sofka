@@ -26,13 +26,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/route/get-all">Rutas de Aprendizaje</a>
-        </li>       
+        </li>
         <li *ngIf="rolBoolean" class="nav-item">
           <a class="nav-link" href="/admin/create">Registrar User</a>
-        </li>  
+        </li>
       </ul>
       <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Login</button>
         <span *ngIf="photo" class="nav-item">
           <img
             [src]="photo"
@@ -43,10 +42,19 @@
           />
           <span>{{ name }}</span>
         </span>
-        <button (click)="out()" >Salir</button>
       </form>
     </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button class="btn btn-outline-success me-2" type="submit">Login</button>
+        <button class="btn btn-outline-success" href="login/sign-in" (click)="out()" >Salir</button>
+      </div>
+    </div>
+
   </ng-template>
   </div>
 </nav>
-    
+
