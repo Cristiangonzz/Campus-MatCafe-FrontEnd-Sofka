@@ -53,7 +53,7 @@ export class LoginComponent {
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
                 .subscribe({
-                  next: () => {
+                  next: (update: AdminEntity) => {
                     this.sweet.toFire(
                       'User',
                       `Bienvenido ${this.user.name}`,
@@ -92,6 +92,7 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
+               this.router.navigate(['/admin']);
           });
       })
       .catch(() => {
