@@ -76,10 +76,10 @@ export class UpdateRouteComponent implements OnChanges {
       ?.value as string;
     this.routeInput.duration = this.FormUpdate.get('duration')?.value as string;
     this.routeInput.title = this.FormUpdate.get('title')?.value as string;
-
+    
     this.delegateRoute.updateRouteUseCaseProvider
       .useFactory(this.routeService)
-      .execute(this.route.id, this.route)
+      .execute(this.routeInput.id, this.routeInput)
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', 'Curso Creado', 'success');
