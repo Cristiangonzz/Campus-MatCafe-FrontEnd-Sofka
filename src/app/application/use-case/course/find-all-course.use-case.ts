@@ -23,7 +23,6 @@ export class GetAllCourseUseCase {
         },
         complete: () => {
           this.statusEmmit.next(this.status);
-          asyncScheduler.schedule(this.execute, 2000);
         },
       });
     } else {
