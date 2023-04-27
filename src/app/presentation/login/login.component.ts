@@ -48,16 +48,12 @@ export class LoginComponent {
             this.user.rol = data.rol;
             this.updateUser.firebaseId = result.user.uid as string;
             this.updateUser.photoUrl = result.user.photoURL as string;
-            console.log('Datos del get email', data);
-            console.log(this.updateUser);
             if (data.rol === true) {
-              console.log('es admin');
               this.delegateAdmin.updateAdminUseCaseProvider
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
                 .subscribe({
-                  next: (update: AdminEntity) => {
-                    console.log('Admin Updateado', update);
+                  next: () => {
                     this.sweet.toFire(
                       'User',
                       `Bienvenido ${this.user.name}`,
@@ -73,7 +69,6 @@ export class LoginComponent {
                   },
                 });
             } else {
-              console.log('es aprendiz');
               this.delegateAdmin.updateLearnerUseCaseProvider
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
@@ -97,11 +92,11 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
-            this.router.navigate(['/admin']);
           });
       })
       .catch(() => {
         this.sweet.toFire('User', `Error al Iniciar sesion `, 'error');
       });
+      this.router.navigate(['home']);
   }
 }
