@@ -35,3 +35,33 @@
 img {
   max-width: 20%;
 }
+mat-toolbar{
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000f0
+}
+.img-round{
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+}
+.main-icono{
+  height: auto;
+  width: auto;
+  background-color: #08084000;
+  border: none;
+}
+.menu-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span{
+  color: white;
+}
+
+a:hover {
+  cursor: pointer;
+}

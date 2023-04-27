@@ -5,6 +5,7 @@ import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.modu
 import { FormComponent } from './form/form.component';
 import { MaterialModule } from './material/material.module';
 
+
 @NgModule({
   declarations: [FormComponent],
   imports: [
@@ -13,6 +14,7 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     InfrastructureModule,
     MaterialModule,
+   
   ],
   exports: [FormComponent],
 })
