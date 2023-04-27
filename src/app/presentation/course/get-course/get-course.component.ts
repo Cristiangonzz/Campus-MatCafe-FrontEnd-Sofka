@@ -36,5 +36,17 @@ export class GetCourseComponent {
         this.course = course;
       });
     }
+    // updated code here:
+    const collection = [];
+    this.delegateCourse.getCourseUseCaseProvider
+      .useFactory(this.courseService)
+      .execute(this.courseId)
+      .subscribe((courses) => {
+        if (Array.isArray(courses)) {
+          courses.forEach((course) => {
+            collection.push(course.content);
+          });
+        }
+      });
   }
 }
