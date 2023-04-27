@@ -1,5 +1,5 @@
-import { BehaviorSubject, Observable, asyncScheduler } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, asyncScheduler } from 'rxjs';
 import { CourseEntity } from 'src/app/domain/entities/course.entity.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
 
@@ -23,7 +23,6 @@ export class GetAllCourseUseCase {
         },
         complete: () => {
           this.statusEmmit.next(this.status);
-          console.log('complete');
           asyncScheduler.schedule(this.execute, 2000);
         },
       });
@@ -32,4 +31,3 @@ export class GetAllCourseUseCase {
     }
   };
 }
-

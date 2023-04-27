@@ -7,6 +7,7 @@ import { CourseService } from 'src/app/domain/services/course.service.domain';
   providedIn: 'root',
 })
 export class GetCourseUseCase {
+  [x: string]: any;
   constructor(private courseService: CourseService) {}
 
   execute(data: string): Observable<CourseEntity> {

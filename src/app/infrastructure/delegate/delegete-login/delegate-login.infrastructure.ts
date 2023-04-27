@@ -45,17 +45,17 @@ const SetUserLocalStrotageUseCaseFactory = (() => {
 })();
 
 export const loginUseCaseProviders = {
-  getUserLocalStrotageUseCaseProvaider: {
+  getUserLocalStrotageUseCaseProvider: {
     provide: GetUserLocalStorageUseCase,
     useFactory: GetUserLocalStrotageUseCaseFactory,
     deps: [],
   },
-  hasUserUseCaseProvaider: {
+  hasUserUseCaseProvider: {
     provide: HasUserUseCase,
     useFactory: HasUserLocalStrotageUseCaseFactory,
     deps: [],
   },
-  setUserLocalStrotageUseCaseProvaider: {
+  setUserLocalStrotageUseCaseProvider: {
     provide: SetUserLocalStorageUseCase,
     useFactory: SetUserLocalStrotageUseCaseFactory,
     deps: [],

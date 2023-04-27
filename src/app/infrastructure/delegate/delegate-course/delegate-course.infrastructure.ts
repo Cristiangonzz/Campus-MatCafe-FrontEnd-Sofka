@@ -91,32 +91,32 @@ const GetAllCourseUseCaseFactory = (() => {
 })();
 
 export const courseUseCaseProviders = {
-  createCourseUseCaseProvaider: {
+  createCourseUseCaseProvider: {
     provide: CreateCourseUseCase,
     useFactory: CreateCourseUseCaseFactory,
     deps: [CourseService],
   },
-  updateCourseUseCaseProvaider: {
+  updateCourseUseCaseProvider: {
     provide: UpdateCourseUseCase,
     useFactory: UpdateCourseUseCaseFactory,
     deps: [CourseService],
   },
-  deleteCourseUseCaseProvaider: {
+  deleteCourseUseCaseProvider: {
     provide: DeleteCourseUseCase,
     useFactory: DeleteCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getCourseUseCaseProvaider: {
+  getCourseUseCaseProvider: {
     provide: GetCourseUseCase,
     useFactory: GetCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getAllCourseUseCaseProvaider: {
+  getAllCourseUseCaseProvider: {
     provide: GetAllCourseUseCase,
     useFactory: GetAllCourseUseCaseFactory,
     deps: [CourseService],
   },
-  getCourseByNameUseCaseProvaider: {
+  getCourseByNameUseCaseProvider: {
     provide: GetCourseByNameUseCase,
     useFactory: GetCourseByNameUseCaseFactory,
     deps: [CourseService],
