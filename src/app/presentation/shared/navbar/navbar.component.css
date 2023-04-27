@@ -1,0 +1,37 @@
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.navbar {
+  background-color: #BAD7E9; /* Cambiar el color de fondo a rojo */
+}
+.navbar.bg-dark {
+  background-color: red;
+}
+
+.nav-link {
+  color:black;
+}
+
+.nav-link active {
+  color: black;
+}
+.navbar-brand {
+  color: black;
+}
+img {
+  max-width: 20%;
+}
