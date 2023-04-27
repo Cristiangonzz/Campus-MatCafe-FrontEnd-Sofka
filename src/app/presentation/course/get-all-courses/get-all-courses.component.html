@@ -1,5 +1,4 @@
 <div class="page-content page-container" id="page-content">
-  
   <div class="padding">
     <div *ngIf="rol" class="card-body">
       <button class="btn btn-success" (click)="crearCurso()">
@@ -75,7 +74,7 @@
               [class.show]="!ArrayShowContent[i]"
               *ngFor="let unique of course.content"
             >
-              <small class="text-muted">{{ unique }}</small>
+              <small class="text-muted">{{ unique | title | async }} aaa</small>
             </p>
           </div>
           <div *ngIf="rol" class="card-body">
