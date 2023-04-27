@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
+import { SendWorkShopComponent } from '../learner/send-work-shop/send-work-shop.component';
 import { SharedModule } from '../shared/shared.module';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { DeleteCourseComponent } from './delete-course/delete-course.component';
@@ -22,6 +23,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
     UpdateCourseComponent,
     GetCourseComponent,
     GetAllCoursesComponent,
+    SendWorkShopComponent,
     SafePipe,
     TitlePipe,
   ],

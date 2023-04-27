@@ -20,7 +20,9 @@ export class GetCourseComponent implements OnInit {
   video: any;
   safeUrl!: SafeResourceUrl;
   idsVideos!: string[];
+  totalPages!: number;
   show = false;
+  itemsPerPage = 1;
 
   constructor(
     private courseService: CourseService,

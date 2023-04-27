@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
 import { ISendWorkshop } from 'src/app/domain/interfaces/send-work-shop.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
@@ -19,6 +19,8 @@ export class SendWorkShopComponent {
   delegateCourse = courseUseCaseProviders;
   learnerEmail!: string;
 
+  @Input() courseName!: string;
+
   constructor(
     private readonly adminService: AdminService,
     private readonly learnerService: LearnerService,
@@ -33,14 +35,14 @@ export class SendWorkShopComponent {
     }
   }
 
-  sendWorkShop(github: string, courseName: string, coment: string): void {
+  sendWorkShop(github: string, coment: string): void {
     const learnerId$ = this.delegateAdmin.getLearnerByEmailUseCaseProvider
       .useFactory(this.adminService)
       .execute(this.learnerEmail)
       .pipe(map((learner) => ({ learnerId: learner._id })));
     const courseId$ = this.delegateCourse.getCourseByNameUseCaseProvider
       .useFactory(this.courseService)
-      .execute(courseName)
+      .execute(this.courseName)
       .pipe(map((course) => ({ courseId: course._id })));
 
     forkJoin([learnerId$, courseId$]).subscribe(([learner, course]) => {
