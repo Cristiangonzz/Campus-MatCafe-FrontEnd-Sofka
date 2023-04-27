@@ -11,7 +11,8 @@ export class NavbarComponent implements OnInit {
   isAdmin?: boolean ;
   photo!: string;
   name!: string;
-
+  rol!: string;
+  rolBoolean: boolean = false;
   ngOnInit(): void {
     this
     .delegateLogin
@@ -22,6 +23,10 @@ export class NavbarComponent implements OnInit {
               this.isAdmin = status;
               this.photo = localStorage.getItem('photoUrl') || '';
               this.name = localStorage.getItem('name') || '';
+              this.rol = localStorage.getItem('rol') || '';
+              if(this.rol == 'true'){
+                this.rolBoolean = true;
+              }
           }
   );
   }
