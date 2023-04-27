@@ -63,11 +63,11 @@
               <small class="text-muted">{{ unique }}</small>
             </p>
           </div>
-          <div class="card-body">
+          <div class="d-flex justify-content-around w-75">
             <button class="btn btn-success" (click)="openModal(i)">
               Actualizar Ruta
             </button>
-            <button class="btn btn-danger ms-5" (click)="deleteRoute(route.id)">
+            <button class="btn btn-danger" (click)="deleteRoute(route.id)">
               Eliminar Ruta
             </button>
           </div>

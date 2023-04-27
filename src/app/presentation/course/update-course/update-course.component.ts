@@ -35,23 +35,25 @@ export class UpdateCourseComponent implements OnChanges {
   });
 
   ngOnChanges(): void {
-    this.FormRegister.get('title')?.setValue(this.courseInput.title);
-    this.FormRegister.get('description')?.setValue(
-      this.courseInput.description
-    );
-    this.FormRegister.get('duration')?.setValue(this.courseInput.duration);
-    this.FormRegister.get('requirements')?.setValue(
-      this.courseInput.requirements
-    );
-    this.contentForms.clear();
-    this.courseInput.content.forEach((element) => {
-      const content = new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-      ]);
-      content.setValue(element);
-      this.contentForms.push(content);
-    });
+    if (this.courseInput !== undefined) {
+      this.FormRegister.get('title')?.setValue(this.courseInput.title);
+      this.FormRegister.get('description')?.setValue(
+        this.courseInput.description
+      );
+      this.FormRegister.get('duration')?.setValue(this.courseInput.duration);
+      this.FormRegister.get('requirements')?.setValue(
+        this.courseInput.requirements
+      );
+      this.contentForms.clear();
+      this.courseInput.content.forEach((element) => {
+        const content = new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+        ]);
+        content.setValue(element);
+        this.contentForms.push(content);
+      });
+    }
   }
 
   addContent() {

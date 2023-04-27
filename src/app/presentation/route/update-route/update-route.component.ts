@@ -26,7 +26,7 @@ export class UpdateRouteComponent implements OnChanges {
       Validators.required,
       Validators.minLength(5),
     ]),
-    courses: new FormArray([], [Validators.required, Validators.minLength(5)]),
+    courses: new FormArray([], [Validators.required]),
   });
 
   get coursesForms() {
@@ -52,20 +52,22 @@ export class UpdateRouteComponent implements OnChanges {
   ) {}
 
   ngOnChanges(): void {
-    this.FormUpdate.get('title')?.setValue(this.routeInput.title);
-    this.FormUpdate.get('description')?.setValue(this.routeInput.description);
-    this.FormUpdate.get('duration')?.setValue(this.routeInput.duration);
+    if (this.routeInput !== undefined) {
+      this.FormUpdate.get('title')?.setValue(this.routeInput.title);
+      this.FormUpdate.get('description')?.setValue(this.routeInput.description);
+      this.FormUpdate.get('duration')?.setValue(this.routeInput.duration);
 
-    this.coursesForms.clear();
+      this.coursesForms.clear();
 
-    this.routeInput.courses.forEach((element) => {
-      const course = new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-      ]);
-      course.setValue(element);
-      this.coursesForms.push(course);
-    });
+      this.routeInput.courses.forEach((element) => {
+        const course = new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+        ]);
+        course.setValue(element);
+        this.coursesForms.push(course);
+      });
+    }
   }
 
   send() {

@@ -31,7 +31,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
-    console.log('close modal');
     this.showModal = false;
   }
 
