@@ -20,6 +20,8 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   showModal = false;
 
+  ArrayShowContent: boolean[] = [];
+
   openModal(i: number) {
     this.selected = this.courses[i];
     this.showModal = true;
@@ -48,6 +50,9 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (value: CourseEntity[]) => {
           this.courses = value;
+          if (this.ArrayShowContent.length == 0) {
+            this.ArrayShowContent = new Array(this.courses.length).fill(false);
+          }
         },
         error: (error) => {
           console.log(error);
@@ -80,5 +85,10 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  showContent(i: number): boolean {
+    this.ArrayShowContent[i] = !this.ArrayShowContent[i];
+    return this.ArrayShowContent[i];
   }
 }
