@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { PermissionGuard } from '../shared/guards/permission.guard';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: HomeComponent, canActivate: [PermissionGuard],
   },
 ];
 

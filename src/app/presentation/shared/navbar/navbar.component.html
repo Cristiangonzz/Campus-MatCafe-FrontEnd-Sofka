@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
+    <ng-container *ngIf="!isAdmin,else viewAdmin">
+    <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
+  </ng-container>
+  <ng-template #viewAdmin>
     <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
     <button
       class="navbar-toggler"
@@ -22,7 +26,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/route/get-all">Rutas de Aprendizaje</a>
-        </li>        
+        </li>       
+        <li *ngIf="rolBoolean" class="nav-item">
+          <a class="nav-link" href="/admin/create">Registrar User</a>
+        </li>  
       </ul>
       <form class="d-flex" role="search">
         <button class="btn btn-outline-success" type="submit">Login</button>
@@ -36,7 +43,10 @@
           />
           <span>{{ name }}</span>
         </span>
-        <span *ngIf="rol" class="mx-2">Rol: {{ rol }}</span>
         <button (click)="out()" >Salir</button>
- 
-   
+      </form>
+    </div>
+  </ng-template>
+  </div>
+</nav>
+    

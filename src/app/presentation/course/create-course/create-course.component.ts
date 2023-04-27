@@ -74,12 +74,14 @@ export class CreateCourseComponent {
       .subscribe({
         next: (data) => {
           this.course.adminId = data._id as string;
+          console.log(this.course);
           this.delegateCourse.createCourseUseCaseProvider
             .useFactory(this.courseService)
             .execute(this.course)
             .subscribe({
               next: () => {
                 this.sweet.toFire('Completo', 'Curso Creado', 'success');
+                this.router.navigate(['/course/get-all']);
               },
               error: (err) => {
                 this.sweet.toFire('Error', 'Error al Crear Curso', 'error');

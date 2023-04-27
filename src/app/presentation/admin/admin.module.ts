@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GetLearnerByEmailComponent } from './get-learner-by-email/get-learner-by-email.component';
-import { GetAdminByEmailComponent } from './get-admin-by-email/get-admin-by-email.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +13,6 @@ import { RoutingAdminModule } from './routing-admin.module';
 @NgModule({
   declarations: [
     CreateUserComponent,
-    GetLearnerByEmailComponent,
-    GetAdminByEmailComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
+import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 
 @Component({
   selector: 'app-get-all-courses',
@@ -16,9 +17,10 @@ import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
   delegateCourse = courseUseCaseProviders;
+  delegateLogin = loginUseCaseProviders;
   sweet = new SweetAlert();
   private onDestroy$: Subject<void> = new Subject<void>();
-
+  rol: boolean = false;
   selected!: CourseEntity;
 
   showModal = false;
@@ -27,6 +29,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.courses[i];
+    console.log(this.selected);
     this.showModal = true;
   }
 
@@ -58,6 +61,18 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         },
         error: () => {
           this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
+        },
+      });
+    this.delegateLogin.hasRolUseCaseProvider.useFactory().execute();
+    this.delegateLogin.hasRolUseCaseProvider
+      .useFactory()
+      .statusRolEmmit.subscribe({
+        next: (value: boolean) => {
+          if (value == true) {
+            this.rol = true;
+          } else {
+            this.rol = false;
+          }
         },
       });
   }
@@ -97,5 +112,8 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   showContent(i: number): boolean {
     this.ArrayShowContent[i] = !this.ArrayShowContent[i];
     return this.ArrayShowContent[i];
+  }
+  crearCurso(){
+    this.router.navigate(['course/create']);
   }
 }
