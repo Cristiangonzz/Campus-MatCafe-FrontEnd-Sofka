@@ -16,19 +16,22 @@
   -webkit-overflow-scrolling: touch;
 }
 .navbar {
-  background-color: #2B3467; /* Cambiar el color de fondo a rojo */
+  background-color: #BAD7E9; /* Cambiar el color de fondo a rojo */
 }
 .navbar.bg-dark {
   background-color: red;
 }
 
 .nav-link {
-  color: white;
+  color:black;
 }
 
 .nav-link active {
-  color: white;
+  color: black;
 }
 .navbar-brand {
-  color: white;
+  color: black;
+}
+img {
+  max-width: 20%;
 }
