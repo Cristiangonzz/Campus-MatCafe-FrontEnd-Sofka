@@ -57,7 +57,6 @@ export class LoginComponent {
                 .execute(data.email as string, this.updateUser)
                 .subscribe({
                   next: (update: AdminEntity) => {
-                    console.log('Admin Updateado', update);
                     this.sweet.toFire(
                       'User',
                       `Bienvenido ${this.user.name}`,
@@ -73,7 +72,6 @@ export class LoginComponent {
                   },
                 });
             } else {
-              console.log('es aprendiz');
               this.delegateAdmin.updateLearnerUseCaseProvider
                 .useFactory(this.adminService)
                 .execute(data.email as string, this.updateUser)
@@ -97,7 +95,7 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
-            this.router.navigate(['/admin']);
+            this.router.navigate(['home']);
           });
       })
       .catch(() => {
