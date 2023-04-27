@@ -9,7 +9,13 @@
         <div class="card">
           <div class="media media-2x1 gd-primary">
             <p class="light media-content m-0">
-              {{ course.title }}
+              <a
+                id="link-course"
+                class="light"
+                href="/course/get/{{ course.id }}"
+              >
+                {{ course.title }}
+              </a>
             </p>
           </div>
           <div class="card-body">
