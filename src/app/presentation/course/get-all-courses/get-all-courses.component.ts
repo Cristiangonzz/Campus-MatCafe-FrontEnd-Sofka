@@ -71,7 +71,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
       showCancelButton: true,
       confirmButtonText: 'Si, Eliminar',
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#bb2d3b',
+      confirmButtonColor: '#e64141',
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteCourseUseCase.execute(_id).subscribe({
