@@ -29,6 +29,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.courses[i];
+    console.log(this.selected);
     this.showModal = true;
   }
 
