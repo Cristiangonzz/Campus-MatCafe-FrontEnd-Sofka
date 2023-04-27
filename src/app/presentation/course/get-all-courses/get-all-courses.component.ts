@@ -5,6 +5,7 @@ import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
 import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-get-all-courses',
@@ -14,6 +15,7 @@ import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegat
 export class GetAllCoursesComponent implements OnInit, OnDestroy {
   courses!: CourseEntity[];
   delegateCourse = courseUseCaseProviders;
+  sweet = new SweetAlert();
   private onDestroy$: Subject<void> = new Subject<void>();
 
   selected!: CourseEntity;
@@ -54,32 +56,21 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
             this.ArrayShowContent = new Array(this.courses.length).fill(false);
           }
         },
-        error: (error) => {
-          console.log(error);
-        },
-        complete: () => {
-          console.log('complete');
+        error: () => {
+          this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
         },
       });
   }
 
   deleteCourse(_id: string) {
-    console.log(_id);
     this.deleteCourseUseCase.execute(_id).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigate(['/courses']);
+      next: () => {
+        this.sweet.toFire('Curso', 'Curso Eliminado', 'success');
       },
       error: (error) => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log('complete');
+        this.sweet.toFire('Curso', 'Curso Eliminado', 'success');
       },
     });
-  }
-  updateCourse(_id: string) {
-    console.log(_id);
   }
 
   ngOnDestroy(): void {

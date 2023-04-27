@@ -10,7 +10,7 @@ export class LearnerEntity implements ILearner {
   name: string;
   photoUrl?: string;
   rol: boolean;
-  
+  _id?: string;
 
   constructor(
     name: string,

@@ -21,7 +21,7 @@ import { IUpDateUser } from 'src/app/domain/interfaces/update-user.interface.dom
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent  implements OnInit{
+export class LoginComponent {
   delegateLogin = loginUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
 
@@ -34,10 +34,6 @@ export class LoginComponent  implements OnInit{
     private readonly adminService: AdminService,
     private readonly router: Router
   ) {}
-
-  ngOnInit(): void {
-   
-  }
 
   google() {
     signInWithPopup(this.auth, new GoogleAuthProvider())
@@ -52,15 +48,15 @@ export class LoginComponent  implements OnInit{
             this.user.name = result.user.displayName as string;
             this.user.photoUrl = result.user.photoURL as string;
             this.user.rol = data.rol;
-            this.updateUser.firebaseId = this.user.firebaseId;
-            this.updateUser.photoUrl= this.user.photoUrl;
-            console.log(data);
+            this.updateUser.firebaseId = result.user.uid as string;
+            this.updateUser.photoUrl = result.user.photoURL as string;
+            console.log('Datos del get email', data);
             console.log(this.updateUser);
             if (data.rol === true) {
               console.log('es admin');
               this.delegateAdmin.updateAdminUseCaseProvaider
                 .useFactory(this.adminService)
-                .execute(data._id as string, this.updateUser)
+                .execute(data.email as string, this.updateUser)
                 .subscribe({
                   next: (update: AdminEntity) => {
                     console.log('Admin Updateado', update);
@@ -79,9 +75,10 @@ export class LoginComponent  implements OnInit{
                   },
                 });
             } else {
+              console.log("es aprendiz")
               this.delegateAdmin.updateLearnerUseCaseProvaider
                 .useFactory(this.adminService)
-                .execute(data._id as string, this.updateUser)
+                .execute(data.email as string, this.updateUser)
                 .subscribe({
                   next: () => {
                     this.sweet.toFire(

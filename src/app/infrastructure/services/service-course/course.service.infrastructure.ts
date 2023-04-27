@@ -24,7 +24,7 @@ export class CourseImplementationService extends CourseService {
   };
   create(Course: CourseEntity): Observable<CourseEntity> {
     return this.http.post<CourseEntity>(
-      `${this.URL}/Course`,
+      `${this.URL}/Course/`,
       Course,
       this.httpOptions
     );
@@ -51,6 +51,12 @@ export class CourseImplementationService extends CourseService {
   getAll(): Observable<CourseEntity[]> {
     return this.http.get<CourseEntity[]>(
       `${this.URL}/Course`,
+      this.httpOptions
+    );
+  }
+  getByName(CourseId: string): Observable<CourseEntity> {
+    return this.http.get<CourseEntity>(
+      `${this.URL}/Course/getByName/${CourseId}`,
       this.httpOptions
     );
   }

@@ -1,6 +1,7 @@
 import { CreateRouteUseCase } from "src/app/application/use-case/route/create-route.use-case";
 import { DeleteRouteUseCase } from "src/app/application/use-case/route/delete-route.use-case";
 import { GetAllRouteUseCase } from "src/app/application/use-case/route/find-all-route.use-case";
+import { GetRouteByNameUseCase } from "src/app/application/use-case/route/get-Route-ByName.use-case";
 import { GetRouteUseCase } from "src/app/application/use-case/route/get-route.use-case";
 import { UpdateRouteUseCase } from "src/app/application/use-case/route/update-route.use-case";
 import { RouteService } from "src/app/domain/services/route.service.domain";
@@ -80,6 +81,21 @@ const GetAllRouteUseCaseFactory =
     return factory;
 })();
 
+const GetRouteByNameUseCaseFactory = (() => {
+  let instance: GetRouteByNameUseCase;
+
+  const factory = (service: RouteService): GetRouteByNameUseCase => {
+    if (!instance) {
+      instance = new GetRouteByNameUseCase(service);
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
+
+
 export const routeUseCaseProviders = {
 
     createRouteUseCaseProvaider : 
@@ -112,4 +128,9 @@ export const routeUseCaseProviders = {
         useFactory: GetAllRouteUseCaseFactory,
         deps: [RouteService],
     },
+    getRouteByNameUseCaseProvaider: {
+      provide: GetRouteByNameUseCase,
+      useFactory: GetRouteByNameUseCaseFactory,
+      deps: [RouteService],
+    }
 }

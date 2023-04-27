@@ -50,7 +50,6 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
 
   openModal(i: number) {
     this.selected = this.routes[i];
-    console.log(this.selected);
     this.showModal = true;
   }
 
@@ -60,25 +59,18 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   }
 
   deleteRoute(_id: string) {
-    console.log('id para eliminar route', _id);
-    this.delegateRoute.deleteRouteUseCaseProvaider
-      .useFactory(this.routeService)
-      .execute(_id)
-      .subscribe({
-        next: () => {
-          this.sweet.toFire('Completo', 'Ruta Eliminada', 'success');
-        },
-        error: () => {
-          this.sweet.toFire('Incompleto', 'No se pudo eliminar Ruta', 'error');
-        },
-        complete: () => {
-          console.log('complete');
-        },
-      });
+
+    this.delegateRoute.deleteRouteUseCaseProvaider.useFactory(this.routeService).
+    execute(_id).subscribe({
+      next: () => {
+        this.sweet.toFire("Completo","Ruta Eliminada","success");
+      },
+      error: () => {
+        this.sweet.toFire("Incompleto","No se pudo eliminar Ruta","error");
+      },
+    });
   }
-  updateRoute(_id: string) {
-    this.router.navigate([`route/update/${_id}`]);
-  }
+
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
