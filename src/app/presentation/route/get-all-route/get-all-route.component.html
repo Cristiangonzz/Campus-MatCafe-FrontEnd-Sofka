@@ -1,83 +1,115 @@
-<!-- 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-7">
-      <div class="card-deck">
-        <div class="card mb-4" *ngFor="let route of routes; let i = index">
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <h1 class="mb-2">Nuestras Rutas:</h1>
+    <div class="row">
+      <div
+        class="col-sm-4 card-group"
+        *ngFor="let route of routes; let i = index"
+      >
+        <div class="card">
+          <div class="media media-2x1 gd-primary">
+            <p class="light media-content m-0">
+              {{ route.title }}
+            </p>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">{{ route.title }}</h5>
+            <h5>Descripción:</h5>
             <p class="card-text">{{ route.description }}</p>
+            <h5>Duración:</h5>
             <p class="card-text">
               <small class="text-muted">{{ route.duration }}</small>
             </p>
-            <p class="card-text">
-              <small class="text-muted">{{ route.courses }}</small>
+            <h5 id="mouse" (click)="showContent(i)">
+              <span [class.show]="ArrayShowContent[i]">
+                Mostrar Cursos:
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  width="20"
+                  height="20"
+                  fill="black"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="24 36 8 16 40 16" />
+                </svg>
+              </span>
+
+              <span [class.show]="!ArrayShowContent[i]">
+                Ocultar Cursos:
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  width="20"
+                  height="20"
+                  fill="black"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="24 12 8 32 40 32" />
+                </svg>
+              </span>
+            </h5>
+
+            <p
+              class="card-text"
+              [class.show]="!ArrayShowContent[i]"
+              *ngFor="let unique of route.courses"
+            >
+              <small class="text-muted">{{ unique }}</small>
             </p>
-            <div>
-              <button (click)="deleteRoute(route._id)">Eliminar curso</button>
-              <button class="btn" (click)="openModal(i)">
-                Mostrar formulario
-              </button>
-            </div>
-            <a href="#" class="btn btn-primary">Ver más</a>
+          </div>
+          <div class="card-body">
+            <button class="btn btn-success" (click)="openModal(i)">
+              Actualizar Ruta
+            </button>
+            <button class="btn btn-danger ms-5" (click)="deleteRoute(route.id)">
+              Eliminar Ruta
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-5"></div>
   </div>
 </div>
 
-<div class="modal" [class.show]="showModal">
+<div class="modal">
   <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
+    <span class="close">&times;</span>
     <h2>Formulario</h2>
-    <app-update-route [routeInput]="selected"></app-update-route>
   </div>
-</div> -->
+</div>
 
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-7">
-      <div class="card-deck">
-        <div class="card mb-4" *ngFor="let route of routes; let i = index">
-          <div class="card-body">
-            <h5 class="card-title">{{ route.title }}</h5>
-            <p class="card-text">{{ route.description }}</p>
-            <p class="card-text">
-              <small class="text-muted">{{ route.duration }}</small>
-            </p>
-            <p class="card-text">
-              <small class="text-muted">{{ route.courses }}</small>
-            </p>
-            <p class="card-text">
-              <small class="text-muted">{{ route.id }}</small>
-            </p>
-            <div>
-              
-              <button (click)="deleteRoute(route.id)">Eliminar curso</button>
-
-              <button class="btn" (click)="openModal(i)">
-                Mostrar formulario
-              </button>
-
-            </div>
-            <a href="#" class="btn btn-primary">Ver más</a>
-          </div>
-        </div>
+<div
+  class="modal fade"
+  [class.show]="showModal"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Ruta</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-update-route [routeInput]="selected"></app-update-route>
       </div>
     </div>
-    <div class="col-lg-4 col-md-5"></div>
   </div>
-</div>
-
-<div class="modal" [class.show]="showModal">
-
-  <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>Formulario</h2>
-    <app-update-route [routeInput]="selected"></app-update-route>
-  </div>
-
 </div>

@@ -43,11 +43,11 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .execute();
 
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .statusEmmit.pipe(takeUntil(this.onDestroy$))
       .subscribe({

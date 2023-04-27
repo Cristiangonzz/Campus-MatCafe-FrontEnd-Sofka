@@ -1,9 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouteEntity } from 'src/app/domain/entities/route.entity.domain';
-import { IUpdateRoute } from 'src/app/domain/interfaces/update-route.interface.domain';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
@@ -17,7 +15,6 @@ export class UpdateRouteComponent implements OnChanges {
   delegateRoute = routeUseCaseProviders;
   @Input() routeInput!: RouteEntity;
   sweet = new SweetAlert();
-  
 
   FormUpdate = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -78,7 +75,7 @@ export class UpdateRouteComponent implements OnChanges {
     this.routeInput.duration = this.FormUpdate.get('duration')?.value as string;
     this.routeInput.title = this.FormUpdate.get('title')?.value as string;
 
-    this.delegateRoute.updateRouteUseCaseProvaider
+    this.delegateRoute.updateRouteUseCaseProvider
       .useFactory(this.routeService)
       .execute(this.route.id, this.route)
       .subscribe({
