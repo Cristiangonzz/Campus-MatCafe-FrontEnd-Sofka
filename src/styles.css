@@ -8,3 +8,19 @@
   background-color: #e64141;
   border-color: #e64141;
 }
+
+.btn-outline-primary {
+  border-color: #00b894 !important;
+}
+
+.btn-outline-primary:hover {
+  border-color: #00b894 !important;
+  background-color: #00b894;
+  color: white;
+}
+
+.btn-outline-primary:active {
+  border-color: #00b894 !important;
+  background-color: #00b894 !important;
+  color: white;
+}

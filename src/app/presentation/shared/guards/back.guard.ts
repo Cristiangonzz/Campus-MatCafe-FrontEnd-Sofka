@@ -10,7 +10,7 @@ export class BackGuard implements CanActivate {
   provider = loginUseCaseProviders;
   constructor(private readonly router: Router) {}
   canActivate(): Observable<boolean> {
-    return this.provider.hasUserUseCaseProvaider
+    return this.provider.hasUserUseCaseProvider
       .useFactory()
       .execute()
       .pipe(

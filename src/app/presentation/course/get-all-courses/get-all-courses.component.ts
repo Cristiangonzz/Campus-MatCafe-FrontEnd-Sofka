@@ -31,7 +31,6 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
-    console.log('close modal');
     this.showModal = false;
   }
 
@@ -43,11 +42,11 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .execute();
 
-    this.delegateCourse.getAllCourseUseCaseProvaider
+    this.delegateCourse.getAllCourseUseCaseProvider
       .useFactory(this.courseService)
       .statusEmmit.pipe(takeUntil(this.onDestroy$))
       .subscribe({

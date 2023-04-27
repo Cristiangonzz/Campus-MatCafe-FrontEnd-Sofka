@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
-import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { Router } from '@angular/router';
 import { ICreateUser } from 'src/app/domain/interfaces/create-user.interface';
-import { Observable, of } from 'rxjs';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
-import { LearnerEntity } from 'src/app/domain/entities/learner.entity.domain';
-import { AdminEntity } from 'src/app/domain/entities/admin.entity.domain';
 
 @Component({
   selector: 'app-create-user',
@@ -31,7 +28,7 @@ export class CreateUserComponent {
   send() {
     this.user = this.FormRegister.getRawValue() as ICreateUser;
 
-    this.delegeteUser.createUserUseCaseProvaider
+    this.delegeteUser.createUserUseCaseProvider
       .useFactory(this.adminService)
       .execute(this.user)
       .subscribe({
@@ -39,7 +36,11 @@ export class CreateUserComponent {
           this.sweet.toFire('Completo', `Usurio Creado`, 'success');
         },
         error: (error) => {
-          this.sweet.toFire('Incompleto', `Usuario Incorrecto ${JSON.stringify(error)}`, 'error');
+          this.sweet.toFire(
+            'Incompleto',
+            `Usuario Incorrecto ${JSON.stringify(error)}`,
+            'error'
+          );
         },
       });
   }

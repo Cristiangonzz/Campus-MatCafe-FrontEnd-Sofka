@@ -6,7 +6,6 @@ import { CourseService } from 'src/app/domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
-
 @Component({
   selector: 'app-update-course',
   templateUrl: './update-course.component.html',
@@ -36,23 +35,25 @@ export class UpdateCourseComponent implements OnChanges {
   });
 
   ngOnChanges(): void {
-    this.FormRegister.get('title')?.setValue(this.courseInput.title);
-    this.FormRegister.get('description')?.setValue(
-      this.courseInput.description
-    );
-    this.FormRegister.get('duration')?.setValue(this.courseInput.duration);
-    this.FormRegister.get('requirements')?.setValue(
-      this.courseInput.requirements
-    );
-    this.contentForms.clear();
-    this.courseInput.content.forEach((element) => {
-      const content = new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-      ]);
-      content.setValue(element);
-      this.contentForms.push(content);
-    });
+    if (this.courseInput !== undefined) {
+      this.FormRegister.get('title')?.setValue(this.courseInput.title);
+      this.FormRegister.get('description')?.setValue(
+        this.courseInput.description
+      );
+      this.FormRegister.get('duration')?.setValue(this.courseInput.duration);
+      this.FormRegister.get('requirements')?.setValue(
+        this.courseInput.requirements
+      );
+      this.contentForms.clear();
+      this.courseInput.content.forEach((element) => {
+        const content = new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+        ]);
+        content.setValue(element);
+        this.contentForms.push(content);
+      });
+    }
   }
 
   addContent() {
@@ -73,10 +74,7 @@ export class UpdateCourseComponent implements OnChanges {
 
   course: CourseEntity = {} as CourseEntity;
 
-  constructor(
-    private courseService: CourseService,
-    private router: Router,
-  ) {}
+  constructor(private courseService: CourseService, private router: Router) {}
 
   send() {
     this.course.content = this.FormRegister.get('content')?.value as never[];
@@ -88,15 +86,15 @@ export class UpdateCourseComponent implements OnChanges {
     this.course.title = this.FormRegister.get('title')?.value as string;
 
     console.log(this.course);
-    this.delegateCourse.updateCourseUseCaseProvaider
+    this.delegateCourse.updateCourseUseCaseProvider
       .useFactory(this.courseService)
-      .execute(this.course.id,this.course)
+      .execute(this.course.id, this.course)
       .subscribe({
         next: () => {
-           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
+          this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
         },
         error: () => {
-           this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+          this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
         },
       });
   }
