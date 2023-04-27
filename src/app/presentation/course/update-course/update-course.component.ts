@@ -84,7 +84,8 @@ export class UpdateCourseComponent implements OnChanges {
     this.course.requirements = this.FormRegister.get('requirements')
       ?.value as string;
     this.course.title = this.FormRegister.get('title')?.value as string;
-
+    this.course.adminId = this.courseInput.adminId;
+    this.course.id = this.courseInput.id;
     console.log(this.course);
     this.delegateCourse.updateCourseUseCaseProvider
       .useFactory(this.courseService)
@@ -92,8 +93,10 @@ export class UpdateCourseComponent implements OnChanges {
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
+          this.router.navigate(['/course/get-all']);
         },
-        error: () => {
+        error: (error:Error) => {
+          console.log(error);
           this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
         },
       });
