@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: `create`,
         component: CreateUserComponent,
-        canActivate: [PermissionGuard,PermissionRolGuard],
+        canActivate: [PermissionGuard, PermissionRolGuard],
       },
       { path: `**`, redirectTo: 'create' },
     ],
