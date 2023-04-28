@@ -12,13 +12,27 @@
       <form (ngSubmit)="subscribeRoute(learnerEmail.value, RouteName.value)">
         <div>
           <label for="learnerEmail">Email Aprendiz:</label>
-          <input type="text" name="learnerEmail" id="learnerEmail" #learnerEmail required>
+          <input
+            type="text"
+            class="form-control"
+            name="learnerEmail"
+            id="learnerEmail"
+            #learnerEmail
+            required
+          />
         </div>
 
         <div>
           <label for="RouteName">Route Name:</label>
-          <br>
-          <input type="text" name="RouteName" id="RouteName" #RouteName required>
+          <br />
+          <input
+            type="text"
+            class="form-control"
+            name="RouteName"
+            id="RouteName"
+            #RouteName
+            required
+          />
         </div>
 
         <div class="row m-2">
