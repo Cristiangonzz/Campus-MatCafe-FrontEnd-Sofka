@@ -49,4 +49,23 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
+  inicio(){
+    this.router.navigate(['/home']);
+  }
+  createUser(){
+    this.router.navigate(['admin/create']);
+  }
+  course(){
+    this.router.navigate(['course/get-all']);
+  }
+  route(){
+    this.router.navigate(['route/get-all']);
+  }
+  learnerSubscribe(){
+    this.router.navigate(['learner/suscribe-route']);
+  }
+  send(){
+    this.router.navigate(['admin/send']);
+  }
 }

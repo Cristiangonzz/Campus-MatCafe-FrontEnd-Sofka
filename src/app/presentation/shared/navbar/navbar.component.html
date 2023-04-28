@@ -19,19 +19,19 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="/home">Inicio</a>
+            <a class="nav-link" (click)="inicio()" >Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/course/get-all">Cursos</a>
+            <a class="nav-link" (click)="course()">Cursos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/route/get-all">Rutas de Aprendizaje</a>
+            <a class="nav-link" (click)="route()">Rutas de Aprendizaje</a>
           </li>
           <li *ngIf="rolBoolean" class="nav-item">
-            <a class="nav-link" href="/admin/create">Registrar User</a>
+            <a class="nav-link" (click)="createUser()">Registrar User</a>
           </li>
           <li *ngIf="rolBoolean" class="nav-item">
-            <a class="nav-link" href="learner/suscribe-route">Asignar Ruta</a>
+            <a class="nav-link" (click)="learnerSubscribe()">Asignar Ruta</a>
           </li>
         </ul>
         <div class="d-inline dropdown class-bg mr-3 w-25">
@@ -51,10 +51,10 @@
                 <a
                   class="list-group-item class-bg list-group-item-action flex-column align-items-start active"
                 >
-                  <a class="dropdown-item" href="/admin/send">{{ n.id }}</a>
-                  <a class="dropdown-item" href="/admin/send">{{ n.repo }}</a>
-                  <a class="dropdown-item" href="/admin/send">{{ n.course }}</a>
-                  <a class="dropdown-item" href="/admin/send">{{ n.coment }}</a>
+                  <a class="dropdown-item" (click)="send()">{{ n.id }}</a>
+                  <a class="dropdown-item" (click)="send()">{{ n.repo }}</a>
+                  <a class="dropdown-item" (click)="send()">{{ n.course }}</a>
+                  <a class="dropdown-item" (click)="send()">{{ n.coment }}</a>
                 </a>
               </div>
             </div>

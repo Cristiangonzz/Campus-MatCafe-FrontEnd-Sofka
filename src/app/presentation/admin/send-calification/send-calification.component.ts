@@ -6,6 +6,7 @@ import { CalificationEntity } from 'src/app/domain/entities/calification.entity.
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-send-calification',
@@ -16,6 +17,7 @@ export class SendCalificationComponent {
   delegateAdmin = adminUseCaseProviders;
   adminEmail!: string;
   delegateCourse = courseUseCaseProviders;
+  sweet = new SweetAlert()
 
   constructor(
     private readonly adminService: AdminService,
@@ -51,7 +53,14 @@ export class SendCalificationComponent {
       return this.delegateAdmin.graderStudentUseCaseFactoryProvider
         .useFactory(this.adminService)
         .execute(data)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            this.sweet.toFire("Completado",'Calificación enviada', 'success');
+          },
+          error: () => {
+            this.sweet.toFire("Error",'Calificacion no enviada', 'error');
+          },
+        });
     });
   }
 }
