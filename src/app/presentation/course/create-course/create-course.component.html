@@ -3,8 +3,7 @@
     <div class="col">
       <img src="https://ouch-cdn2.icons8.com/HScNCUE-_8tNaiE85brq4hxbDMXIMSY-h0laUmX_kL4/rs:fit:256:277/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMjI0/LzU3MjA4YTczLWY4/ZjYtNDk0OS04OWJi/LTU2MzcwNTY4YTZk/Mi5wbmc.png"
            alt="IMG"
-           width="100%"
-           height="100%">
+           >
     </div>
     <div class="col">
       <h2 class="form-title">Create Curso</h2>
@@ -30,15 +29,15 @@
           <div formArrayName="content">
             <div *ngFor="let content of contentForms.controls; let i = index" class="form-group">
               <input type="text" [formControlName]="i" placeholder="content {{ i + 1 }}" class="form-input w-75">
-              <button type="button" (click)="removeContent(i)" class="form-button w-25">Remove</button>
+              <button type="button" (click)="removeContent(i)" class="btn btn-danger">Remove</button>
             </div>
-            <button type="button" (click)="addContent()" class="form-button">Add</button>
+            <button type="button" (click)="addContent()" class="btn btn-success">Add</button>
           </div>
         </div>
 
         <div class="row m-2">
           <button type="submit" [disabled]="FormRegister.invalid" class="btn btn-success">Submit</button>
-          <button type="button" class="btn btn-secondary" routerLink="/course/get-all">Cancel</button>
+          <button type="button" class="btn btn-danger" routerLink="/course/get-all">Cancel</button>
         </div>
       </form>
     </div>
