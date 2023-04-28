@@ -95,8 +95,12 @@ export class UpdateCourseComponent implements OnChanges {
           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
           this.router.navigate(['/course/get-all']);
         },
-        error: () => {
-          this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+        error: (err) => {
+          if (err.status == 201) {
+            this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
+          } else {
+            this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+          }
         },
       });
   }

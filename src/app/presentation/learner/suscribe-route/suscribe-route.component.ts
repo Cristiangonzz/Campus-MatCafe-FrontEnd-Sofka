@@ -6,8 +6,8 @@ import { LearnerService } from 'src/app/domain/services/learner.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { learnerUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-learner/delegate-learner.infrastructure';
-import { routeUseCaseProviders } from './../../../infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
+import { routeUseCaseProviders } from './../../../infrastructure/delegate/delegate-route/delegate-route.infrastructure';
 
 @Component({
   selector: 'app-suscribe-route',
@@ -18,7 +18,7 @@ export class SuscribeRouteComponent {
   delegateLearner = learnerUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   delegateRoute = routeUseCaseProviders;
-  sweet = new SweetAlert()
+  sweet = new SweetAlert();
   adminEmail!: string;
 
   constructor(
@@ -56,10 +56,15 @@ export class SuscribeRouteComponent {
           next: () => {
             this.sweet.toFire('Completo', 'Ruta Asignada', 'success');
           },
-          error: () => {
-            this.sweet.toFire('Error', 'Ruta no asignada', 'error');
+          error: (err) => {
+            if (err.status == 201) {
+              this.sweet.toFire('Completo', 'Ruta Asignada', 'success');
+            } else {
+              this.sweet.toFire('Error', 'Ruta no asignada', 'error');
+            }
+            console.log(err);
           },
-        })
+        });
     });
   }
 }
