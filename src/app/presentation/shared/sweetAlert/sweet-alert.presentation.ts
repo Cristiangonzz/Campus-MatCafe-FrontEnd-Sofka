@@ -1,6 +1,9 @@
 import Swal from 'sweetalert2';
 
 export class SweetAlert {
+  static toFire(arg0: string, arg1: string, arg2: string) {
+    throw new Error('Method not implemented.');
+  }
   toFire(
     title: string,
     message: string,
