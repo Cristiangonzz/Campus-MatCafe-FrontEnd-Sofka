@@ -9,6 +9,11 @@
   border-color: #e64141;
 }
 
+.btn-primary {
+  background-color: #006eb8;
+  border-color: #006eb8;
+}
+
 .btn-outline-primary {
   border-color: #00b894 !important;
 }
@@ -25,5 +30,11 @@
   color: white;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
