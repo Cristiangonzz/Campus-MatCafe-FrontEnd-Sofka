@@ -27,7 +27,7 @@ export class CreateUserComponent {
 
   send() {
     this.user = this.FormRegister.getRawValue() as ICreateUser;
-
+    this.user.name = this.user.name.toLowerCase();
     this.delegeteUser.createUserUseCaseProvider
       .useFactory(this.adminService)
       .execute(this.user)
