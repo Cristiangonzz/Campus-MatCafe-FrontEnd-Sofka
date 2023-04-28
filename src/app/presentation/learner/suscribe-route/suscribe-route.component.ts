@@ -7,6 +7,7 @@ import { RouteService } from 'src/app/domain/services/route.service.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { learnerUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-learner/delegate-learner.infrastructure';
 import { routeUseCaseProviders } from './../../../infrastructure/delegate/delegate-route/delegate-route.infrastructure';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 
 @Component({
   selector: 'app-suscribe-route',
@@ -17,7 +18,7 @@ export class SuscribeRouteComponent {
   delegateLearner = learnerUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   delegateRoute = routeUseCaseProviders;
-
+  sweet = new SweetAlert()
   adminEmail!: string;
 
   constructor(
@@ -51,7 +52,14 @@ export class SuscribeRouteComponent {
       this.delegateLearner.subscribeRouteCaseProvider
         .useFactory(this.learnerService)
         .execute(subscribe)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            this.sweet.toFire('Completo', 'Ruta Asignada', 'success');
+          },
+          error: () => {
+            this.sweet.toFire('Error', 'Ruta no asignada', 'error');
+          },
+        })
     });
   }
 }
