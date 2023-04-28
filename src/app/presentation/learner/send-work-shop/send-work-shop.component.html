@@ -1,27 +1,34 @@
-<form (ngSubmit)="sendWorkShop(github.value, coment.value)" class="p-3">
-  <div class="mb-3">
-    <label for="github" class="form-label">Link Repo:</label>
-    <input
-      type="text"
-      name="github"
-      id="github"
-      #github
-      class="form-control"
-      required
-    />
-  </div>
+<div *ngIf="!send">
+  <h1>Entregar Reto</h1>
+  <form
+    #formulario="ngForm"
+    (ngSubmit)="sendWorkShop(github.value, coment.value)"
+    class="p-3"
+  >
+    <div class="mb-3">
+      <label for="github" class="form-label">Link Repo:</label>
+      <input
+        type="text"
+        name="github"
+        id="github"
+        #github
+        class="form-control"
+        required
+      />
+    </div>
 
-  <div class="mb-3">
-    <label for="coment" class="form-label">Explica tu reto:</label>
-    <textarea
-      name="coment"
-      id="coment"
-      rows="5"
-      #coment
-      class="form-control"
-      required
-    ></textarea>
-  </div>
+    <div class="mb-3">
+      <label for="coment" class="form-label">Explica tu reto:</label>
+      <textarea
+        name="coment"
+        id="coment"
+        rows="5"
+        #coment
+        class="form-control"
+        required
+      ></textarea>
+    </div>
 
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
