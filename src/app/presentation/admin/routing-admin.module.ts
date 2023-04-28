@@ -9,9 +9,16 @@ const routes: Routes = [
   {
     path: '',
     children: [
-
-      { path: `create`, component: CreateUserComponent,canActivate: [ PermissionGuard ,PermissionRolGuard ], },
-      { path: `send`, component: SendCalificationComponent,canActivate: [ PermissionGuard ,PermissionRolGuard], },
+      {
+        path: `create`,
+        component: CreateUserComponent,
+        canActivate: [PermissionGuard, PermissionRolGuard],
+      },
+      {
+        path: `send`,
+        component: SendCalificationComponent,
+        canActivate: [PermissionGuard, PermissionRolGuard],
+      },
 
       { path: `**`, redirectTo: 'create' },
     ],

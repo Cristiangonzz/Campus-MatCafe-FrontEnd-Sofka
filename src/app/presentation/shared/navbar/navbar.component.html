@@ -1,86 +1,77 @@
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
-    <ng-container *ngIf="!isAdmin,else viewAdmin">
-    <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
-  </ng-container>
-  <ng-template #viewAdmin>
-    <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/home">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/course/get-all">Cursos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/route/get-all">Rutas de Aprendizaje</a>
-        </li>
-        <li *ngIf="rolBoolean" class="nav-item">
-          <a class="nav-link" href="/admin/create">Registrar User</a>
-        </li>
-      </ul>
-      <div class="d-inline dropdown mr-3">
-        <a class="dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span> {{ notification.length }}</span><i class="fa fa-bell"></i></a>
-        <div class="dropdown-menu dropdown-menu-right rounded-0 pt-0" aria-labelledby="notifications">
-          <div class="list-group">
-            <div class="lg" *ngFor="let n of notification ">
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                <a class="dropdown-item" href="/admin/send">{{ n.id }}</a>
-                <a class="dropdown-item" href="/admin/send">{{ n.repo }}</a>
-                <a class="dropdown-item" href="/admin/send">{{ n.course }}</a>
-                <a class="dropdown-item" href="/admin/send">{{ n.coment }}</a>
-              </a>
-            </div> <!-- /.lg -->
-          </div> <!-- /.list group -->
-        </div> <!-- /.dropdown-menu -->
-      </div> <!-- /.dropdown -->
-
-      <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ notification.length }}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div  *ngFor="let n of notification ">
-          <a class="dropdown-item" href="#">{{ n.repo }}</a>
-          <a class="dropdown-item" href="#">{{ n.course }}</a>
-          <a class="dropdown-item" href="#">{{ n.coment }}</a>
-          <label>---------------------------------------------------------</label>
+    <ng-container *ngIf="!isAdmin; else viewAdmin">
+      <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
+    </ng-container>
+    <ng-template #viewAdmin>
+      <img src="../../../../assets/images/logo.png" alt="imagen de servicios" />
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/course/get-all">Cursos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/route/get-all">Rutas de Aprendizaje</a>
+          </li>
+          <li *ngIf="rolBoolean" class="nav-item">
+            <a class="nav-link" href="/admin/create">Registrar User</a>
+          </li>
+        </ul>
+        <div class="d-inline dropdown class-bg mr-3 w-25">
+          <a
+            id="notifications"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><span> {{ notification.length }}</span
+            ><i class="fa fa-bell"></i
+          ></a>
+          <div
+            class="dropdown-menu dropdown-menu-start rounded-0 pt-0"
+            aria-labelledby="notifications"
+          >
+            <div class="list-group">
+              <div class="bg-black" *ngFor="let n of notification">
+                <a
+                  class="list-group-item class-bg list-group-item-action flex-column align-items-start active"
+                >
+                  <a class="dropdown-item" href="/admin/send">{{ n.id }}</a>
+                  <a class="dropdown-item" href="/admin/send">{{ n.repo }}</a>
+                  <a class="dropdown-item" href="/admin/send">{{ n.course }}</a>
+                  <a class="dropdown-item" href="/admin/send">{{ n.coment }}</a>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>  
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <button class="btn btn-outline-success me-2" type="submit">Login</button>
-          <button class="btn btn-outline-success" href="login/sign-in" (click)="out()" >Salir</button>
-        </div>
-      </div> -->
-      <form class="d-flex" role="search">
-        <span *ngIf="photo" class="nav-item">
-          <img
-            [src]="photo"
-            alt="imagen de usuario"
-            width="32"
-            height="32"
-            class="rounded-circle me-2"
-          />
-          <span>{{ name }}</span>
-          
-        </span>
-      </form>
-    </div>
-  
 
-  </ng-template>
+        <form class="d-flex margin-left" role="search">
+          <span *ngIf="photo" class="nav-item">
+            <img
+              [src]="photo"
+              alt="imagen de usuario"
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <span>{{ name }}</span>
+          </span>
+        </form>
+      </div>
+    </ng-template>
   </div>
 </nav>
-
