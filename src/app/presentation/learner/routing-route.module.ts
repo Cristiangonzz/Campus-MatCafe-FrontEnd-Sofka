@@ -12,7 +12,8 @@ const routes: Routes = [
         component: SuscribeRouteComponent,
         canActivate: [PermissionGuard],
       },
-      { path: `**`, redirectTo: 'send-work-shop' },
+      { path: `**`, redirectTo: 'suscribe-route' },
+
     ],
   },
 ];

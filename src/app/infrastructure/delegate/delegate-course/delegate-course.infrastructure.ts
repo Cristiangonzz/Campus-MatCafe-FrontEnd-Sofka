@@ -5,6 +5,9 @@ import { GetCourseUseCase } from 'src/app/application/use-case/course/get-course
 import { UpdateCourseUseCase } from 'src/app/application/use-case/course/update-course.use-case';
 import { CourseService } from 'src/app/domain/services/course.service.domain';
 import { GetCourseByNameUseCase } from '../../../application/use-case/course/get-Course-ByName.use-case';
+import { GetAllCourseLearnerUseCase } from 'src/app/application/use-case/course/find-all-course-aprendiz.use-case';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { RouteService } from 'src/app/domain/services/route.service.domain';
 
 const CreateCourseUseCaseFactory = (() => {
   let instance: CreateCourseUseCase;
@@ -89,6 +92,19 @@ const GetAllCourseUseCaseFactory = (() => {
 
   return factory;
 })();
+const GetAllCourseLearnerUseCaseFactory = (() => {
+  let instance: GetAllCourseLearnerUseCase;
+
+  const factory = (service: CourseService,  adminService: AdminService, routeService: RouteService,): GetAllCourseLearnerUseCase => {
+    if (!instance) {
+      instance = new GetAllCourseLearnerUseCase(service,adminService,routeService);
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
 
 export const courseUseCaseProviders = {
   createCourseUseCaseProvider: {
@@ -115,6 +131,11 @@ export const courseUseCaseProviders = {
     provide: GetAllCourseUseCase,
     useFactory: GetAllCourseUseCaseFactory,
     deps: [CourseService],
+  },
+  getAllCourseLearnerUseCaseProvider: {
+    provide: GetAllCourseLearnerUseCase,
+    useFactory: GetAllCourseLearnerUseCaseFactory,
+    deps: [CourseService,AdminService,RouteService],
   },
   getCourseByNameUseCaseProvider: {
     provide: GetCourseByNameUseCase,
