@@ -6,3 +6,4 @@ export interface IUser {
   photoUrl?: string;
   rol: boolean;
 }
+

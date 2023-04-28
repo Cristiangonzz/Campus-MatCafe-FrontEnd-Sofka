@@ -27,13 +27,14 @@ export class CreateUserComponent {
 
   send() {
     this.user = this.FormRegister.getRawValue() as ICreateUser;
-
+    this.user.name = this.user.name.toLowerCase();
     this.delegeteUser.createUserUseCaseProvider
       .useFactory(this.adminService)
       .execute(this.user)
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', `Usuario Creado`, 'success');
+          this.FormRegister.reset();
         },
         error: (error) => {
           this.sweet.toFire(

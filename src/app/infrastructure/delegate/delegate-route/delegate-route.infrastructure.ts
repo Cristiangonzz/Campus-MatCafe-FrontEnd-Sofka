@@ -1,9 +1,12 @@
 import { CreateRouteUseCase } from 'src/app/application/use-case/route/create-route.use-case';
 import { DeleteRouteUseCase } from 'src/app/application/use-case/route/delete-route.use-case';
+import { GetAllRouteLearnerUseCase } from 'src/app/application/use-case/route/find-all-route-learner.use-case';
 import { GetAllRouteUseCase } from 'src/app/application/use-case/route/find-all-route.use-case';
 import { GetRouteByNameUseCase } from 'src/app/application/use-case/route/get-Route-ByName.use-case';
 import { GetRouteUseCase } from 'src/app/application/use-case/route/get-route.use-case';
 import { UpdateRouteUseCase } from 'src/app/application/use-case/route/update-route.use-case';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { LearnerService } from 'src/app/domain/services/learner.service.domain';
 import { RouteService } from 'src/app/domain/services/route.service.domain';
 
 const CreateRouteUseCaseFactory = (() => {
@@ -90,6 +93,20 @@ const GetRouteByNameUseCaseFactory = (() => {
   return factory;
 })();
 
+const GetAllRouteLearnerUseCaseFactory = (() => {
+  let instance: GetAllRouteLearnerUseCase;
+
+  const factory = (service: RouteService ,adminService : AdminService): GetAllRouteLearnerUseCase => {
+    if (!instance) {
+      instance = new GetAllRouteLearnerUseCase(service,adminService);
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
+
 export const routeUseCaseProviders = {
   createRouteUseCaseProvider: {
     provide: CreateRouteUseCase,
@@ -115,6 +132,11 @@ export const routeUseCaseProviders = {
     provide: GetAllRouteUseCase,
     useFactory: GetAllRouteUseCaseFactory,
     deps: [RouteService],
+  },
+  getAllRouteLearnerUseCaseProvider: {
+    provide: GetAllRouteLearnerUseCase,
+    useFactory: GetAllRouteLearnerUseCaseFactory,
+    deps: [RouteService,AdminService],
   },
   getRouteByNameUseCaseProvider: {
     provide: GetRouteByNameUseCase,

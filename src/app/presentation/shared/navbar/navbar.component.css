@@ -65,3 +65,49 @@ span{
 a:hover {
   cursor: pointer;
 }
+
+
+/* Notification */
+.dropdown {
+  position: relative;
+  }
+  .dropdown span {
+  color: #fff;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: -8px;
+  right: -3px;
+  background-color: red;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.625em;
+  font-weight: 600;
+  }
+  .dropdown img {
+  border-radius: 50%;
+  height: 40px;
+  }
+  
+  /* Notification Dropdown */
+  .list-group .lg {
+  height: 500px;
+  width: 270px;
+  overflow: auto;
+  }
+  .list-group .list-group-item {
+  border-radius: 0;
+  letter-spacing: 0.5px;
+  }
+  .list-group h5 {
+  font-size: 0.6875em;
+  font-weight: 700;
+  line-height: 2;
+  }
+  .list-group p {
+  font-size: 0.5625em;
+  font-weight: 400;
+  line-height: 2;
+  }
+
+
