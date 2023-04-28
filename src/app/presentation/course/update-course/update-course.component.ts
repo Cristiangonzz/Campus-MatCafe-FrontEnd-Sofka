@@ -96,7 +96,11 @@ export class UpdateCourseComponent implements OnChanges {
           this.router.navigate(['/course/get-all']);
         },
         error: (err) => {
-          if (err.status == 201) {
+          console.log(err);
+          if (
+            err.error.message ===
+            "Cannot read properties of null (reading 'course')"
+          ) {
             this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
           } else {
             this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
