@@ -85,6 +85,8 @@ export class LoginComponent {
                       `Bienvenido ${this.user.name}`,
                       'success'
                     );
+                    this.router.navigate(['home']);
+                    
                   },
                   error: () => {
                     this.sweet.toFire(
@@ -99,7 +101,7 @@ export class LoginComponent {
               .useFactory()
               .execute(this.user);
             this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
-            this.router.navigate(['/admin']);
+            this.router.navigate(['home']);
           });
       })
       .catch(() => {
