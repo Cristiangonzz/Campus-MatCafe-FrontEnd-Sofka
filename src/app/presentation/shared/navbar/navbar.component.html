@@ -30,6 +30,9 @@
           <li *ngIf="rolBoolean" class="nav-item">
             <a class="nav-link" href="/admin/create">Registrar User</a>
           </li>
+          <li *ngIf="rolBoolean" class="nav-item">
+            <a class="nav-link" href="/learner/suscribe-route">Suscribir a Ruta</a>
+          </li>
         </ul>
         <div class="d-inline dropdown class-bg mr-3 w-25">
           <a
@@ -42,9 +45,8 @@
           ></a>
           <div
             class="dropdown-menu dropdown-menu-start rounded-0 pt-0"
-            aria-labelledby="notifications"
-          >
-            <div class="list-group">
+            aria-labelledby="notifications">
+            <div *ngIf="rolBoolean" class="list-group">
               <div class="bg-black" *ngFor="let n of notification">
                 <a
                   class="list-group-item class-bg list-group-item-action flex-column align-items-start active"
@@ -71,6 +73,14 @@
             <span>{{ name }}</span>
           </span>
         </form>
+        
+  <button
+              type="button"
+              (click)="out()"
+              class="btn btn-outline-primary"
+            >
+            Salir
+            </button>
       </div>
     </ng-template>
   </div>
