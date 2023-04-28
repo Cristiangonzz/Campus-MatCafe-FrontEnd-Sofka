@@ -8,7 +8,6 @@ body {
   color: rgb(var(--bs-tertiary-color-rgb));
 }
 
-
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -27,7 +26,6 @@ body {
   height: 32rem;
 }
 
-
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
@@ -38,11 +36,10 @@ body {
 }
 /* rtl:begin:ignore */
 .marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
 }
 /* rtl:end:ignore */
-
 
 /* Featurettes
 ------------------------- */
@@ -54,7 +51,7 @@ body {
 /* Thin out the marketing headings */
 /* rtl:begin:remove */
 .featurette-heading {
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
 }
 
 /* rtl:end:remove */
@@ -81,12 +78,19 @@ body {
   }
 }
 .btn-secondary {
-  background-color: #BAD7E9;
+  background-color: #bad7e9;
 }
 img {
   max-width: 100%;
 }
 .bd-placeholder-img-lg {
-  background-image: url('https://ouch-cdn2.icons8.com/nDM0-LVSiT0eytjNwnY1337ubIAk2UnCho9Wdd1bySk/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNDIx/LzJlNjQzNzNiLTEz/ZjgtNGNlZi1hMGM3/LWIxNzgyMDhkNmRj/OS5wbmc.png');
+  background-image: url("https://ouch-cdn2.icons8.com/nDM0-LVSiT0eytjNwnY1337ubIAk2UnCho9Wdd1bySk/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNDIx/LzJlNjQzNzNiLTEz/ZjgtNGNlZi1hMGM3/LWIxNzgyMDhkNmRj/OS5wbmc.png");
 }
 
+#main {
+  display: block;
+}
+
+html {
+  height: auto;
+}
