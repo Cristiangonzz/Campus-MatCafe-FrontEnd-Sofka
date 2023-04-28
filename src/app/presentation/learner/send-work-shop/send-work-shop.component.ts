@@ -18,7 +18,7 @@ export class SendWorkShopComponent {
   delegateLearner = learnerUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   delegateCourse = courseUseCaseProviders;
-  
+
   learnerEmail!: string;
   sweet: SweetAlert = new SweetAlert();
 
@@ -65,17 +65,22 @@ export class SendWorkShopComponent {
               'Enviado',
               'Se ha enviado el taller correctamente',
               'success'
-              );
-              this.send = true;
-              this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
-
-          },
-          error: () => {
-            this.sweet.toFire(
-              'Enviado',
-              'Se ha enviado el taller correctamente',
-              'success'
             );
+            this.send = true;
+            this.delegateAdmin.hasNotificationUseCaseProvider
+              .useFactory()
+              .execute();
+          },
+          error: (err) => {
+            if (err.status == 201) {
+              this.sweet.toFire(
+                'Enviado',
+                'Se ha enviado el taller correctamente',
+                'success'
+              );
+            } else {
+              this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+            }
             this.send = true;
           },
         });
