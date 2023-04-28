@@ -18,6 +18,7 @@ export class SendWorkShopComponent {
   delegateLearner = learnerUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   delegateCourse = courseUseCaseProviders;
+  
   learnerEmail!: string;
   sweet: SweetAlert = new SweetAlert();
 
@@ -64,10 +65,12 @@ export class SendWorkShopComponent {
               'Enviado',
               'Se ha enviado el taller correctamente',
               'success'
-            );
-            this.send = true;
+              );
+              this.send = true;
+              this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
+
           },
-          error: (err) => {
+          error: () => {
             this.sweet.toFire(
               'Enviado',
               'Se ha enviado el taller correctamente',
