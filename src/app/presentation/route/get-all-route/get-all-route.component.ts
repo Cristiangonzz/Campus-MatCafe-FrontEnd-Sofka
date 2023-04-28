@@ -128,10 +128,10 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
           .subscribe({
             next: () => {
               this.sweet.toFire('Completo', 'Ruta Eliminada', 'success');
-              this.ngOnInit();
+              this.updateListRoute();
             },
             error: () => {
-              this.sweet.toFire(
+            this.sweet.toFire(
                 'Incompleto',
                 'No se pudo eliminar Ruta',
                 'error'
@@ -152,6 +152,18 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
     return this.ArrayShowContent[i];
   }
   crearRuta() {
+    this.updateListRoute();
     this.router.navigate(['route/create']);
+  }
+  updateListRoute(){
+    if(this.rol == true){
+      this.delegateRoute.getAllRouteUseCaseProvider
+      .useFactory(this.routeService)
+      .execute();
+    }else{
+      this.delegateRoute.getAllRouteLearnerUseCaseProvider
+      .useFactory(this.routeService, this.adminService)
+      .execute();
+    }
   }
 }
