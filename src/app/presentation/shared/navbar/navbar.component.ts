@@ -21,7 +21,11 @@ export class NavbarComponent implements OnInit {
   tamanio: number = 0;
   rolBoolean: boolean = false;
   constructor(private router : Router) {}
+
   ngOnInit(): void {
+    this.delegateLogin.hasUserUseCaseProvider
+    .useFactory()
+    .execute();
     this.delegateLogin.hasUserUseCaseProvider
       .useFactory()
       .statusEmmit.subscribe((status: boolean) => {
