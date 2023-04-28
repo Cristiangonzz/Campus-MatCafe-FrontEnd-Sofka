@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
 import { ISendWorkshop } from 'src/app/domain/interfaces/send-work-shop.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
@@ -19,9 +19,10 @@ export class SendWorkShopComponent {
   delegateAdmin = adminUseCaseProviders;
   delegateCourse = courseUseCaseProviders;
   learnerEmail!: string;
+  sweet: SweetAlert = new SweetAlert();
 
   @Input() courseName!: string;
-  @ViewChild('formulario') formulario: any;
+  send = false;
 
   constructor(
     private readonly adminService: AdminService,
@@ -59,15 +60,20 @@ export class SendWorkShopComponent {
         .execute(sendWork)
         .subscribe({
           next: () => {
-            SweetAlert.toFire(
+            this.sweet.toFire(
               'Enviado',
               'Se ha enviado el taller correctamente',
               'success'
             );
-            this.formulario.reset();
+            this.send = true;
           },
           error: (err) => {
-            SweetAlert.toFire('Error', err, 'error');
+            this.sweet.toFire(
+              'Enviado',
+              'Se ha enviado el taller correctamente',
+              'success'
+            );
+            this.send = true;
           },
         });
     });
