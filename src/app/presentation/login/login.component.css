@@ -260,4 +260,5 @@ body {
 .google {
   background-color: #dfd7d7;
   border-radius: 5px;
+  cursor: pointer;
 }
