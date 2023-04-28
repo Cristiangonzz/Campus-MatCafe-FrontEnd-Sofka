@@ -49,7 +49,7 @@ export class LoginComponent {
             this.user.photoUrl = result.user.photoURL as string;
             this.user.rol = data.rol;
             this.user.notifiaction = data.notifications as INotification[];
-            
+
             JSON.stringify(this.user.notifiaction);
             console.log('Notificacion al logearse', this.user.notifiaction);
             this.updateUser.firebaseId = result.user.uid;
@@ -98,6 +98,7 @@ export class LoginComponent {
             this.delegateLogin.setUserLocalStrotageUseCaseProvider
               .useFactory()
               .execute(this.user);
+            this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
             this.router.navigate(['/admin']);
           });
       })
