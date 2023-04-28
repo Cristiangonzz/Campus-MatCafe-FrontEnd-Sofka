@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
 import { ISendWorkshop } from 'src/app/domain/interfaces/send-work-shop.interface.domain';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
@@ -6,6 +6,7 @@ import { CourseService } from 'src/app/domain/services/course.service.domain';
 import { LearnerService } from 'src/app/domain/services/learner.service.domain';
 import { courseUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { learnerUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-learner/delegate-learner.infrastructure';
+import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { adminUseCaseProviders } from './../../../infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 
 @Component({
@@ -20,6 +21,7 @@ export class SendWorkShopComponent {
   learnerEmail!: string;
 
   @Input() courseName!: string;
+  @ViewChild('formulario') formulario: any;
 
   constructor(
     private readonly adminService: AdminService,
@@ -55,7 +57,19 @@ export class SendWorkShopComponent {
       this.delegateLearner.sendWorkshopUseCaseProvider
         .useFactory(this.learnerService)
         .execute(sendWork)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            SweetAlert.toFire(
+              'Enviado',
+              'Se ha enviado el taller correctamente',
+              'success'
+            );
+            this.formulario.reset();
+          },
+          error: (err) => {
+            SweetAlert.toFire('Error', err, 'error');
+          },
+        });
     });
   }
 }
