@@ -9,7 +9,7 @@
       />
     </div>
     <div class="col">
-      <h2 class="form-title">Registrar Usuario</h2>
+      <h2 class="form-title">Calificar</h2>
 
       <form (ngSubmit)="submitForm(courseName.value, { grade: grade.value, comment: coment.value, courseId: '', learnerId: email.value })">
         <div class="mb-3">
@@ -24,16 +24,16 @@
 
         <div class="mb-3">
           <label for="coment" class="form-label">Comment:</label>
-          <textarea name="coment" id="coment" rows="5" #coment required class="form-control"></textarea>
+          <input name="coment" id="coment" rows="5" #coment required class="form-control">
         </div>
 
         <div class="mb-3">
           <label for="grade" class="form-label">Nota:</label>
-          <textarea type="number" name="grade" id="grade" rows="5" #grade required class="form-control"></textarea>
+          <input type="number" name="grade" id="grade" rows="5" #grade required class="form-control">
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success">Enviar</button>
         </div>
       </form>
     </div>
