@@ -8,6 +8,8 @@ import { CourseService } from '../../../domain/services/course.service.domain';
 import { courseUseCaseProviders } from '../../../infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
+import { RouteService } from 'src/app/domain/services/route.service.domain';
 
 @Component({
   selector: 'app-get-all-courses',
@@ -39,30 +41,14 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseService: CourseService,
+    private routeService: RouteService,
+    private adminService: AdminService,
     private deleteCourseUseCase: DeleteCourseUseCase,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.delegateCourse.getAllCourseUseCaseProvider
-      .useFactory(this.courseService)
-      .execute();
-
-    this.delegateCourse.getAllCourseUseCaseProvider
-      .useFactory(this.courseService)
-      .statusEmmit.pipe(takeUntil(this.onDestroy$))
-      .subscribe({
-        next: (value: CourseEntity[]) => {
-          this.courses = value;
-          if (this.ArrayShowContent.length == 0) {
-            this.ArrayShowContent = new Array(this.courses.length).fill(false);
-          }
-        },
-        error: () => {
-          this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
-        },
-      });
     this.delegateLogin.hasRolUseCaseProvider.useFactory().execute();
     this.delegateLogin.hasRolUseCaseProvider
       .useFactory()
@@ -75,6 +61,50 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
           }
         },
       });
+
+    if (this.rol == true) {
+      this.delegateCourse.getAllCourseUseCaseProvider
+        .useFactory(this.courseService)
+        .execute();
+
+      this.delegateCourse.getAllCourseUseCaseProvider
+        .useFactory(this.courseService)
+        .statusEmmit.pipe(takeUntil(this.onDestroy$))
+        .subscribe({
+          next: (value: CourseEntity[]) => {
+            this.courses = value;
+            if (this.ArrayShowContent.length == 0) {
+              this.ArrayShowContent = new Array(this.courses.length).fill(
+                false
+              );
+            }
+          },
+          error: () => {
+            this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
+          },
+        });
+    } else {
+      this.delegateCourse.getAllCourseLearnerUseCaseProvider
+        .useFactory(this.courseService, this.adminService, this.routeService)
+        .execute();
+
+      this.delegateCourse.getAllCourseLearnerUseCaseProvider
+        .useFactory(this.courseService, this.adminService, this.routeService)
+        .statusEmmit.pipe(takeUntil(this.onDestroy$))
+        .subscribe({
+          next: (value: CourseEntity[]) => {
+            this.courses = value;
+            if (this.ArrayShowContent.length == 0) {
+              this.ArrayShowContent = new Array(this.courses.length).fill(
+                false
+              );
+            }
+          },
+          error: () => {
+            this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
+          },
+        });
+    }
   }
 
   deleteCourse(_id: string) {
@@ -95,7 +125,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
               'Curso Eliminado Correctamente',
               'success'
             );
-           this.ngOnInit();
+            this.ngOnInit();
             this.router.navigate(['/course/get-all']);
           },
           error: (error) => {
@@ -115,7 +145,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
     this.ArrayShowContent[i] = !this.ArrayShowContent[i];
     return this.ArrayShowContent[i];
   }
-  crearCurso(){
+  crearCurso() {
     this.router.navigate(['course/create']);
   }
 }

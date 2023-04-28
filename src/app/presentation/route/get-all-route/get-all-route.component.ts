@@ -7,6 +7,7 @@ import { routeUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-
 import Swal from 'sweetalert2';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
 
 @Component({
   selector: 'app-get-all-route',
@@ -27,11 +28,27 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
+    private adminService: AdminService,
     private routeService: RouteService,
     private readonly router: Router
   ) {}
 
   ngOnInit() {
+
+    this.delegateLogin.hasRolUseCaseProvider.useFactory().execute();
+    this.delegateLogin.hasRolUseCaseProvider
+      .useFactory()
+      .statusRolEmmit.subscribe({
+        next: (value: boolean) => {
+          if (value == true) {
+            this.rol = true;
+          } else {
+            this.rol = false;
+          }
+        },
+      });
+
+    if(this.rol == true){
     this.delegateRoute.getAllRouteUseCaseProvider
       .useFactory(this.routeService)
       .execute();
@@ -54,18 +71,34 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
           );
         },
       });
-      this.delegateLogin.hasRolUseCaseProvider.useFactory().execute();
-      this.delegateLogin.hasRolUseCaseProvider
-        .useFactory()
-        .statusRolEmmit.subscribe({
-          next: (value: boolean) => {
-            if (value == true) {
-              this.rol = true;
-            } else {
-              this.rol = false;
-            }
-          },
-        });
+  }else{
+    
+     this.delegateRoute.getAllRouteLearnerUseCaseProvider
+      .useFactory(this.routeService, this.adminService)
+      .execute();
+
+    this.delegateRoute.getAllRouteLearnerUseCaseProvider
+    .useFactory(this.routeService, this.adminService)
+      .statusEmmit.pipe(takeUntil(this.onDestroy$))
+      .subscribe({
+        next: (value: RouteEntity[]) => {
+          this.routes = value;
+          if (this.ArrayShowContent.length == 0) {
+            this.ArrayShowContent = new Array(this.routes.length).fill(false);
+          }
+        },
+        error: () => {
+          this.sweet.toFire(
+            'Obtener Rutas',
+            'No se pudo obtener Rutas',
+            'error'
+          );
+        },
+      });
+      }
+    
+    
+   
   }
 
   openModal(i: number) {
@@ -95,6 +128,7 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
           .subscribe({
             next: () => {
               this.sweet.toFire('Completo', 'Ruta Eliminada', 'success');
+              this.ngOnInit();
             },
             error: () => {
               this.sweet.toFire(
@@ -117,7 +151,7 @@ export class GetAllRouteComponent implements OnInit, OnDestroy {
     this.ArrayShowContent[i] = !this.ArrayShowContent[i];
     return this.ArrayShowContent[i];
   }
-  crearRuta(){
-    this.router.navigate(['route/create'])
+  crearRuta() {
+    this.router.navigate(['route/create']);
   }
 }

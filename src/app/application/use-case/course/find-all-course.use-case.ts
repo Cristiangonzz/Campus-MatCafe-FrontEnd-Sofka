@@ -26,7 +26,7 @@ export class GetAllCourseUseCase {
         },
       });
     } else {
-      asyncScheduler.schedule(this.execute, 100);
+      asyncScheduler.schedule(this.execute, 1000);
     }
   };
 }
