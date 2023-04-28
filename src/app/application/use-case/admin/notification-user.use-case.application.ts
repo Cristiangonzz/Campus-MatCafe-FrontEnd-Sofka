@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { INotification } from "src/app/domain/interfaces/notification.interface.domain";
 
 @Injectable({

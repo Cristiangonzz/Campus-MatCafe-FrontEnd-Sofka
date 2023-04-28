@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackGuard } from './presentation/shared/guards/back.guard';
 import { PermissionGuard } from './presentation/shared/guards/permission.guard';
-import { PermissionRolGuard } from './presentation/shared/guards/permission-rol.guard';
 
 const routes: Routes = [
   {
