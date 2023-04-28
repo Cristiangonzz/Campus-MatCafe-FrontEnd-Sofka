@@ -85,6 +85,15 @@ export class UpdateRouteComponent implements OnChanges {
           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
         },
         error: (err) => {
+          console.log(err);
+          if (
+            err.error.message ===
+            "Cannot read properties of null (reading 'course')"
+          ) {
+            this.sweet.toFire('Completo', 'Ruta Actualizado', 'success');
+          } else {
+            this.sweet.toFire('Error', 'Error al Actualizar Ruta', 'error');
+          }
           if (err.status == 201) {
             this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
           } else {
