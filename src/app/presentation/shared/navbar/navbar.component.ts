@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { INotification } from 'src/app/domain/interfaces/notification.interface.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { courseUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-course/delegate-course.infrastructure';
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   notification: INotification[] = {} as INotification[];
   tamanio: number = 0;
   rolBoolean: boolean = false;
+  constructor(private router : Router) {}
   ngOnInit(): void {
     this.delegateLogin.hasUserUseCaseProvider
       .useFactory()
@@ -45,5 +47,6 @@ export class NavbarComponent implements OnInit {
 
   out() {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
