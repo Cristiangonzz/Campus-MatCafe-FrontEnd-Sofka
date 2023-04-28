@@ -20,22 +20,6 @@ const routes: Routes = [
         canActivate: [PermissionGuard, PermissionRolGuard],
       },
 
-      {
-        path: `create`,
-        component: CreateUserComponent,
-        canActivate: [PermissionGuard, PermissionRolGuard],
-      },
-      {
-        path: `create`,
-        component: CreateUserComponent,
-        canActivate: [PermissionGuard],
-      },
-      {
-        path: `send`,
-        component: SendCalificationComponent,
-        canActivate: [PermissionGuard],
-      },
-
       { path: `**`, redirectTo: 'create' },
     ],
   },
