@@ -125,7 +125,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
               'Curso Eliminado Correctamente',
               'success'
             );
-            this.ngOnInit();
+            this. updateListCourse();
             this.router.navigate(['/course/get-all']);
           },
           error: (error) => {
@@ -146,6 +146,23 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
     return this.ArrayShowContent[i];
   }
   crearCurso() {
+   this. updateListCourse();
     this.router.navigate(['course/create']);
+  }
+
+  updateListCourse(){
+    if (this.rol) {
+      this.delegateCourse.getAllCourseUseCaseProvider
+        .useFactory(this.courseService)
+        .execute();
+    } else {
+      this.delegateCourse.getAllCourseLearnerUseCaseProvider
+        .useFactory(
+          this.courseService,
+          this.adminService,
+          this.routeService
+        )
+        .execute();
+    }
   }
 }
