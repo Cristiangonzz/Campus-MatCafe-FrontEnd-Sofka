@@ -34,6 +34,7 @@ export class CreateUserComponent {
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', `Usuario Creado`, 'success');
+          this.FormRegister.reset();
         },
         error: (error) => {
           this.sweet.toFire(
