@@ -13,6 +13,8 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 import { SweetAlert } from '../shared/sweetAlert/sweet-alert.presentation';
+import { ILocalStorageUser } from 'src/app/domain/interfaces/local-storage-user.interface.domain';
+import { INotification } from 'src/app/domain/interfaces/notification.interface.domain';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,7 @@ export class LoginComponent {
   delegateAdmin = adminUseCaseProviders;
 
   sweet = new SweetAlert();
-  user: IUser = {} as IUser;
+  user: ILocalStorageUser = {} as ILocalStorageUser;
   updateUser: IUpDateUser = {} as IUpDateUser;
 
   constructor(
@@ -42,18 +44,22 @@ export class LoginComponent {
           .execute(result.user.email as string)
           .subscribe((data: AdminEntity) => {
             this.user.email = result.user.email as string;
-            this.user.firebaseId = result.user.uid as string;
+            this.user.firebaseId = result.user.uid;
             this.user.name = result.user.displayName as string;
             this.user.photoUrl = result.user.photoURL as string;
             this.user.rol = data.rol;
-            this.updateUser.firebaseId = result.user.uid as string;
+            this.user.notifiaction = data.notifications as INotification[];
+            
+            JSON.stringify(this.user.notifiaction);
+            console.log('Notificacion al logearse', this.user.notifiaction);
+            this.updateUser.firebaseId = result.user.uid;
             this.updateUser.photoUrl = result.user.photoURL as string;
             if (data.rol === true) {
               this.delegateAdmin.updateAdminUseCaseProvider
                 .useFactory(this.adminService)
-                .execute(data.email as string, this.updateUser)
+                .execute(data.email, this.updateUser)
                 .subscribe({
-                  next: (update: AdminEntity) => {
+                  next: () => {
                     this.sweet.toFire(
                       'User',
                       `Bienvenido ${this.user.name}`,
@@ -71,7 +77,7 @@ export class LoginComponent {
             } else {
               this.delegateAdmin.updateLearnerUseCaseProvider
                 .useFactory(this.adminService)
-                .execute(data.email as string, this.updateUser)
+                .execute(data.email, this.updateUser)
                 .subscribe({
                   next: () => {
                     this.sweet.toFire(

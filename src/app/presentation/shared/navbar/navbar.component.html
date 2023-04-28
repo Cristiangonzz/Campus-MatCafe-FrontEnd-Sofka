@@ -31,6 +31,39 @@
           <a class="nav-link" href="/admin/create">Registrar User</a>
         </li>
       </ul>
+      <div class="d-inline dropdown mr-3">
+        <a class="dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span> {{ notification.length }}</span><i class="fa fa-bell"></i></a>
+        <div class="dropdown-menu dropdown-menu-right rounded-0 pt-0" aria-labelledby="notifications">
+          <div class="list-group">
+            <div class="lg" *ngFor="let n of notification ">
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <a class="dropdown-item" href="#">{{ n.id }}</a>
+                <a class="dropdown-item" href="#">{{ n.repo }}</a>
+                <a class="dropdown-item" href="#">{{ n.course }}</a>
+                <a class="dropdown-item" href="#">{{ n.coment }}</a>
+              </a>
+            </div> <!-- /.lg -->
+          </div> <!-- /.list group -->
+        </div> <!-- /.dropdown-menu -->
+      </div> <!-- /.dropdown -->
+
+      <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ notification.length }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div  *ngFor="let n of notification ">
+          <a class="dropdown-item" href="#">{{ n.repo }}</a>
+          <a class="dropdown-item" href="#">{{ n.course }}</a>
+          <a class="dropdown-item" href="#">{{ n.coment }}</a>
+          <label>---------------------------------------------------------</label>
+        </div>
+        </div>  
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button class="btn btn-outline-success me-2" type="submit">Login</button>
+          <button class="btn btn-outline-success" href="login/sign-in" (click)="out()" >Salir</button>
+        </div>
+      </div> -->
       <form class="d-flex" role="search">
         <span *ngIf="photo" class="nav-item">
           <img
@@ -41,18 +74,11 @@
             class="rounded-circle me-2"
           />
           <span>{{ name }}</span>
+          
         </span>
       </form>
     </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <button class="btn btn-outline-success me-2" type="submit">Login</button>
-        <button class="btn btn-outline-success" href="login/sign-in" (click)="out()" >Salir</button>
-      </div>
-    </div>
+  
 
   </ng-template>
   </div>

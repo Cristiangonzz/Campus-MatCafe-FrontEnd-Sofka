@@ -3,10 +3,24 @@ import { GetAdminAndLearnerByEmailUseCase } from 'src/app/application/use-case/a
 import { GetAdminByEmailUseCase } from 'src/app/application/use-case/admin/get-admin-by-email.use-case.application';
 import { GetLearnerByEmailUseCase } from 'src/app/application/use-case/admin/get-learner-by-email.use-case.application';
 import { GraderStudentUseCase } from 'src/app/application/use-case/admin/grader-student.use-case.application';
+import { HasNotificationUseCase } from 'src/app/application/use-case/admin/notification-user.use-case.application';
 import { UpdateAdminUseCase } from 'src/app/application/use-case/admin/update-admin.use-case.application';
 import { UpdateLearnerUseCase } from 'src/app/application/use-case/admin/update-learner.use-case.application';
 import { AdminService } from 'src/app/domain/services/admin.service.domain';
 
+const HasNotificationUseCaseFactory = (() => {
+  let instance: HasNotificationUseCase;
+
+  const factory = (): HasNotificationUseCase => {
+    if (!instance) {
+      instance = new HasNotificationUseCase();
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
 const CreateUserUseCaseFactory = (() => {
   let instance: CreateUserUseCase;
 
@@ -109,6 +123,11 @@ export const adminUseCaseProviders = {
     provide: CreateUserUseCase,
     useFactory: CreateUserUseCaseFactory,
     deps: [AdminService],
+  },
+  hasNotificationUseCaseProvider: {
+    provide: HasNotificationUseCase,
+    useFactory: HasNotificationUseCaseFactory,
+    deps: [],
   },
 
   updateAdminUseCaseProvider: {
