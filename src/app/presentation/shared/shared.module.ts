@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { FormComponent } from './form/form.component';
+import { MaterialModule } from './material/material.module';
+
 
 @NgModule({
   declarations: [FormComponent],
@@ -11,6 +13,8 @@ import { FormComponent } from './form/form.component';
     FormsModule,
     ReactiveFormsModule,
     InfrastructureModule,
+    MaterialModule,
+   
   ],
   exports: [FormComponent],
 })

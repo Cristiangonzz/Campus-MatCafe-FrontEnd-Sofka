@@ -1,4 +1,5 @@
 import { GetUserLocalStorageUseCase } from 'src/app/application/use-case/login/get-user-local-storage.use.case';
+import { HasRolUseCase } from 'src/app/application/use-case/login/has-rol-user.use-case.application';
 import { HasUserUseCase } from 'src/app/application/use-case/login/has-user.use-case';
 import { SetUserLocalStorageUseCase } from 'src/app/application/use-case/login/set-user-local-storage.use-case';
 
@@ -29,6 +30,20 @@ const HasUserLocalStrotageUseCaseFactory = (() => {
 
   return factory;
 })();
+const HasRolLocalStrotageUseCaseFactory = (() => {
+  let instance: HasRolUseCase;
+
+  const factory = (): HasRolUseCase => {
+    if (!instance) {
+      instance = new HasRolUseCase();
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
+
 
 const SetUserLocalStrotageUseCaseFactory = (() => {
   let instance: SetUserLocalStorageUseCase;
@@ -53,6 +68,11 @@ export const loginUseCaseProviders = {
   hasUserUseCaseProvider: {
     provide: HasUserUseCase,
     useFactory: HasUserLocalStrotageUseCaseFactory,
+    deps: [],
+  },
+  hasRolUseCaseProvider: {
+    provide: HasRolUseCase,
+    useFactory: HasRolLocalStrotageUseCaseFactory,
     deps: [],
   },
   setUserLocalStrotageUseCaseProvider: {

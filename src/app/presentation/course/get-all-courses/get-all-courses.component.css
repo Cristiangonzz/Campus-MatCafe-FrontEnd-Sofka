@@ -286,6 +286,8 @@ body {
 
 .light {
   font-size: 2.3rem;
+  line-height: 2.5rem;
+  text-align: center;
   font-weight: 800;
 }
 
@@ -300,4 +302,9 @@ span.show {
 
 #mouse {
   cursor: pointer;
+}
+
+#link-course {
+  color: #fff;
+  text-decoration: none;
 }

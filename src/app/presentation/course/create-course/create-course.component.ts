@@ -39,6 +39,7 @@ export class CreateCourseComponent {
     const content = new FormControl('', [
       Validators.required,
       Validators.minLength(5),
+      Validators.pattern(/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/),
     ]);
     this.contentForms.push(content);
   }
@@ -67,27 +68,30 @@ export class CreateCourseComponent {
       ?.value as string;
     this.course.title = this.FormRegister.get('title')?.value as string;
 
-    console.log(this.course);
     this.delegateAdmin.getAdminByEmailUseCaseProvider
       .useFactory(this.adminService)
       .execute(localStorage.getItem('email') as string)
       .subscribe({
         next: (data) => {
           this.course.adminId = data._id as string;
+          console.log(this.course);
           this.delegateCourse.createCourseUseCaseProvider
             .useFactory(this.courseService)
             .execute(this.course)
             .subscribe({
               next: () => {
                 this.sweet.toFire('Completo', 'Curso Creado', 'success');
+                this.router.navigate(['/course/get-all']);
               },
-              error: () => {
+              error: (err) => {
                 this.sweet.toFire('Error', 'Error al Crear Curso', 'error');
+                console.log(err);
               },
             });
         },
-        error: () => {
+        error: (err) => {
           this.sweet.toFire('Error', 'Error al Crear Curso', 'error');
+          console.log(err);
         },
       });
   }

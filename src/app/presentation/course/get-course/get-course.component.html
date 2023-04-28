@@ -1,3 +1,27 @@
-<div *ngFor="let item of course.content">
-  {{ item }}
+<div class="container">
+  <div
+    *ngFor="
+      let url of course.content
+        | paginate : { itemsPerPage: 1, currentPage: p };
+      let i = index
+    "
+    class="mb-4"
+  >
+    <div
+      class="embed-responsive embed-responsive-16by9 shadow center d-flex justify-content-center"
+    >
+      <iframe
+        class="embed-responsive-item"
+        width="660"
+        height="415"
+        allowfullscreen
+        [src]="url | safe"
+      ></iframe>
+    </div>
+    <div *ngIf="p == course.content.length" class="mt-5">
+      <h1>Entregar Reto</h1>
+      <app-send-work-shop [courseName]="course.title"></app-send-work-shop>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

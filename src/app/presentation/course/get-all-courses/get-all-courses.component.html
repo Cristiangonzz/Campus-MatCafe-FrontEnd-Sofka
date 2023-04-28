@@ -1,5 +1,10 @@
 <div class="page-content page-container" id="page-content">
   <div class="padding">
+    <div *ngIf="rol" class="card-body">
+      <button class="btn btn-success" (click)="crearCurso()">
+        Crear Curso
+      </button>
+    </div>
     <h1 class="mb-2">Nuestros Cursos:</h1>
     <div class="row">
       <div
@@ -9,7 +14,13 @@
         <div class="card">
           <div class="media media-2x1 gd-primary">
             <p class="light media-content m-0">
-              {{ course.title }}
+              <a
+                id="link-course"
+                class="light"
+                href="/course/get/{{ course.id }}"
+              >
+                {{ course.title }}
+              </a>
             </p>
           </div>
           <div class="card-body">
@@ -63,10 +74,10 @@
               [class.show]="!ArrayShowContent[i]"
               *ngFor="let unique of course.content"
             >
-              <small class="text-muted">{{ unique }}</small>
+              <small class="text-muted">{{ unique | title | async }}</small>
             </p>
           </div>
-          <div class="card-body">
+          <div *ngIf="rol" class="card-body">
             <button class="btn btn-success" (click)="openModal(i)">
               Actualizar Curso
             </button>

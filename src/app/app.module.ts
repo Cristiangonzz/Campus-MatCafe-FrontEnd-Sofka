@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './presentation/shared/navbar/navbar.component';
 import { FooterComponent } from './presentation/shared/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, FooterComponent],
@@ -16,6 +17,7 @@ import { FooterComponent } from './presentation/shared/footer/footer.component';
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
