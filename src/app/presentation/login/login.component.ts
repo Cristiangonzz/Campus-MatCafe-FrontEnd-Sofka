@@ -65,6 +65,13 @@ export class LoginComponent {
                       `Bienvenido ${this.user.name}`,
                       'success'
                     );
+                    this.delegateAdmin.hasNotificationUseCaseProvider
+                    .useFactory(this.adminService)
+                    .execute();
+                    this.delegateLogin.setUserLocalStrotageUseCaseProvider
+                    .useFactory()
+                    .execute(this.user);
+                    this.router.navigate(['home']);
                   },
                   error: () => {
                     this.sweet.toFire(
@@ -85,8 +92,10 @@ export class LoginComponent {
                       `Bienvenido ${this.user.name}`,
                       'success'
                     );
+                      this.delegateLogin.setUserLocalStrotageUseCaseProvider
+                      .useFactory()
+                      .execute(this.user);
                     this.router.navigate(['home']);
-                    
                   },
                   error: () => {
                     this.sweet.toFire(
@@ -97,16 +106,12 @@ export class LoginComponent {
                   },
                 });
             }
-            this.delegateLogin.setUserLocalStrotageUseCaseProvider
-              .useFactory()
-              .execute(this.user);
-            this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
-            this.router.navigate(['home']);
           });
       })
       .catch(() => {
         this.sweet.toFire('User', `Error al Iniciar sesion `, 'error');
       });
+
     this.router.navigate(['home']);
   }
 }

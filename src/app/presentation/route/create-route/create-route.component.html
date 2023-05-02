@@ -40,15 +40,19 @@
         <div class="form-group">
           <div formArrayName="courses">
             <div
-              *ngFor="let courses of coursesForms.controls; let i = index"
+              *ngFor="let course of coursesForms.controls; let i = index"
               class="input-group"
             >
-              <input
+              <!-- <input
                 type="text"
                 [formControlName]="i"
                 placeholder="curso {{ i + 1 }}"
                 class="form-control"
-              />
+              /> -->
+              <select [formControlName]="i" class="form-control">
+                <option value="">Seleccionar curso {{ i + 1 }}</option>
+                <option *ngFor="let c of courses">{{c.title}}</option>
+              </select>
               <button
                 type="button"
                 (click)="removeCourse(i)"

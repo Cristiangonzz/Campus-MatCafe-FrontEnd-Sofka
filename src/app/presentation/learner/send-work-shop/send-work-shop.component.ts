@@ -68,7 +68,7 @@ export class SendWorkShopComponent {
             );
             this.send = true;
             this.delegateAdmin.hasNotificationUseCaseProvider
-              .useFactory()
+              .useFactory(this.adminService)
               .execute();
           },
           error: (err) => {
@@ -78,8 +78,11 @@ export class SendWorkShopComponent {
                 'Se ha enviado el taller correctamente',
                 'success'
               );
+              this.delegateAdmin.hasNotificationUseCaseProvider
+              .useFactory(this.adminService)
+              .execute();
             } else {
-              this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
+              this.sweet.toFire('Error', 'No se pudo enviar la tarea', 'error');
             }
             this.send = true;
           },

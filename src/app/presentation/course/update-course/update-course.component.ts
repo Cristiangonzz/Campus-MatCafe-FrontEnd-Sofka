@@ -93,15 +93,17 @@ export class UpdateCourseComponent implements OnChanges {
       .subscribe({
         next: () => {
           this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
+          this.delegateCourse.getAllCourseUseCaseProvider.useFactory(this.courseService).execute();
           this.router.navigate(['/course/get-all']);
         },
         error: (err) => {
-          console.log(err);
           if (
             err.error.message ===
-            "Cannot read properties of null (reading 'course')"
+            "no elements in sequence"
           ) {
             this.sweet.toFire('Completo', 'Curso Actualizado', 'success');
+            this.delegateCourse.getAllCourseUseCaseProvider.useFactory(this.courseService).execute();
+            this.router.navigate(['/course/get-all']);
           } else {
             this.sweet.toFire('Error', 'Error al Actualizar Curso', 'error');
           }

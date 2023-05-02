@@ -9,7 +9,7 @@ import { LearnerService } from 'src/app/domain/services/learner.service.domain';
   providedIn: 'root',
 })
 export class LearnerImplementationService extends LearnerService {
-  URL = 'https://stable-use-production.up.railway.app';
+  URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
     super();
@@ -24,10 +24,18 @@ export class LearnerImplementationService extends LearnerService {
   };
 
   sendWorkshop(data: ISendWorkshop): Observable<string> {
-    return this.http.post<string>(`${this.URL}/learner/sendWorkshop`, data, this.httpOptions);
+    return this.http.post<string>(
+      `${this.URL}/learner/sendWorkshop`,
+      data,
+      this.httpOptions
+    );
   }
 
   subscribeRoute(data: ISuscribeRoute): Observable<string> {
-    return this.http.post<string>(`${this.URL}/learner/subscribeRoute`, data, this.httpOptions);
+    return this.http.post<string>(
+      `${this.URL}/learner/subscribeRoute`,
+      data,
+      this.httpOptions
+    );
   }
 }

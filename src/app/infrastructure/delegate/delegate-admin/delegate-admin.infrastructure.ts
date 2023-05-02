@@ -11,9 +11,9 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
 const HasNotificationUseCaseFactory = (() => {
   let instance: HasNotificationUseCase;
 
-  const factory = (): HasNotificationUseCase => {
+  const factory = (service: AdminService): HasNotificationUseCase => {
     if (!instance) {
-      instance = new HasNotificationUseCase();
+      instance = new HasNotificationUseCase(service);
     }
 
     return instance;
@@ -127,7 +127,7 @@ export const adminUseCaseProviders = {
   hasNotificationUseCaseProvider: {
     provide: HasNotificationUseCase,
     useFactory: HasNotificationUseCaseFactory,
-    deps: [],
+    deps: [AdminService],
   },
 
   updateAdminUseCaseProvider: {

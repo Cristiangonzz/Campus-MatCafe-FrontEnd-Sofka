@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { DeleteCourseUseCase } from 'src/app/application/use-case/course/delete-course.use-case';
 import Swal from 'sweetalert2';
 import { CourseEntity } from '../../../domain/entities/course.entity.domain';
@@ -26,7 +26,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
   selected!: CourseEntity;
 
   showModal = false;
-
+  suscription!: Subscription;
   ArrayShowContent: boolean[] = [];
 
   openModal(i: number) {
@@ -56,57 +56,55 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
         next: (value: boolean) => {
           if (value == true) {
             this.rol = true;
+            this.getAllCourseAdmin();
           } else {
             this.rol = false;
+            this.getAllCourseLearner();
           }
         },
       });
-
-    if (this.rol == true) {
-      this.delegateCourse.getAllCourseUseCaseProvider
-        .useFactory(this.courseService)
-        .execute();
-
-      this.delegateCourse.getAllCourseUseCaseProvider
-        .useFactory(this.courseService)
-        .statusEmmit.pipe(takeUntil(this.onDestroy$))
-        .subscribe({
-          next: (value: CourseEntity[]) => {
-            this.courses = value;
-            if (this.ArrayShowContent.length == 0) {
-              this.ArrayShowContent = new Array(this.courses.length).fill(
-                false
-              );
-            }
-          },
-          error: () => {
-            this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
-          },
-        });
-    } else {
-      this.delegateCourse.getAllCourseLearnerUseCaseProvider
-        .useFactory(this.courseService, this.adminService, this.routeService)
-        .execute();
-
-      this.delegateCourse.getAllCourseLearnerUseCaseProvider
-        .useFactory(this.courseService, this.adminService, this.routeService)
-        .statusEmmit.pipe(takeUntil(this.onDestroy$))
-        .subscribe({
-          next: (value: CourseEntity[]) => {
-            this.courses = value;
-            if (this.ArrayShowContent.length == 0) {
-              this.ArrayShowContent = new Array(this.courses.length).fill(
-                false
-              );
-            }
-          },
-          error: () => {
-            this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
-          },
-        });
-    }
   }
 
+  getAllCourseLearner() {
+    this.delegateCourse.getAllCourseLearnerUseCaseProvider
+      .useFactory(this.courseService, this.adminService, this.routeService)
+      .execute();
+
+    this.delegateCourse.getAllCourseLearnerUseCaseProvider
+      .useFactory(this.courseService, this.adminService, this.routeService)
+      .statusEmmit.pipe(takeUntil(this.onDestroy$))
+      .subscribe({
+        next: (value: CourseEntity[]) => {
+          this.courses = value;
+          if (this.ArrayShowContent.length == 0) {
+            this.ArrayShowContent = new Array(this.courses.length).fill(false);
+          }
+        },
+        error: () => {
+          this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
+        },
+      });
+  }
+  getAllCourseAdmin() {
+    this.delegateCourse.getAllCourseUseCaseProvider
+      .useFactory(this.courseService)
+      .execute();
+
+    this.delegateCourse.getAllCourseUseCaseProvider
+      .useFactory(this.courseService)
+      .statusEmmit.pipe(takeUntil(this.onDestroy$))
+      .subscribe({
+        next: (value: CourseEntity[]) => {
+          this.courses = value;
+          if (this.ArrayShowContent.length == 0) {
+            this.ArrayShowContent = new Array(this.courses.length).fill(false);
+          }
+        },
+        error: () => {
+          this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
+        },
+      });
+  }
   deleteCourse(_id: string) {
     Swal.fire({
       title: '¿Estas seguro?',
@@ -125,7 +123,7 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
               'Curso Eliminado Correctamente',
               'success'
             );
-            this. updateListCourse();
+            this.refresh();
             this.router.navigate(['/course/get-all']);
           },
           error: (error) => {
@@ -146,23 +144,17 @@ export class GetAllCoursesComponent implements OnInit, OnDestroy {
     return this.ArrayShowContent[i];
   }
   crearCurso() {
-   this. updateListCourse();
     this.router.navigate(['course/create']);
   }
-
-  updateListCourse(){
-    if (this.rol) {
+  refresh(){
+    if(this.rol == true){
       this.delegateCourse.getAllCourseUseCaseProvider
-        .useFactory(this.courseService)
-        .execute();
-    } else {
+      .useFactory(this.courseService)
+      .execute()
+    }else{
       this.delegateCourse.getAllCourseLearnerUseCaseProvider
-        .useFactory(
-          this.courseService,
-          this.adminService,
-          this.routeService
-        )
-        .execute();
+      .useFactory(this.courseService, this.adminService, this.routeService)
+      .execute();
     }
   }
 }

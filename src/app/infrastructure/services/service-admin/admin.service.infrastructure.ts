@@ -13,7 +13,7 @@ import { AdminService } from 'src/app/domain/services/admin.service.domain';
   providedIn: 'root',
 })
 export class AdminImplementationService extends AdminService {
-  URL = 'https://stable-use-production.up.railway.app';
+  URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
     super();

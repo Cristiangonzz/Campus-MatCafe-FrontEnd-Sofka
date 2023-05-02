@@ -12,7 +12,7 @@ export class SweetAlert {
       text: message,
       icon: type,
       position: 'top-end',
-      timer: 3000,
+      timer: 1500,
       color: '#96C0B7',
       showConfirmButton: showConfirmButton ? showConfirmButton : false,
     });

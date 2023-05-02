@@ -34,7 +34,7 @@
             <a class="nav-link" (click)="learnerSubscribe()">Asignar Ruta</a>
           </li>
         </ul>
-        <div class="d-inline dropdown class-bg mr-3 w-25">
+        <div *ngIf="rolBoolean" class="d-inline dropdown class-bg mr-3 w-25">
           <a
             id="notifications"
             data-toggle="dropdown"
@@ -46,7 +46,7 @@
           <div
             class="dropdown-menu dropdown-menu-start rounded-0 pt-0"
             aria-labelledby="notifications">
-            <div *ngIf="rolBoolean" class="list-group">
+            <div  class="list-group">
               <div class="bg-black" *ngFor="let n of notification">
                 <a
                   class="list-group-item class-bg list-group-item-action flex-column align-items-start active"

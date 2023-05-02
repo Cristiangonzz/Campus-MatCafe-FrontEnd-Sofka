@@ -8,15 +8,14 @@ import { RouteService } from 'src/app/domain/services/route.service.domain';
   providedIn: 'root',
 })
 export class RouteImplementationService extends RouteService {
-   getByName(id: string): Observable<RouteEntity> {
+  getByName(id: string): Observable<RouteEntity> {
     return this.http.get<RouteEntity>(
       `${this.URL}/Route/getByName/${id}`,
       this.httpOptions
-    );  
+    );
   }
 
-  
-  URL = 'https://stable-use-production.up.railway.app';
+  URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
     super();
@@ -59,6 +58,4 @@ export class RouteImplementationService extends RouteService {
   getAll(): Observable<RouteEntity[]> {
     return this.http.get<RouteEntity[]>(`${this.URL}/Route`, this.httpOptions);
   }
-
-  
 }

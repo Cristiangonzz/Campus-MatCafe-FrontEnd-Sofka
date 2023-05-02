@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { INotification } from 'src/app/domain/interfaces/notification.interface.domain';
+import { AdminService } from 'src/app/domain/services/admin.service.domain';
 import { adminUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-admin/delegate-admin.infrastructure';
 import { courseUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-course/delegate-course.infrastructure';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
@@ -10,7 +12,7 @@ import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit  {
   delegateLogin = loginUseCaseProviders;
   delegateAdmin = adminUseCaseProviders;
   isAdmin?: boolean;
@@ -20,7 +22,8 @@ export class NavbarComponent implements OnInit {
   notification: INotification[] = {} as INotification[];
   tamanio: number = 0;
   rolBoolean: boolean = false;
-  constructor(private router : Router) {}
+  constructor(private router : Router,private readonly adminService: AdminService) {}
+ 
 
   ngOnInit(): void {
     this.delegateLogin.hasUserUseCaseProvider
@@ -33,20 +36,15 @@ export class NavbarComponent implements OnInit {
         this.photo = localStorage.getItem('photoUrl') || '';
         this.name = localStorage.getItem('name') || '';
         this.rol = localStorage.getItem('rol') || '';
-        if (this.rol == 'true') {
+        if (this.rol === "true") {
           this.rolBoolean = true;
+          
+          this.refreshNotificacion();
+        }else{
+          this.rolBoolean = false;
         }
       });
-
-      this.delegateAdmin.hasNotificationUseCaseProvider.useFactory().execute();
-      this
-        .delegateAdmin
-          .hasNotificationUseCaseProvider
-            .useFactory()
-              .statusRolEmmit.subscribe((status: INotification[]) => {
-                this.notification = status;
-                this.tamanio = this.notification.length ;
-              });
+    
   }
 
   out() {
@@ -71,5 +69,21 @@ export class NavbarComponent implements OnInit {
   }
   send(){
     this.router.navigate(['admin/send']);
+  }
+  refreshNotificacion(){
+    console.log(localStorage.getItem('email') || '')
+    this
+    .delegateAdmin
+      .hasNotificationUseCaseProvider
+        .useFactory(this.adminService)
+          .execute();
+  this
+    .delegateAdmin
+      .hasNotificationUseCaseProvider
+        .useFactory(this.adminService)
+          .statusRolEmmit.subscribe((status: INotification[]) => {
+            this.notification = status;
+            this.tamanio = this.notification.length ;
+          });
   }
 }
